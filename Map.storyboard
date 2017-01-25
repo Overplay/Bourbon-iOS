@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fsJ-wE-pWs">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Locations-->
+        <scene sceneID="igD-as-gaG">
+            <objects>
+                <viewController title="Locations" id="fsJ-wE-pWs" customClass="MapViewController" customModule="Absinthe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Isd-pb-ccg"/>
+                        <viewControllerLayoutGuide type="bottom" id="hdV-7d-k2q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AIx-V8-mKW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3A-Cn-NdA">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="351"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="48H-eQ-Byc">
+                                <rect key="frame" x="0.0" y="351" width="600" height="200"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="xbz-Pl-03D"/>
+                                </constraints>
+                                <color key="separatorColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i3A-Cn-NdA" firstAttribute="leading" secondItem="AIx-V8-mKW" secondAttribute="leading" id="1EW-KN-0DF"/>
+                            <constraint firstItem="hdV-7d-k2q" firstAttribute="top" secondItem="48H-eQ-Byc" secondAttribute="bottom" id="J4v-Ry-qEd"/>
+                            <constraint firstItem="48H-eQ-Byc" firstAttribute="leading" secondItem="AIx-V8-mKW" secondAttribute="leading" id="NLw-SI-3I6"/>
+                            <constraint firstItem="hdV-7d-k2q" firstAttribute="top" secondItem="48H-eQ-Byc" secondAttribute="bottom" id="VWy-I1-qb6"/>
+                            <constraint firstAttribute="trailing" secondItem="48H-eQ-Byc" secondAttribute="trailing" id="YJb-Hq-i2B"/>
+                            <constraint firstItem="48H-eQ-Byc" firstAttribute="top" secondItem="i3A-Cn-NdA" secondAttribute="bottom" id="gd5-fr-HmO"/>
+                            <constraint firstItem="i3A-Cn-NdA" firstAttribute="top" secondItem="AIx-V8-mKW" secondAttribute="top" id="hVH-yk-rO3"/>
+                            <constraint firstAttribute="trailing" secondItem="i3A-Cn-NdA" secondAttribute="trailing" id="oj9-ww-z4Q"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="J4v-Ry-qEd"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Locations" image="TabMapIcon" id="4yK-EX-hbJ"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="i3A-Cn-NdA" id="O50-Ka-bKc"/>
+                        <outlet property="tableView" destination="48H-eQ-Byc" id="bWQ-to-17o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qv4-2c-Z7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="494" y="573"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="TabMapIcon" width="25" height="25"/>
+    </resources>
+</document>

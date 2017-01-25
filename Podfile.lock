@@ -1,0 +1,51 @@
+PODS:
+  - Alamofire (4.2.0)
+  - CocoaAsyncSocket (7.5.1):
+    - CocoaAsyncSocket/GCD (= 7.5.1)
+  - CocoaAsyncSocket/GCD (7.5.1)
+  - NetUtils (3.0.1)
+  - PKHUD (4.1.0)
+  - PromiseKit (4.1.3):
+    - PromiseKit/Foundation (= 4.1.3)
+    - PromiseKit/QuartzCore (= 4.1.3)
+    - PromiseKit/UIKit (= 4.1.3)
+  - PromiseKit/Alamofire (4.1.3):
+    - Alamofire (~> 4.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (4.1.3)
+  - PromiseKit/Foundation (4.1.3):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.1.3):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.1.3):
+    - PromiseKit/CorePromise
+  - ReachabilitySwift (3)
+  - SwiftyJSON (3.1.4)
+  - XCGLogger (4.0.0):
+    - XCGLogger/Core (= 4.0.0)
+  - XCGLogger/Core (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - CocoaAsyncSocket
+  - NetUtils
+  - PKHUD
+  - PromiseKit
+  - PromiseKit/Alamofire (~> 4.0)
+  - ReachabilitySwift
+  - SwiftyJSON
+  - XCGLogger
+
+SPEC CHECKSUMS:
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  CocoaAsyncSocket: e0a7e93b2ffa411592ff87e58524fbbc9b95b4fa
+  NetUtils: 021706850ae10109c593366758b20c2dfd16d6b2
+  PKHUD: a0ecdee9f67d9b462c0c5e4ba38400292ea6ae6e
+  PromiseKit: 56baec63efa89210c023260879435a5a6b3bff00
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
+
+PODFILE CHECKSUM: d63dc8b666de3cd18adf8ce6c2d14393b64a30c2
+
+COCOAPODS: 1.2.0.rc.1
