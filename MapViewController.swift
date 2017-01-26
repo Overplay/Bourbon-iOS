@@ -51,6 +51,7 @@ class MapViewController : UIViewController {
             }
             let geocoder: CLGeocoder = CLGeocoder()
             // Convert address into coordinates for visual map items
+            // TODO: this is crashing!
             geocoder.geocodeAddressString(location,completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
                 if ((placemarks?.count)! > 0) {
                     let topResult: CLPlacemark = (placemarks?[0])!

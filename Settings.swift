@@ -163,7 +163,7 @@ class Settings {
         userDefaults.register(defaults: [
             
             "devMode" :  true,
-            "allowAccountCreation": false,
+            "allowAccountCreation": true,
             "asahiScheme" : "http://",
             "asahiBase" : "107.170.209.248",
             "appleReviewMode" : false,
