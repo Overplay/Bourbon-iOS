@@ -54,16 +54,20 @@ class LoginOrRegViewController: RegSceneBaseViewController {
                 UIView.animate(withDuration: 0.35, animations: { 
                     self.loginButton.alpha = 1
                     }, completion: { _ in
-                        UIView.animate(withDuration: 0.35, animations: {
-                            self.orLabel.alpha = 1
-                        }, completion: { _ in
-                        UIView.animate(withDuration: 0.35, animations: { 
-                            self.signUpButton.alpha = 1
-                        })
-                    })
+                        
+                        if Settings.sharedInstance.allowAccountCreation {
+                            
+                            UIView.animate(withDuration: 0.35, animations: {
+                                self.orLabel.alpha = 1
+                                
+                            }, completion: { _ in
+                                UIView.animate(withDuration: 0.35, animations: {
+                                    self.signUpButton.alpha = 1
+                                })
+                            })
+                        }
                 })
         })
-    
     }
 
     override func didReceiveMemoryWarning() {

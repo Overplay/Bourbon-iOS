@@ -145,6 +145,15 @@ class Settings {
         }
     }
     
+    var allowAccountCreation: Bool {
+        get {
+            return userDefaults.bool(forKey: "allowAccountCreation")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "allowAccountCreation")
+        }
+    }
+    
 
 
     // MARK:Defaults
@@ -154,6 +163,7 @@ class Settings {
         userDefaults.register(defaults: [
             
             "devMode" :  true,
+            "allowAccountCreation": false,
             "asahiScheme" : "http://",
             "asahiBase" : "107.170.209.248",
             "appleReviewMode" : false,
