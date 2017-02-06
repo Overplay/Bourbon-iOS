@@ -39,6 +39,17 @@ class ChooseOurglasserViewController : UIViewController, UICollectionViewDelegat
         nc.addObserver(self, selector: #selector(newOPIE), name: NSNotification.Name(rawValue: ASNotification.newOg.rawValue), object: nil)
         nc.addObserver(self, selector: #selector(OPIESocketError), name: NSNotification.Name(rawValue: ASNotification.ogSocketError.rawValue), object: nil)
         nc.addObserver(self, selector: #selector(droppedOPIE), name: NSNotification.Name(rawValue: ASNotification.droppedOg.rawValue), object: nil)
+        
+        //systemName: String, location: String, ipAddress: String, venue: String, ttl: Int,
+        let op = OPIE()
+        op.systemName = "Name"
+        op.location = "a place"
+        op.ipAddress = "0.0.0.0"
+        op.ttl = 100000
+        self.availableOPIEs.append(op)
+        self.availableOPIEs.append(op)
+        self.availableOPIEs.append(op)
+        self.availableOPIEs.append(op)
 
         // Setup collection view
         self.ourglasserCollection.dataSource = self
@@ -118,7 +129,8 @@ class ChooseOurglasserViewController : UIViewController, UICollectionViewDelegat
         
         mainStatusLabel.text = Network.wifiSSID() ?? "NOT CONNECTED"
         
-        self.availableOPIEs = OPIEBeaconListener.sharedInstance.opies
+        // TODO: PUT THIS BACK IN
+        //self.availableOPIEs = OPIEBeaconListener.sharedInstance.opies
         
         // Stops the spinner if we have seen no added/dropped OPIEs in 5s
         Timer.scheduledTimer(timeInterval: SEARCHING_TIMEOUT_INTERVAL, target: self, selector: #selector(stopRefresh), userInfo: nil, repeats: false)
