@@ -154,6 +154,23 @@ class Settings {
         }
     }
     
+    var appOpened: Bool {
+        get {
+            return userDefaults.bool(forKey: "appOpened")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "appOpened")
+        }
+    }
+    
+    var alwaysShowIntro: Bool {
+        get {
+            return userDefaults.bool(forKey: "alwaysShowIntro")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "alwaysShowIntro")
+        }
+    }
 
 
     // MARK:Defaults
@@ -163,6 +180,7 @@ class Settings {
         userDefaults.register(defaults: [
             
             "devMode" :  true,
+            "alwaysShowIntro": true,
             "allowAccountCreation": true,
             "asahiScheme" : "http://",
             "asahiBase" : "107.170.209.248",

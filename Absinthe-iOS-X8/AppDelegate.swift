@@ -20,9 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var opieBeaconListener: OPIEBeaconListener?
     
-    //let reachability = Reachability()!
-    
-    //private var reachability: Reachability!
+    var reachability: NetworkReachability?
     
    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -51,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         opieBeaconListener?.stopListening()
+        reachability?.stopListening()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -67,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Fire it up when we foreground
         opieBeaconListener = OPIEBeaconListener.sharedInstance
         opieBeaconListener?.startListening()
+        
+        reachability = NetworkReachability.sharedInstance
+        reachability?.startListening()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

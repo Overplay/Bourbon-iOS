@@ -56,6 +56,10 @@
 		1ED96EE81E2A0E0C00891EA8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */; };
 		1ED96EEA1E2A0E1500891EA8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */; };
 		1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE7B96E1E2DEDD800E00370 /* Network.swift */; };
+		4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9308611E550B11005B5EAB /* IntroSlides.storyboard */; };
+		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
+		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
+		4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308711E57B904005B5EAB /* NetworkReachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +114,10 @@
 		1EE7B96B1E2DB82400E00370 /* Absinthe-iOS-X8-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Absinthe-iOS-X8-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1EE7B96E1E2DEDD800E00370 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3B39F5F32EB6DDC59F1112A4 /* Pods-Absinthe-iOS-X8.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Absinthe-iOS-X8.release.xcconfig"; path = "Pods/Target Support Files/Pods-Absinthe-iOS-X8/Pods-Absinthe-iOS-X8.release.xcconfig"; sourceTree = "<group>"; };
+		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
+		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
+		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
+		4F9308711E57B904005B5EAB /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		76773BF4487830429B407773 /* Pods-Absinthe-iOS-X8.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Absinthe-iOS-X8.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Absinthe-iOS-X8/Pods-Absinthe-iOS-X8.debug.xcconfig"; sourceTree = "<group>"; };
 		A8D6B1565BBBB3A0786F1E0A /* Pods_Absinthe_iOS_X8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Absinthe_iOS_X8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -178,6 +186,7 @@
 				1ED96E851E2A0C6300891EA8 /* ABNetworking.swift */,
 				1ED96E861E2A0C6300891EA8 /* RequestRouter.swift */,
 				1EE7B96E1E2DEDD800E00370 /* Network.swift */,
+				4F9308711E57B904005B5EAB /* NetworkReachability.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -185,6 +194,7 @@
 		1ED96E8B1E2A0C7200891EA8 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4F9308601E550AD0005B5EAB /* Introduction */,
 				1ED96EB21E2A0D4F00891EA8 /* Account */,
 				1ED96EAD1E2A0D3500891EA8 /* Map */,
 				1ED96E9A1E2A0CFA00891EA8 /* Registration */,
@@ -291,6 +301,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4F9308601E550AD0005B5EAB /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				4F9308611E550B11005B5EAB /* IntroSlides.storyboard */,
+				4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */,
+				4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */,
+			);
+			name = Introduction;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -362,6 +382,7 @@
 				1ED96EDB1E2A0DA400891EA8 /* Poppins-Regular.ttf in Resources */,
 				1ED96EDD1E2A0DA400891EA8 /* Assets.xcassets in Resources */,
 				1ED96EDC1E2A0DA400891EA8 /* Poppins-SemiBold.ttf in Resources */,
+				4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */,
 				1ED96ED81E2A0DA400891EA8 /* Poppins-Bold.ttf in Resources */,
 				1ED96EB01E2A0D4700891EA8 /* Map.storyboard in Resources */,
 				1ED96E981E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard in Resources */,
@@ -426,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */,
 				1ED96EBD1E2A0D6000891EA8 /* SettingsCell.swift in Sources */,
 				1ED96EC81E2A0D8600891EA8 /* ASNotification.swift in Sources */,
 				1ED96EAC1E2A0D2000891EA8 /* CheckAuthViewController.swift in Sources */,
@@ -435,6 +457,7 @@
 				1ED96EBA1E2A0D6000891EA8 /* EditAccountViewController.swift in Sources */,
 				1ED96EB11E2A0D4700891EA8 /* MapViewController.swift in Sources */,
 				1ED96EE51E2A0DDD00891EA8 /* AppDelegate.swift in Sources */,
+				4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */,
 				1ED96E881E2A0C6300891EA8 /* Asahi.swift in Sources */,
 				1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */,
 				1ED96EA81E2A0D2000891EA8 /* EnterPasswordViewController.swift in Sources */,
@@ -444,6 +467,7 @@
 				1ED96EDF1E2A0DA400891EA8 /* NoAnimationSegue.swift in Sources */,
 				1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */,
 				1ED96EBC1E2A0D6000891EA8 /* AccountViewController.swift in Sources */,
+				4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */,
 				1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */,
 				1ED96E891E2A0C6300891EA8 /* ABNetworking.swift in Sources */,
 				1ED96EAB1E2A0D2000891EA8 /* RegSceneBaseViewController.swift in Sources */,

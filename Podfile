@@ -13,7 +13,6 @@ pod 'XCGLogger'
 pod 'PKHUD'
 pod 'PromiseKit'
 pod 'CocoaAsyncSocket'
-pod 'ReachabilitySwift'
 pod 'PromiseKit/Alamofire', '~> 4.0'
 pod 'NetUtils'
 

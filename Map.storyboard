@@ -1,53 +1,52 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fsJ-wE-pWs">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fsJ-wE-pWs">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Locations-->
         <scene sceneID="igD-as-gaG">
             <objects>
-                <viewController title="Locations" id="fsJ-wE-pWs" customClass="MapViewController" customModule="Absinthe_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Locations" id="fsJ-wE-pWs" customClass="MapViewController" customModule="Absinthe_iOS_X8" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Isd-pb-ccg"/>
                         <viewControllerLayoutGuide type="bottom" id="hdV-7d-k2q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AIx-V8-mKW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3A-Cn-NdA">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="351"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3A-Cn-NdA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="427"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="48H-eQ-Byc">
-                                <rect key="frame" x="0.0" y="351" width="600" height="200"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="418" width="375" height="200"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="xbz-Pl-03D"/>
+                                    <constraint firstAttribute="height" constant="200" id="bCN-fC-BRJ"/>
                                 </constraints>
-                                <color key="separatorColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="i3A-Cn-NdA" firstAttribute="leading" secondItem="AIx-V8-mKW" secondAttribute="leading" id="1EW-KN-0DF"/>
-                            <constraint firstItem="hdV-7d-k2q" firstAttribute="top" secondItem="48H-eQ-Byc" secondAttribute="bottom" id="J4v-Ry-qEd"/>
-                            <constraint firstItem="48H-eQ-Byc" firstAttribute="leading" secondItem="AIx-V8-mKW" secondAttribute="leading" id="NLw-SI-3I6"/>
-                            <constraint firstItem="hdV-7d-k2q" firstAttribute="top" secondItem="48H-eQ-Byc" secondAttribute="bottom" id="VWy-I1-qb6"/>
-                            <constraint firstAttribute="trailing" secondItem="48H-eQ-Byc" secondAttribute="trailing" id="YJb-Hq-i2B"/>
-                            <constraint firstItem="48H-eQ-Byc" firstAttribute="top" secondItem="i3A-Cn-NdA" secondAttribute="bottom" id="gd5-fr-HmO"/>
-                            <constraint firstItem="i3A-Cn-NdA" firstAttribute="top" secondItem="AIx-V8-mKW" secondAttribute="top" id="hVH-yk-rO3"/>
-                            <constraint firstAttribute="trailing" secondItem="i3A-Cn-NdA" secondAttribute="trailing" id="oj9-ww-z4Q"/>
+                            <constraint firstItem="48H-eQ-Byc" firstAttribute="top" secondItem="i3A-Cn-NdA" secondAttribute="bottom" constant="8" id="5OL-0k-8al"/>
+                            <constraint firstItem="hdV-7d-k2q" firstAttribute="top" secondItem="48H-eQ-Byc" secondAttribute="bottom" id="5YN-V8-nfH"/>
+                            <constraint firstItem="48H-eQ-Byc" firstAttribute="leading" secondItem="AIx-V8-mKW" secondAttribute="leading" id="CQ4-LQ-tv6"/>
+                            <constraint firstAttribute="trailing" secondItem="i3A-Cn-NdA" secondAttribute="trailing" id="JzK-5K-YMR"/>
+                            <constraint firstItem="i3A-Cn-NdA" firstAttribute="top" secondItem="AIx-V8-mKW" secondAttribute="top" id="PRn-bi-Tq4"/>
+                            <constraint firstItem="i3A-Cn-NdA" firstAttribute="leading" secondItem="AIx-V8-mKW" secondAttribute="leading" id="UVL-pg-YEb"/>
+                            <constraint firstItem="48H-eQ-Byc" firstAttribute="top" secondItem="i3A-Cn-NdA" secondAttribute="bottom" constant="8" id="gZz-oL-oht"/>
+                            <constraint firstAttribute="trailing" secondItem="48H-eQ-Byc" secondAttribute="trailing" id="ghf-dA-4xM"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="J4v-Ry-qEd"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Locations" image="TabMapIcon" id="4yK-EX-hbJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -58,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qv4-2c-Z7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="573"/>
+            <point key="canvasLocation" x="493.60000000000002" y="572.56371814092961"/>
         </scene>
     </scenes>
     <resources>

@@ -43,9 +43,9 @@
 		<string>Exo2-Light.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>RegistrationStoryboard</string>
+	<string>IntroSlides</string>
 	<key>UIMainStoryboardFile</key>
-	<string>RegistrationStoryboard</string>
+	<string>IntroSlides</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

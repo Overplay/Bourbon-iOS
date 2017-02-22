@@ -9,11 +9,12 @@
 import UIKit
 
 struct Style {
-    static var greenColor = UIColor(red: 9, green: 184, blue: 50, alpha: 100)
-    static var darkBlueColor = UIColor(red: 11, green: 79, blue: 108, alpha: 100)
-    static var lightBlueColor = UIColor(red: 1, green: 186, blue: 239, alpha: 100)
-    static var offWhiteColor = UIColor(red: 251, green: 251, blue: 255, alpha: 100)
-    static var greyColor = UIColor(red: 117, green: 117, blue: 117, alpha: 100)
+    static var greenColor = UIColor(red: 0.32, green: 0.72, blue: 0.37, alpha: 1.0)
+    static var orangeColor = UIColor(red:1.0, green:0.5, blue:0.0, alpha:1.0)
+    static var lightBlueColor = UIColor(red: 0.13, green: 0.72, blue: 0.92, alpha: 1.0)
+    static var whiteColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    static var darkGreyColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+    static var lightGreyColor = UIColor(red:0.78, green:0.77, blue:0.77, alpha:1.0)
     
     static var regularFont = "Poppins-Regular"
     static var boldFont = "Poppins-Bold"
