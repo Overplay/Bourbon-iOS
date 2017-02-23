@@ -11,6 +11,12 @@ import UIKit
 
 class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
     
+    let slideImages: [UIImage] = [
+        UIImage(named: "TestSlide1")!,
+        UIImage(named: "TestSlide3")!,
+        UIImage(named: "TestSlide4")!
+    ]
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var startButton: UIButton!
@@ -26,12 +32,6 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
             self.performSegue(withIdentifier: "fromIntroToReg", sender: nil)
         })
     }
-    
-    let slideImages: [UIImage] = [
-        UIImage(named: "TestSlide1")!,
-        UIImage(named: "TestSlide3")!,
-        UIImage(named: "TestSlide4")!
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +69,11 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
         // change the page indicator
         self.pageControl.currentPage = Int(currentPage)
         
-        if self.pageControl.currentPage == self.slideImages.count - 1 {
+        /*if self.pageControl.currentPage == self.slideImages.count - 1 {
             self.startButton.alpha = 1.0
         } else {
             self.startButton.alpha = 0.0
-        }
+        }*/
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -81,11 +81,12 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
         let pageWidth: CGFloat = self.scrollView.frame.width
         let currentPage: CGFloat = floor((self.scrollView.contentOffset.x-pageWidth/2)/pageWidth) + 1
         
-        if Int(currentPage) == self.slideImages.count - 1 {
+        
+        /*if Int(currentPage) == self.slideImages.count - 1 {
             self.startButton.alpha = 1.0
         } else {
             self.startButton.alpha = 0.0
-        }
+        }*/
     }
     
     override func didReceiveMemoryWarning() {
