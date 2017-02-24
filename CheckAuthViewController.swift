@@ -18,14 +18,15 @@ class CheckAuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkUserStatus()
+        /*checkUserStatus()
             .then{ response -> Void in
                 self.performSegue(withIdentifier: "fromCheckAuthToMainTabs", sender: nil)
             }
         
             .catch{ err -> Void in
                 self.performSegue(withIdentifier: "fromCheckAuthToLR", sender: nil)
-            }
+            }*/
+        self.performSegue(withIdentifier: "fromCheckAuthToMainTabs", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {

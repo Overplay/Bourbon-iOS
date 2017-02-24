@@ -20,6 +20,8 @@ class MapViewController : UIViewController {
     
     var currentLocation: CLLocation!
     
+    let nc = NotificationCenter.default
+    
     func processVenues( _ inboundVenueJson: JSON ){
         
         guard let venueArray = inboundVenueJson.array else {
@@ -74,6 +76,8 @@ class MapViewController : UIViewController {
         
         self.mapView.delegate = self
         
+        nc.addObserver(self, selector: #selector(networkChanged), name: NSNotification.Name(rawValue: ASNotification.networkChanged.rawValue), object: nil)
+        
         Asahi.sharedInstance.getVenues()
             
             .then { response -> Void in
@@ -91,6 +95,21 @@ class MapViewController : UIViewController {
         // Zoom in on current location
         // 0.3 is some number. The smaller it is, the smaller the frame (huh, makes sense right?)
         self.mapView.setRegion(MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.3, 0.3)), animated: true)
+    }
+    
+    // reload venues when network changes
+    func networkChanged() {
+        Asahi.sharedInstance.getVenues()
+            
+            .then { response -> Void in
+                log.debug("Got venues!")
+                self.processVenues(response)
+            }
+            
+            .catch{ err -> Void in
+                log.error("Error getting venues")
+                print(err)
+        }
     }
     
 }
