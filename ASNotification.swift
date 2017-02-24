@@ -16,6 +16,7 @@ enum ASNotification: String {
     case droppedOg
     case ogSocketError
     case asahiLoggedIn
+    case networkChanged
     
     //TODO can these two be collapsed into one method with an optional userInfo param?
     

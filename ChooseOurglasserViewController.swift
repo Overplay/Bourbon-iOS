@@ -39,6 +39,7 @@ class ChooseOurglasserViewController : UIViewController, UICollectionViewDelegat
         nc.addObserver(self, selector: #selector(newOPIE), name: NSNotification.Name(rawValue: ASNotification.newOg.rawValue), object: nil)
         nc.addObserver(self, selector: #selector(OPIESocketError), name: NSNotification.Name(rawValue: ASNotification.ogSocketError.rawValue), object: nil)
         nc.addObserver(self, selector: #selector(droppedOPIE), name: NSNotification.Name(rawValue: ASNotification.droppedOg.rawValue), object: nil)
+        nc.addObserver(self, selector: #selector(networkChanged), name: NSNotification.Name(rawValue: ASNotification.networkChanged.rawValue), object: nil)
 
 
         // Setup collection view
@@ -107,6 +108,10 @@ class ChooseOurglasserViewController : UIViewController, UICollectionViewDelegat
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func networkChanged() {
+        log.debug("Network reachability changed")
+        setNetworkName()
+    }
     
 
     func findOurglassers() {

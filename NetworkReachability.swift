@@ -16,6 +16,7 @@ class NetworkReachability {
     func startListening() {
         manager.listener = { status in
             log.info("Network status changed: \(status)")
+            ASNotification.networkChanged.issue()
         }
         manager.startListening()
     }

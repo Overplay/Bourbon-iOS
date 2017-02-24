@@ -25,10 +25,6 @@ class OPIEBeaconListener: NSObject, GCDAsyncUdpSocketDelegate {
     
     let maxTTL = 6
     
-    // TODO: [mak] are their situations where this could fail (!)?
-    
-    var interface = Network.getWiFiInterface()
-    
     // For identifying different UDP packets sent to different hosts or whatever
     // This doesn't really matter for our usecase
     let TAG = 1
@@ -46,10 +42,12 @@ class OPIEBeaconListener: NSObject, GCDAsyncUdpSocketDelegate {
         self.socket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.main)
 
         do {
-            try self.socket.bind(toPort: PORT, interface: "en0")
-        } catch {
+            //try self.socket.bind(toPort: PORT, interface: "en0")
+            try self.socket.bind(toPort: PORT)
+        } catch let e {
             log.error("ERROR: OPIE socket failed to bind to port \(self.PORT)")
             ASNotification.ogSocketError.issue()
+            log.debug(e)
             return
         }
         
@@ -92,7 +90,7 @@ class OPIEBeaconListener: NSObject, GCDAsyncUdpSocketDelegate {
             let jsonPacket = JSON([
                 //"ip": netInfo["ip"]!,
                 //TODO FIX FIX
-                "ip": interface?.address ?? "missing",
+                "ip": Network.getWiFiInterface()?.address ?? "missing",
                 "action": "discover",
                 "time": Date().timeIntervalSince1970
                 ])
@@ -176,7 +174,7 @@ class OPIEBeaconListener: NSObject, GCDAsyncUdpSocketDelegate {
             return
         }
         
-        guard ipAddress != interface?.address else {
+        guard ipAddress != Network.getWiFiInterface()?.address else {
             log.debug("Got my own address as source of UDP packet, skipping!")
             return
         }
@@ -198,6 +196,5 @@ class OPIEBeaconListener: NSObject, GCDAsyncUdpSocketDelegate {
         processOPIE(receivedOp)
 
     }
-    
     
 }

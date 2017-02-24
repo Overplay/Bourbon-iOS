@@ -35,11 +35,6 @@ class MapViewController : UIViewController {
             let address = venue["address"]
             let name  = venue["name"].stringValue
             
-            // WTF is this??? MAK
-//            if name != "" && address.count != 4 {
-//                continue
-//            }
-            
             // Address components compiled into one human readable string
             let location = String(format: "%@, %@, %@, %@", address["street"].stringValue, address["city"].stringValue, address["state"].stringValue, address["zip"].stringValue)
             
