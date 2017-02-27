@@ -23,6 +23,7 @@ class EditAccountViewController: AccountBaseViewController {
     }
     
     @IBAction func save(_ sender: AnyObject) {
+        self.view.endEditing(true)
         
         guard let first = self.firstName.text
             else {

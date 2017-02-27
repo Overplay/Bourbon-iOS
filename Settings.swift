@@ -180,7 +180,7 @@ class Settings {
         userDefaults.register(defaults: [
             
             "devMode" :  true,
-            "alwaysShowIntro": true,
+            "alwaysShowIntro": false,
             "allowAccountCreation": true,
             "asahiScheme" : "http://",
             "asahiBase" : "107.170.209.248",

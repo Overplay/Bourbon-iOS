@@ -192,7 +192,7 @@ open class Asahi: NSObject {
     
     func changeAccountInfo(_ firstName: String, lastName: String, email: String, userId: String) -> Promise<JSON> {
         let params: Dictionary<String, Any> = ["email": email, "firstName": firstName, "lastName": lastName]
-        return putJson(createApiEndpoint("/api/v1/user/"), data: params)
+        return putJson(createApiEndpoint("/api/v1/user/\(userId)"), data: params)
     }
     
     //TODO this will almost certainly not work since I do not think this page returns JSON
