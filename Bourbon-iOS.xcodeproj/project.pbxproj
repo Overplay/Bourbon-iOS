@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1681C1E08C7344599C0DA092 /* Pods_Absinthe_iOS_X8.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6B1565BBBB3A0786F1E0A /* Pods_Absinthe_iOS_X8.framework */; };
+		1681C1E08C7344599C0DA092 /* Pods_Bourbon_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */; };
 		1ED96E821E2A0C4A00891EA8 /* OPIEBeaconListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E811E2A0C4A00891EA8 /* OPIEBeaconListener.swift */; };
 		1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */; };
 		1ED96E881E2A0C6300891EA8 /* Asahi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E841E2A0C6300891EA8 /* Asahi.swift */; };
@@ -63,7 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1ED96E6B1E2A0A7A00891EA8 /* Absinthe-iOS-X8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Absinthe-iOS-X8.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ED96E6B1E2A0A7A00891EA8 /* Bourbon-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bourbon-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED96E811E2A0C4A00891EA8 /* OPIEBeaconListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPIEBeaconListener.swift; sourceTree = "<group>"; };
 		1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtilsXX.swift; sourceTree = "<group>"; };
 		1ED96E841E2A0C6300891EA8 /* Asahi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asahi.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		1ED96EE21E2A0DDD00891EA8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1EE7B96B1E2DB82400E00370 /* Absinthe-iOS-X8-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Absinthe-iOS-X8-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		1EE7B96B1E2DB82400E00370 /* Bourbon-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bourbon-iOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1EE7B96E1E2DEDD800E00370 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3B39F5F32EB6DDC59F1112A4 /* Pods-Absinthe-iOS-X8.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Absinthe-iOS-X8.release.xcconfig"; path = "Pods/Target Support Files/Pods-Absinthe-iOS-X8/Pods-Absinthe-iOS-X8.release.xcconfig"; sourceTree = "<group>"; };
 		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
@@ -119,7 +119,9 @@
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
 		4F9308711E57B904005B5EAB /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		76773BF4487830429B407773 /* Pods-Absinthe-iOS-X8.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Absinthe-iOS-X8.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Absinthe-iOS-X8/Pods-Absinthe-iOS-X8.debug.xcconfig"; sourceTree = "<group>"; };
-		A8D6B1565BBBB3A0786F1E0A /* Pods_Absinthe_iOS_X8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Absinthe_iOS_X8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bourbon_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4748688D992AF49C9841725 /* Pods-Bourbon-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bourbon-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		EA1C50DF458C92C2599BEFE5 /* Pods-Bourbon-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bourbon-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +131,7 @@
 			files = (
 				1ED96EEA1E2A0E1500891EA8 /* SystemConfiguration.framework in Frameworks */,
 				1ED96EE81E2A0E0C00891EA8 /* MapKit.framework in Frameworks */,
-				1681C1E08C7344599C0DA092 /* Pods_Absinthe_iOS_X8.framework in Frameworks */,
+				1681C1E08C7344599C0DA092 /* Pods_Bourbon_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +143,8 @@
 			children = (
 				76773BF4487830429B407773 /* Pods-Absinthe-iOS-X8.debug.xcconfig */,
 				3B39F5F32EB6DDC59F1112A4 /* Pods-Absinthe-iOS-X8.release.xcconfig */,
+				EA1C50DF458C92C2599BEFE5 /* Pods-Bourbon-iOS.debug.xcconfig */,
+				B4748688D992AF49C9841725 /* Pods-Bourbon-iOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -152,7 +156,7 @@
 				1ED96EC11E2A0D7500891EA8 /* Model */,
 				1ED96E8B1E2A0C7200891EA8 /* Scenes */,
 				1ED96E801E2A0C2D00891EA8 /* Networking */,
-				1ED96E6D1E2A0A7A00891EA8 /* Absinthe-iOS-X8 */,
+				1ED96E6D1E2A0A7A00891EA8 /* Bourbon-iOS */,
 				1ED96E6C1E2A0A7A00891EA8 /* Products */,
 				0D9E2D76DCDC81D09564E0B9 /* Pods */,
 				46D1BCAF75C503AB1A6D8CF7 /* Frameworks */,
@@ -162,18 +166,19 @@
 		1ED96E6C1E2A0A7A00891EA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1ED96E6B1E2A0A7A00891EA8 /* Absinthe-iOS-X8.app */,
+				1ED96E6B1E2A0A7A00891EA8 /* Bourbon-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1ED96E6D1E2A0A7A00891EA8 /* Absinthe-iOS-X8 */ = {
+		1ED96E6D1E2A0A7A00891EA8 /* Bourbon-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1EE7B96B1E2DB82400E00370 /* Absinthe-iOS-X8-Bridging-Header.h */,
+				1EE7B96B1E2DB82400E00370 /* Bourbon-iOS-Bridging-Header.h */,
 				1ED96EE11E2A0DDD00891EA8 /* Info.plist */,
 				1ED96EE21E2A0DDD00891EA8 /* AppDelegate.swift */,
 			);
+			name = "Bourbon-iOS";
 			path = "Absinthe-iOS-X8";
 			sourceTree = "<group>";
 		};
@@ -296,7 +301,7 @@
 			children = (
 				1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */,
 				1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */,
-				A8D6B1565BBBB3A0786F1E0A /* Pods_Absinthe_iOS_X8.framework */,
+				A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -314,9 +319,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1ED96E6A1E2A0A7A00891EA8 /* Absinthe-iOS-X8 */ = {
+		1ED96E6A1E2A0A7A00891EA8 /* Bourbon-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1ED96E7D1E2A0A7A00891EA8 /* Build configuration list for PBXNativeTarget "Absinthe-iOS-X8" */;
+			buildConfigurationList = 1ED96E7D1E2A0A7A00891EA8 /* Build configuration list for PBXNativeTarget "Bourbon-iOS" */;
 			buildPhases = (
 				4569AB1E7A7CBC366FD0C282 /* [CP] Check Pods Manifest.lock */,
 				1ED96E671E2A0A7A00891EA8 /* Sources */,
@@ -329,9 +334,9 @@
 			);
 			dependencies = (
 			);
-			name = "Absinthe-iOS-X8";
+			name = "Bourbon-iOS";
 			productName = "Absinthe-iOS-X8";
-			productReference = 1ED96E6B1E2A0A7A00891EA8 /* Absinthe-iOS-X8.app */;
+			productReference = 1ED96E6B1E2A0A7A00891EA8 /* Bourbon-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -352,7 +357,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1ED96E661E2A0A7A00891EA8 /* Build configuration list for PBXProject "Absinthe-iOS-X8" */;
+			buildConfigurationList = 1ED96E661E2A0A7A00891EA8 /* Build configuration list for PBXProject "Bourbon-iOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -365,7 +370,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1ED96E6A1E2A0A7A00891EA8 /* Absinthe-iOS-X8 */,
+				1ED96E6A1E2A0A7A00891EA8 /* Bourbon-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -422,7 +427,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Absinthe-iOS-X8/Pods-Absinthe-iOS-X8-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A65E2602F6F19A610E53F551 /* [CP] Copy Pods Resources */ = {
@@ -437,7 +442,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Absinthe-iOS-X8/Pods-Absinthe-iOS-X8-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -596,34 +601,34 @@
 		};
 		1ED96E7E1E2A0A7A00891EA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76773BF4487830429B407773 /* Pods-Absinthe-iOS-X8.debug.xcconfig */;
+			baseConfigurationReference = EA1C50DF458C92C2599BEFE5 /* Pods-Bourbon-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6DABK4Y6G2;
-				INFOPLIST_FILE = "Absinthe-iOS-X8/Info.plist";
+				INFOPLIST_FILE = "Bourbon-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "tv.ourglass.Absinthe-iOS-X8";
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.ourglass.Bourbon-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Absinthe-iOS-X8-Bridging-Header.h";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Absinthe-iOS-X8-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bourbon-iOS-Bridging-Header.h";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Bourbon-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		1ED96E7F1E2A0A7A00891EA8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B39F5F32EB6DDC59F1112A4 /* Pods-Absinthe-iOS-X8.release.xcconfig */;
+			baseConfigurationReference = B4748688D992AF49C9841725 /* Pods-Bourbon-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6DABK4Y6G2;
-				INFOPLIST_FILE = "Absinthe-iOS-X8/Info.plist";
+				INFOPLIST_FILE = "Bourbon-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "tv.ourglass.Absinthe-iOS-X8";
+				PRODUCT_BUNDLE_IDENTIFIER = "tv.ourglass.Bourbon-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Absinthe-iOS-X8-Bridging-Header.h";
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Absinthe-iOS-X8-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bourbon-iOS-Bridging-Header.h";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Bourbon-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -631,7 +636,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1ED96E661E2A0A7A00891EA8 /* Build configuration list for PBXProject "Absinthe-iOS-X8" */ = {
+		1ED96E661E2A0A7A00891EA8 /* Build configuration list for PBXProject "Bourbon-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1ED96E7B1E2A0A7A00891EA8 /* Debug */,
@@ -640,7 +645,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1ED96E7D1E2A0A7A00891EA8 /* Build configuration list for PBXNativeTarget "Absinthe-iOS-X8" */ = {
+		1ED96E7D1E2A0A7A00891EA8 /* Build configuration list for PBXNativeTarget "Bourbon-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1ED96E7E1E2A0A7A00891EA8 /* Debug */,

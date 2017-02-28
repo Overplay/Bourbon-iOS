@@ -1,8 +1,6 @@
 PODS:
-  - Alamofire (4.3.0)
-  - CocoaAsyncSocket (7.5.1):
-    - CocoaAsyncSocket/GCD (= 7.5.1)
-  - CocoaAsyncSocket/GCD (7.5.1)
+  - Alamofire (4.4.0)
+  - CocoaAsyncSocket (7.6.0)
   - NetUtils (3.0.1)
   - PKHUD (4.2.0)
   - PromiseKit (4.1.7):
@@ -35,14 +33,14 @@ DEPENDENCIES:
   - XCGLogger
 
 SPEC CHECKSUMS:
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
-  CocoaAsyncSocket: e0a7e93b2ffa411592ff87e58524fbbc9b95b4fa
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
   NetUtils: 021706850ae10109c593366758b20c2dfd16d6b2
   PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
   PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-PODFILE CHECKSUM: 27acee1bac725569ebba0f880517890caeb7d1f9
+PODFILE CHECKSUM: 892fc9adcc8860efa3cfccde7a57fe56bce14997
 
 COCOAPODS: 1.2.0

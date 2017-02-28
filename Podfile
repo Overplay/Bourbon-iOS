@@ -5,7 +5,7 @@ use_frameworks!
 
 #Versions fixed for Xcode 7, Swift 2.2
 
-target 'Absinthe-iOS-X8' do
+target 'Bourbon-iOS' do
  
 pod 'Alamofire'
 pod 'SwiftyJSON'

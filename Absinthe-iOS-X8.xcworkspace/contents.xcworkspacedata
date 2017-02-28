@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Absinthe-iOS-X8.xcodeproj">
+      location = "group:/Users/atorres/Documents/Bourbon-iOS/Bourbon-iOS.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
