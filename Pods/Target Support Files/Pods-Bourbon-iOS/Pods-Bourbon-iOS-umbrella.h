@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Absinthe_iOS_X8VersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Absinthe_iOS_X8VersionString[];
+FOUNDATION_EXPORT double Pods_Bourbon_iOSVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_Bourbon_iOSVersionString[];
 

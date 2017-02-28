@@ -1,0 +1,24 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F47E114924D56FBFA56BB628E456441F0AED57AD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F47E114924D56FBFA56BB628E456441F0AED57AD" : 9223372036854775807,
+    "7B1C1E28A4B1435FBEE19A31EB9BE359DCB2A52D" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "87164721-20BE-48BD-B480-54C0EA6A33B8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F47E114924D56FBFA56BB628E456441F0AED57AD" : "Bourbon-iOS\/",
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Bourbon-iOS",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Bourbon-iOS.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Overplay\/Bourbon-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F47E114924D56FBFA56BB628E456441F0AED57AD"
+    }
+  ]
+}

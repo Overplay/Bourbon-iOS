@@ -1,0 +1,6 @@
+framework module Pods_Bourbon_iOS {
+  umbrella header "Pods-Bourbon-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
