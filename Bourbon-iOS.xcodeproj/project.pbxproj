@@ -43,11 +43,11 @@
 		1ED96ECB1E2A0D8600891EA8 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC51E2A0D8600891EA8 /* Style.swift */; };
 		1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC61E2A0D8600891EA8 /* Settings.swift */; };
 		1ED96ECD1E2A0D8600891EA8 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */; };
-		1ED96EDE1E2A0DA400891EA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96ED61E2A0DA400891EA8 /* LaunchScreen.storyboard */; };
 		1ED96EE51E2A0DDD00891EA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EE21E2A0DDD00891EA8 /* AppDelegate.swift */; };
 		1ED96EE81E2A0E0C00891EA8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */; };
 		1ED96EEA1E2A0E1500891EA8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */; };
 		1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE7B96E1E2DEDD800E00370 /* Network.swift */; };
+		4F61B4A91E661D22005FB11F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F61B4A81E661D22005FB11F /* LaunchScreen.storyboard */; };
 		4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9308611E550B11005B5EAB /* IntroSlides.storyboard */; };
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
@@ -97,8 +97,6 @@
 		1ED96EC51E2A0D8600891EA8 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		1ED96EC61E2A0D8600891EA8 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		1ED96ED51E2A0DA400891EA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1ED96ED71E2A0DA400891EA8 /* NoAnimationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoAnimationSegue.swift; path = "../Absinthe-iOS/Absinthe-iOS/NoAnimationSegue.swift"; sourceTree = "<group>"; };
 		1ED96EE11E2A0DDD00891EA8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Bourbon-iOS/Info.plist"; sourceTree = "<group>"; };
 		1ED96EE21E2A0DDD00891EA8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../Bourbon-iOS/AppDelegate.swift"; sourceTree = "<group>"; };
 		1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +104,7 @@
 		1EE7B96B1E2DB82400E00370 /* Bourbon-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bourbon-iOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1EE7B96E1E2DEDD800E00370 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3B39F5F32EB6DDC59F1112A4 /* Pods-Bourbon-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bourbon-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		4F61B4A81E661D22005FB11F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
@@ -288,8 +287,7 @@
 				4FC2FE131E66152900753035 /* Poppins-Regular.ttf */,
 				4FC2FE1D1E6615F600753035 /* Assets.xcassets */,
 				4FC2FE171E66155500753035 /* Poppins-SemiBold.ttf */,
-				1ED96ED61E2A0DA400891EA8 /* LaunchScreen.storyboard */,
-				1ED96ED71E2A0DA400891EA8 /* NoAnimationSegue.swift */,
+				4F61B4A81E661D22005FB11F /* LaunchScreen.storyboard */,
 			);
 			name = "Assets+MainSB";
 			sourceTree = "<group>";
@@ -385,7 +383,7 @@
 				4FC2FE1E1E6615F600753035 /* Assets.xcassets in Resources */,
 				4FC2FE1C1E66157F00753035 /* Poppins-SemiBold.ttf in Resources */,
 				1ED96EA41E2A0D2000891EA8 /* RegistrationStoryboard.storyboard in Resources */,
-				1ED96EDE1E2A0DA400891EA8 /* LaunchScreen.storyboard in Resources */,
+				4F61B4A91E661D22005FB11F /* LaunchScreen.storyboard in Resources */,
 				4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */,
 				1ED96EB01E2A0D4700891EA8 /* Map.storyboard in Resources */,
 				1ED96E981E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard in Resources */,
@@ -488,18 +486,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		1ED96ED61E2A0DA400891EA8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1ED96ED51E2A0DA400891EA8 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			path = "../Absinthe-iOS/Absinthe-iOS";
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1ED96E7B1E2A0A7A00891EA8 /* Debug */ = {
