@@ -58,7 +58,7 @@ class MapViewController : UIViewController {
                     pointAnnotation.subtitle = location
                     self.mapView.addAnnotation(pointAnnotation)
                 }
-            } as! CLGeocodeCompletionHandler)  // changed NSError in 54 to error to avoid app crach
+            } )  // changed NSError in 54 to error to avoid app crach
         }
 
         

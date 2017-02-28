@@ -9,11 +9,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Poppins-Medium.ttf">
-            <string>Poppins-Medium</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--RegistrationStoryboard-->
         <scene sceneID="oK8-qC-olO">
@@ -26,7 +21,7 @@
         <!--Intro Slides View Controller-->
         <scene sceneID="6fv-lf-ql2">
             <objects>
-                <viewController id="JBf-3J-q51" customClass="IntroSlidesViewController" customModule="Absinthe_iOS_X8" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JBf-3J-q51" customClass="IntroSlidesViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QRn-l1-5VO"/>
                         <viewControllerLayoutGuide type="bottom" id="OtV-u0-Yhe"/>
@@ -52,29 +47,13 @@
                                     <action selector="cancel:" destination="JBf-3J-q51" eventType="touchUpInside" id="GuD-JZ-BJv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbj-17-UeZ">
-                                <rect key="frame" x="87.5" y="541" width="200" height="45"/>
-                                <color key="backgroundColor" red="0.0039215686269999999" green="0.72941176470000002" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="xYP-A1-66h"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="20"/>
-                                <state key="normal" title="Let's get started!">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="start:" destination="JBf-3J-q51" eventType="touchUpInside" id="S2p-YI-4wy"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ucn-Iy-sub" firstAttribute="top" secondItem="QRn-l1-5VO" secondAttribute="bottom" id="2El-32-B70"/>
-                            <constraint firstItem="OjB-iL-zHv" firstAttribute="top" secondItem="xbj-17-UeZ" secondAttribute="bottom" constant="36" id="918-cN-XY4"/>
                             <constraint firstAttribute="bottomMargin" secondItem="b5o-In-eRX" secondAttribute="bottom" id="MjD-05-7fh"/>
                             <constraint firstItem="OtV-u0-Yhe" firstAttribute="top" secondItem="OjB-iL-zHv" secondAttribute="bottom" constant="8" id="Odi-Lq-lst"/>
                             <constraint firstAttribute="trailing" secondItem="b5o-In-eRX" secondAttribute="trailing" id="cYY-FN-pxq"/>
-                            <constraint firstItem="xbj-17-UeZ" firstAttribute="centerX" secondItem="ox5-IF-VJl" secondAttribute="centerX" id="fcG-XZ-qXO"/>
                             <constraint firstItem="b5o-In-eRX" firstAttribute="top" secondItem="ox5-IF-VJl" secondAttribute="topMargin" id="kyy-Yd-xGt"/>
                             <constraint firstItem="b5o-In-eRX" firstAttribute="leading" secondItem="ox5-IF-VJl" secondAttribute="leading" id="ljA-HF-o9V"/>
                             <constraint firstItem="OjB-iL-zHv" firstAttribute="centerX" secondItem="b5o-In-eRX" secondAttribute="centerX" id="or9-gl-h9H"/>
@@ -84,7 +63,6 @@
                     <connections>
                         <outlet property="pageControl" destination="OjB-iL-zHv" id="Y93-3G-zhC"/>
                         <outlet property="scrollView" destination="b5o-In-eRX" id="I5L-o2-UCt"/>
-                        <outlet property="startButton" destination="xbj-17-UeZ" id="cyH-Dx-wGL"/>
                         <segue destination="5DB-o2-4oy" kind="showDetail" identifier="fromIntroToReg" action="showViewController:sender:" id="QTG-wM-Fp2"/>
                     </connections>
                 </viewController>
@@ -95,7 +73,7 @@
         <!--Check App Opened View Controller-->
         <scene sceneID="MrX-Xe-tf3">
             <objects>
-                <viewController id="v83-wO-EQk" customClass="CheckAppOpenedViewController" customModule="Absinthe_iOS_X8" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="v83-wO-EQk" customClass="CheckAppOpenedViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QzU-QX-oui"/>
                         <viewControllerLayoutGuide type="bottom" id="yZ1-bP-ZwW"/>

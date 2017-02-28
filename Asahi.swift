@@ -49,20 +49,22 @@ open class Asahi: NSObject {
                 .validate()
                 .responseJSON()
             }
-            .then( on:q){ value  in
+            .then(on:q){ value  in
                 JSON(value)
         }
         
     }
     
+    // TODO: empty JSON will return as an error, do we want this?
     func postOrPutJson( _ endpoint: String, data: Dictionary<String, Any>, method: HTTPMethod ) -> Promise<JSON> {
-        return firstly{
+        return firstly {
             Alamofire.request(endpoint, method: method, parameters: data,
                               headers: [ "X-ASAHI-Token" : self.token ])
                 .validate()  //Checks for non-200 response
                 .responseJSON()
             }
             .then( on:q){ value  in
+                //log.info(value)
                 JSON(value)
         }
 
@@ -206,7 +208,7 @@ open class Asahi: NSObject {
             return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
     }
     
-        
+    
         // Auto sign in on app startup, but this is if we're saving the username/password in plain text so this is only temporary
         // Eventually move to JWTs so we can uncomment this when that is setup and migrate over to using those
         //    override init() {

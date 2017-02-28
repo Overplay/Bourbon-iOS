@@ -29,7 +29,13 @@ class InviteFriendsViewController: AccountBaseViewController {
             Asahi.sharedInstance.inviteNewUser(e)
                 
                 .then{ response -> Void in
-                    HUD.flash(.success, delay: 1.0)            }
+                    log.debug("invitation sent")
+                    HUD.flash(.success, delay: 1.0)
+                }
+            
+                .catch{ error -> Void in
+                    log.debug(error)
+                }
         }
         
         else {

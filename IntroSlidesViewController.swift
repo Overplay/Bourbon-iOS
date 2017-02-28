@@ -19,7 +19,6 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var startButton: UIButton!
     
     @IBAction func cancel(_ sender: Any) {
         DispatchQueue.main.async(execute: {
@@ -35,8 +34,6 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.startButton.alpha = 0.0
         
         // set number of slides
         self.pageControl.numberOfPages = self.slideImages.count
@@ -68,25 +65,6 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
         
         // change the page indicator
         self.pageControl.currentPage = Int(currentPage)
-        
-        /*if self.pageControl.currentPage == self.slideImages.count - 1 {
-            self.startButton.alpha = 1.0
-        } else {
-            self.startButton.alpha = 0.0
-        }*/
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // test the offset and calculate the current page
-        let pageWidth: CGFloat = self.scrollView.frame.width
-        let currentPage: CGFloat = floor((self.scrollView.contentOffset.x-pageWidth/2)/pageWidth) + 1
-        
-        
-        /*if Int(currentPage) == self.slideImages.count - 1 {
-            self.startButton.alpha = 1.0
-        } else {
-            self.startButton.alpha = 0.0
-        }*/
     }
     
     override func didReceiveMemoryWarning() {
