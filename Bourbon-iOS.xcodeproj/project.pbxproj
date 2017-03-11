@@ -43,11 +43,13 @@
 		1ED96ECB1E2A0D8600891EA8 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC51E2A0D8600891EA8 /* Style.swift */; };
 		1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC61E2A0D8600891EA8 /* Settings.swift */; };
 		1ED96ECD1E2A0D8600891EA8 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */; };
-		1ED96EE51E2A0DDD00891EA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EE21E2A0DDD00891EA8 /* AppDelegate.swift */; };
+		1ED96EE51E2A0DDD00891EA8 /* Bourbon-iOS in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EE21E2A0DDD00891EA8 /* Bourbon-iOS */; };
 		1ED96EE81E2A0E0C00891EA8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */; };
 		1ED96EEA1E2A0E1500891EA8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */; };
 		1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE7B96E1E2DEDD800E00370 /* Network.swift */; };
 		4F61B4A91E661D22005FB11F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F61B4A81E661D22005FB11F /* LaunchScreen.storyboard */; };
+		4F61B4CB1E6A236B005FB11F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F61B4CA1E6A236B005FB11F /* AppDelegate.swift */; };
+		4F61B4CD1E6A236F005FB11F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F61B4CC1E6A236F005FB11F /* Info.plist */; };
 		4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9308611E550B11005B5EAB /* IntroSlides.storyboard */; };
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
@@ -97,14 +99,16 @@
 		1ED96EC51E2A0D8600891EA8 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		1ED96EC61E2A0D8600891EA8 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		1ED96EE11E2A0DDD00891EA8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Bourbon-iOS/Info.plist"; sourceTree = "<group>"; };
-		1ED96EE21E2A0DDD00891EA8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../Bourbon-iOS/AppDelegate.swift"; sourceTree = "<group>"; };
+		1ED96EE11E2A0DDD00891EA8 /* Bourbon-iOS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Bourbon-iOS"; sourceTree = "<group>"; };
+		1ED96EE21E2A0DDD00891EA8 /* Bourbon-iOS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Bourbon-iOS"; sourceTree = "<group>"; };
 		1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1EE7B96B1E2DB82400E00370 /* Bourbon-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bourbon-iOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1EE7B96E1E2DEDD800E00370 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3B39F5F32EB6DDC59F1112A4 /* Pods-Bourbon-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bourbon-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4F61B4A81E661D22005FB11F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F61B4CA1E6A236B005FB11F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Bourbon-iOS/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		4F61B4CC1E6A236F005FB11F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Bourbon-iOS/Info.plist"; sourceTree = SOURCE_ROOT; };
 		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
@@ -171,9 +175,11 @@
 		1ED96E6D1E2A0A7A00891EA8 /* Bourbon-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4F61B4CA1E6A236B005FB11F /* AppDelegate.swift */,
+				4F61B4CC1E6A236F005FB11F /* Info.plist */,
 				1EE7B96B1E2DB82400E00370 /* Bourbon-iOS-Bridging-Header.h */,
-				1ED96EE11E2A0DDD00891EA8 /* Info.plist */,
-				1ED96EE21E2A0DDD00891EA8 /* AppDelegate.swift */,
+				1ED96EE11E2A0DDD00891EA8 /* Bourbon-iOS */,
+				1ED96EE21E2A0DDD00891EA8 /* Bourbon-iOS */,
 			);
 			name = "Bourbon-iOS";
 			path = "Absinthe-iOS-X8";
@@ -382,6 +388,7 @@
 				4FC2FE1B1E66157F00753035 /* Poppins-Regular.ttf in Resources */,
 				4FC2FE1E1E6615F600753035 /* Assets.xcassets in Resources */,
 				4FC2FE1C1E66157F00753035 /* Poppins-SemiBold.ttf in Resources */,
+				4F61B4CD1E6A236F005FB11F /* Info.plist in Resources */,
 				1ED96EA41E2A0D2000891EA8 /* RegistrationStoryboard.storyboard in Resources */,
 				4F61B4A91E661D22005FB11F /* LaunchScreen.storyboard in Resources */,
 				4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */,
@@ -456,9 +463,10 @@
 				1ED96EC91E2A0D8600891EA8 /* OCS.swift in Sources */,
 				1ED96EBA1E2A0D6000891EA8 /* EditAccountViewController.swift in Sources */,
 				1ED96EB11E2A0D4700891EA8 /* MapViewController.swift in Sources */,
-				1ED96EE51E2A0DDD00891EA8 /* AppDelegate.swift in Sources */,
+				1ED96EE51E2A0DDD00891EA8 /* Bourbon-iOS in Sources */,
 				4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */,
 				1ED96E881E2A0C6300891EA8 /* Asahi.swift in Sources */,
+				4F61B4CB1E6A236B005FB11F /* AppDelegate.swift in Sources */,
 				1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */,
 				1ED96EA81E2A0D2000891EA8 /* EnterPasswordViewController.swift in Sources */,
 				1ED96E821E2A0C4A00891EA8 /* OPIEBeaconListener.swift in Sources */,

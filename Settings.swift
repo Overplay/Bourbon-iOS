@@ -61,6 +61,15 @@ class Settings {
         return ourglassCloudScheme + ourglassCloudBase
     }
     
+    var newOurglassCloudBaseUrl: String {
+        get {
+            return userDefaults.string(forKey: "newOGBase") ?? "nope"
+        }
+        set {
+            userDefaults.set(newValue, forKey: "newOGBase")
+        }
+    }
+    
     // MARK: OG Discovery Protocol
     
     var udpDiscoveryPort: UInt16 {
@@ -184,6 +193,7 @@ class Settings {
             "allowAccountCreation": true,
             "asahiScheme" : "http://",
             "asahiBase" : "107.170.209.248",
+            "newOGBase" : "http://138.68.230.239",
             "appleReviewMode" : false,
             "isRegistered" : false
             

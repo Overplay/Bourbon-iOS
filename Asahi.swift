@@ -41,6 +41,10 @@ open class Asahi: NSObject {
         return Settings.sharedInstance.ourglassCloudBaseUrl + endpoint
     }
     
+    func createNewApiEndpoint(_ endpoint: String) -> String {
+        return Settings.sharedInstance.newOurglassCloudBaseUrl + endpoint
+    }
+    
     // Promisified JSON getter
     func getJson(_ endpoint: String, parameters: [String: Any] = [:]) -> Promise<JSON> {
         
@@ -180,7 +184,11 @@ open class Asahi: NSObject {
 
     
     func getVenues() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/api/v1/venue"))
+        return getJson(createNewApiEndpoint(":2000/api/v1/venue"))
+    }
+    
+    func getDevices(_ venueUUID: String) -> Promise<JSON> {
+        return getJson(createNewApiEndpoint(":2001/venue/devices?atVenueUUID=" + venueUUID))
     }
     
     // TODO Why is this a promise?

@@ -136,14 +136,13 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource {
         let annotation = self.annotations[indexPath.row]
         
         
-        
         cell!.textLabel!.text = annotation.title!
         
         if cell!.textLabel!.text! == "Current Location" {
             cell!.textLabel!.font = UIFont(name: Style.regularFont, size: 15.0)
             cell!.detailTextLabel!.font = UIFont(name: Style.lightFont, size: 12.0)
             cell!.detailTextLabel!.text = ""
-        }else {
+        } else {
             cell!.textLabel!.font = UIFont(name: Style.regularFont, size: 15.0)
             cell!.detailTextLabel!.font = UIFont(name: Style.lightFont, size: 12.0)
             cell!.detailTextLabel!.text = annotation.subtitle!
