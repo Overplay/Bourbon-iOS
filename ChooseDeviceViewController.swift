@@ -22,7 +22,7 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
     var refreshControl : UIRefreshControl!
     var refreshing = true
     
-    var devices = [OPIE]()
+    var devices = [OGDevice]()
     
     var venue: OGVenue = OGVenue()
     //var venueUUID = String()
@@ -93,16 +93,15 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
             return
         }
         
-        self.devices = [OPIE]()
+        self.devices = [OGDevice]()
         
         for device in devicesArray {
             
             let name = device["name"].stringValue
+            let udid = device["deviceUDID"].stringValue
+            let venueUUID = device["atVenueUUID"].stringValue
             
-            let op = OPIE()
-            op.systemName = name
-            
-            self.devices.append(op)
+            self.devices.append(OGDevice(name: name, atVenueUUID: venueUUID, udid: udid))
         }
     }
     
@@ -115,7 +114,7 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
     func sortAndReload() {
         /*if self.devices.count > 1 {
             self.devices.sort {
-                (a : OPIE, b : OPIE) -> Bool in
+                (a : OGDevice, b : OGDevice) -> Bool in
                 let comp = a.ipAddress.compare(b.ipAddress, options: NSString.CompareOptions.numeric)
                 if comp == ComparisonResult.orderedAscending {
                     return true
@@ -137,7 +136,7 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
         
         let cell : OurglasserCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultDeviceCell", for: indexPath) as! OurglasserCell
         
-        cell.name.text = self.devices[indexPath.row].systemName
+        cell.name.text = self.devices[indexPath.row].name
         cell.systemNumberLabel.text = String(format: "%02d", indexPath.row + 1)
         
         return cell
