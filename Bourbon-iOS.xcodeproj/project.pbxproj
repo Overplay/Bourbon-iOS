@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1681C1E08C7344599C0DA092 /* Pods_Bourbon_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */; };
-		1ED96E821E2A0C4A00891EA8 /* OPIEBeaconListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E811E2A0C4A00891EA8 /* OPIEBeaconListener.swift */; };
 		1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */; };
 		1ED96E881E2A0C6300891EA8 /* Asahi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E841E2A0C6300891EA8 /* Asahi.swift */; };
 		1ED96E891E2A0C6300891EA8 /* ABNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E851E2A0C6300891EA8 /* ABNetworking.swift */; };
@@ -66,7 +65,6 @@
 
 /* Begin PBXFileReference section */
 		1ED96E6B1E2A0A7A00891EA8 /* Bourbon-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bourbon-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ED96E811E2A0C4A00891EA8 /* OPIEBeaconListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPIEBeaconListener.swift; sourceTree = "<group>"; };
 		1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtilsXX.swift; sourceTree = "<group>"; };
 		1ED96E841E2A0C6300891EA8 /* Asahi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asahi.swift; sourceTree = "<group>"; };
 		1ED96E851E2A0C6300891EA8 /* ABNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABNetworking.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 		1ED96E801E2A0C2D00891EA8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				1ED96E811E2A0C4A00891EA8 /* OPIEBeaconListener.swift */,
 				1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */,
 				1ED96E841E2A0C6300891EA8 /* Asahi.swift */,
 				1ED96E851E2A0C6300891EA8 /* ABNetworking.swift */,
@@ -473,7 +470,6 @@
 				4F61B4CB1E6A236B005FB11F /* AppDelegate.swift in Sources */,
 				1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */,
 				1ED96EA81E2A0D2000891EA8 /* EnterPasswordViewController.swift in Sources */,
-				1ED96E821E2A0C4A00891EA8 /* OPIEBeaconListener.swift in Sources */,
 				1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */,
 				1ED96EA71E2A0D2000891EA8 /* EnterEmailViewController.swift in Sources */,
 				1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */,
