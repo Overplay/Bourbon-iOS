@@ -36,7 +36,6 @@
 		1ED96EC01E2A0D6000891EA8 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB91E2A0D6000891EA8 /* InviteFriendsViewController.swift */; };
 		1ED96EC81E2A0D8600891EA8 /* ASNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC21E2A0D8600891EA8 /* ASNotification.swift */; };
 		1ED96EC91E2A0D8600891EA8 /* OCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC31E2A0D8600891EA8 /* OCS.swift */; };
-		1ED96ECA1E2A0D8600891EA8 /* OPIE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC41E2A0D8600891EA8 /* OPIE.swift */; };
 		1ED96ECB1E2A0D8600891EA8 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC51E2A0D8600891EA8 /* Style.swift */; };
 		1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC61E2A0D8600891EA8 /* Settings.swift */; };
 		1ED96ECD1E2A0D8600891EA8 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */; };
@@ -50,6 +49,7 @@
 		4F6A66A11E774FD9001547E8 /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A01E774FD9001547E8 /* VenueCell.swift */; };
 		4F6A66A31E775B72001547E8 /* ChooseDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */; };
 		4F6A66A71E776E2D001547E8 /* OGDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A61E776E2D001547E8 /* OGDevice.swift */; };
+		4F6A66A91E7771FB001547E8 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A81E7771FB001547E8 /* DeviceCell.swift */; };
 		4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9308611E550B11005B5EAB /* IntroSlides.storyboard */; };
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
@@ -92,7 +92,6 @@
 		1ED96EB91E2A0D6000891EA8 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		1ED96EC21E2A0D8600891EA8 /* ASNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASNotification.swift; sourceTree = "<group>"; };
 		1ED96EC31E2A0D8600891EA8 /* OCS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCS.swift; sourceTree = "<group>"; };
-		1ED96EC41E2A0D8600891EA8 /* OPIE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPIE.swift; sourceTree = "<group>"; };
 		1ED96EC51E2A0D8600891EA8 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		1ED96EC61E2A0D8600891EA8 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		4F6A66A01E774FD9001547E8 /* VenueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
 		4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDeviceViewController.swift; sourceTree = "<group>"; };
 		4F6A66A61E776E2D001547E8 /* OGDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGDevice.swift; sourceTree = "<group>"; };
+		4F6A66A81E7771FB001547E8 /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +221,7 @@
 				4F6A669C1E73900D001547E8 /* ChooseVenueViewController.swift */,
 				4F6A66A01E774FD9001547E8 /* VenueCell.swift */,
 				4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */,
+				4F6A66A81E7771FB001547E8 /* DeviceCell.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -278,7 +279,6 @@
 			children = (
 				1ED96EC21E2A0D8600891EA8 /* ASNotification.swift */,
 				1ED96EC31E2A0D8600891EA8 /* OCS.swift */,
-				1ED96EC41E2A0D8600891EA8 /* OPIE.swift */,
 				1ED96EC51E2A0D8600891EA8 /* Style.swift */,
 				1ED96EC61E2A0D8600891EA8 /* Settings.swift */,
 				1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */,
@@ -479,6 +479,7 @@
 				1ED96E891E2A0C6300891EA8 /* ABNetworking.swift in Sources */,
 				1ED96EAB1E2A0D2000891EA8 /* RegSceneBaseViewController.swift in Sources */,
 				1ED96ECB1E2A0D8600891EA8 /* Style.swift in Sources */,
+				4F6A66A91E7771FB001547E8 /* DeviceCell.swift in Sources */,
 				4F6A66A71E776E2D001547E8 /* OGDevice.swift in Sources */,
 				1ED96EA51E2A0D2000891EA8 /* LoginOrRegViewController.swift in Sources */,
 				1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */,
@@ -492,7 +493,6 @@
 				1ED96EC01E2A0D6000891EA8 /* InviteFriendsViewController.swift in Sources */,
 				1ED96EA61E2A0D2000891EA8 /* EnterNameViewController.swift in Sources */,
 				1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */,
-				1ED96ECA1E2A0D8600891EA8 /* OPIE.swift in Sources */,
 				1ED96E991E2A0CEB00891EA8 /* MainTabsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

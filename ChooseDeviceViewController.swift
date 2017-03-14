@@ -134,10 +134,10 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell : OurglasserCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultDeviceCell", for: indexPath) as! OurglasserCell
+        let cell : DeviceCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultDeviceCell", for: indexPath) as! DeviceCell
         
         cell.name.text = self.devices[indexPath.row].name
-        cell.systemNumberLabel.text = String(format: "%02d", indexPath.row + 1)
+        cell.numberLabel.text = String(format: "%02d", indexPath.row + 1)
         
         return cell
     }
