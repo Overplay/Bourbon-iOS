@@ -50,6 +50,7 @@
 		4F6A66A31E775B72001547E8 /* ChooseDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */; };
 		4F6A66A71E776E2D001547E8 /* OGDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A61E776E2D001547E8 /* OGDevice.swift */; };
 		4F6A66A91E7771FB001547E8 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A81E7771FB001547E8 /* DeviceCell.swift */; };
+		4F6A66AB1E7781AE001547E8 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66AA1E7781AE001547E8 /* DeviceViewController.swift */; };
 		4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9308611E550B11005B5EAB /* IntroSlides.storyboard */; };
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
@@ -111,6 +112,7 @@
 		4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDeviceViewController.swift; sourceTree = "<group>"; };
 		4F6A66A61E776E2D001547E8 /* OGDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGDevice.swift; sourceTree = "<group>"; };
 		4F6A66A81E7771FB001547E8 /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		4F6A66AA1E7781AE001547E8 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				4F6A66A01E774FD9001547E8 /* VenueCell.swift */,
 				4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */,
 				4F6A66A81E7771FB001547E8 /* DeviceCell.swift */,
+				4F6A66AA1E7781AE001547E8 /* DeviceViewController.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				4F6A669F1E739069001547E8 /* OGVenue.swift in Sources */,
 				1ED96EBC1E2A0D6000891EA8 /* AccountViewController.swift in Sources */,
 				4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */,
+				4F6A66AB1E7781AE001547E8 /* DeviceViewController.swift in Sources */,
 				1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */,
 				1ED96E891E2A0C6300891EA8 /* ABNetworking.swift in Sources */,
 				1ED96EAB1E2A0D2000891EA8 /* RegSceneBaseViewController.swift in Sources */,

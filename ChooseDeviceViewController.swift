@@ -143,8 +143,7 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //self.performSegue(withIdentifier: "toOPControl", sender: indexPath)
-        log.debug("device selected")
+        self.performSegue(withIdentifier: "toDeviceControl", sender: indexPath)
     }
     
     // Set header view height low if we're not showing the error message
@@ -170,15 +169,12 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.refreshControl.endRefreshing()
         
-        /*if segue.identifier == "toOPControl" && sender != nil {
+        if segue.identifier == "toDeviceControl" && sender != nil {
             let indexPath: IndexPath = sender as! IndexPath
-            let op = self.availableOPIEs[indexPath.row]
-            let ovc : OurglasserViewController = segue.destination as! OurglasserViewController
-            ovc.goToUrl = op.getDecachedUrl()
-            ovc.navTitle = op.location
-            ovc.op = op
-            ovc.chooseViewController = self
-        }*/
+            let device = self.devices[indexPath.row]
+            let dvc : DeviceViewController = segue.destination as! DeviceViewController
+            dvc.ogDevice = device
+        }
     }
     
 }

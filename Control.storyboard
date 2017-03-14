@@ -300,29 +300,51 @@
                     <connections>
                         <outlet property="deviceCollection" destination="R6d-WC-nYj" id="kuI-6F-7Kd"/>
                         <outlet property="venueNameLabel" destination="p4Y-zN-aD0" id="RBV-dC-XqH"/>
+                        <segue destination="mX2-4V-tNS" kind="show" identifier="toDeviceControl" id="HQv-0l-lKP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKT-rw-5UV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3623" y="1303"/>
+            <point key="canvasLocation" x="3545" y="1303"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="yn5-bG-q17">
+        <!--DeviceViewController-->
+        <scene sceneID="v5F-OS-B6l">
             <objects>
-                <viewController id="Ybi-5J-X4c" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceViewController" title="DeviceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mX2-4V-tNS" customClass="DeviceViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HyH-RH-5xf"/>
-                        <viewControllerLayoutGuide type="bottom" id="yA2-oP-8ml"/>
+                        <viewControllerLayoutGuide type="top" id="8Wt-tt-7eb"/>
+                        <viewControllerLayoutGuide type="bottom" id="yyH-dj-V13"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="P1Y-j0-bqe">
+                    <view key="view" contentMode="scaleToFill" id="LVP-Ei-4et">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9A-0L-DJ8">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="x9A-0L-DJ8" firstAttribute="top" secondItem="8Wt-tt-7eb" secondAttribute="bottom" id="P6U-y9-hWo"/>
+                            <constraint firstItem="x9A-0L-DJ8" firstAttribute="leading" secondItem="LVP-Ei-4et" secondAttribute="leading" id="Zqw-NS-R3A"/>
+                            <constraint firstItem="yyH-dj-V13" firstAttribute="top" secondItem="x9A-0L-DJ8" secondAttribute="bottom" id="bKI-Q2-qJT"/>
+                            <constraint firstAttribute="trailing" secondItem="x9A-0L-DJ8" secondAttribute="trailing" id="tzR-02-YEQ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="397-OT-TLu">
+                        <barButtonItem key="backBarButtonItem" title=" " id="hgY-06-XgR"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="x9A-0L-DJ8" id="hfM-C9-3Ys"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a53-oz-5ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kXA-Yo-Edp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4335" y="1534"/>
+            <point key="canvasLocation" x="4338" y="1303"/>
         </scene>
     </scenes>
     <resources>

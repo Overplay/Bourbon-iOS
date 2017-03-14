@@ -48,9 +48,6 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
         
-        // ask for location authorization from user
-        self.locationManager.requestAlwaysAuthorization()
-        
         // for use in the foreground
         self.locationManager.requestWhenInUseAuthorization()
         

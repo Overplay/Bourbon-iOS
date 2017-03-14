@@ -26,4 +26,8 @@ class OGDevice {
         self.udid = udid
     }
     
+    func getUrl() -> String {
+        return "\(Settings.sharedInstance.newOurglassCloudBaseUrl):2001/blueline/control/?deviceUDID=\(self.udid)"
+    }
+    
 }
