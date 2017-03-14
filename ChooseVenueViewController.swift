@@ -10,8 +10,10 @@ import UIKit
 import PKHUD
 import PromiseKit
 import SwiftyJSON
+import CoreLocation
 
-class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate  {
     
     @IBOutlet weak var venueCollection: UICollectionView!
     
@@ -21,6 +23,10 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
     
     var refreshControl : UIRefreshControl!
     var refreshing = true
+    
+    let locationManager = CLLocationManager()
+    
+    var location: CLLocationCoordinate2D?
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
@@ -41,6 +47,18 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
         self.venueCollection.alwaysBounceVertical = true
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        
+        // ask for location authorization from user
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // for use in the foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
         
         setNeedsStatusBarAppearanceUpdate()
         
@@ -110,21 +128,29 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
     }
     
     func sortByLocationAndReload() {
-        // TODO: sort
-        /*if self.venues.count > 1 {
-            self.venues.sort {
-                (a : OGVenue, b : OGVenue) -> Bool in
-                let comp = a.ipAddress.compare(b.ipAddress, options: NSString.CompareOptions.numeric)
-                if comp == ComparisonResult.orderedAscending {
-                    return true
-                } else {
-                    return false
-                }
-            }
-        }*/
+        
+        guard let curLocObj = self.location else {
+            self.venueCollection.reloadData()
+            return
+        }
+     
+        self.venues.sort { (a : OGVenue, b : OGVenue) -> Bool in
+                
+            let locA = CLLocation(latitude: a.latitude, longitude: a.longitude)
+            let locB = CLLocation(latitude: b.latitude, longitude: b.longitude)
+            let curLoc = CLLocation(latitude: curLocObj.latitude, longitude: curLocObj.longitude)
+                
+            return locA.distance(from: curLoc) < locB.distance(from: curLoc)
+        }
+        
         self.venueCollection.reloadData()
     }
     
+    // MARK: - CLLocationManagerDelegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.location = manager.location?.coordinate
+        self.sortByLocationAndReload()
+    }
     // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
