@@ -15,8 +15,6 @@
 		1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E861E2A0C6300891EA8 /* RequestRouter.swift */; };
 		1ED96E911E2A0CB500891EA8 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */; };
 		1ED96E921E2A0CB500891EA8 /* OurglasserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */; };
-		1ED96E931E2A0CB500891EA8 /* ChooseOurglasserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E8F1E2A0CB500891EA8 /* ChooseOurglasserViewController.swift */; };
-		1ED96E941E2A0CB500891EA8 /* OurglasserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E901E2A0CB500891EA8 /* OurglasserViewController.swift */; };
 		1ED96E981E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E961E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard */; };
 		1ED96E991E2A0CEB00891EA8 /* MainTabsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E971E2A0CEB00891EA8 /* MainTabsController.swift */; };
 		1ED96EA41E2A0D2000891EA8 /* RegistrationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E9B1E2A0D2000891EA8 /* RegistrationStoryboard.storyboard */; };
@@ -50,6 +48,10 @@
 		4F61B4A91E661D22005FB11F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F61B4A81E661D22005FB11F /* LaunchScreen.storyboard */; };
 		4F61B4CB1E6A236B005FB11F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F61B4CA1E6A236B005FB11F /* AppDelegate.swift */; };
 		4F61B4CD1E6A236F005FB11F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F61B4CC1E6A236F005FB11F /* Info.plist */; };
+		4F6A669D1E73900D001547E8 /* ChooseVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A669C1E73900D001547E8 /* ChooseVenueViewController.swift */; };
+		4F6A669F1E739069001547E8 /* OGVenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A669E1E739069001547E8 /* OGVenue.swift */; };
+		4F6A66A11E774FD9001547E8 /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A01E774FD9001547E8 /* VenueCell.swift */; };
+		4F6A66A31E775B72001547E8 /* ChooseDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */; };
 		4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9308611E550B11005B5EAB /* IntroSlides.storyboard */; };
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
@@ -71,8 +73,6 @@
 		1ED96E861E2A0C6300891EA8 /* RequestRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestRouter.swift; sourceTree = "<group>"; };
 		1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Control.storyboard; sourceTree = "<group>"; };
 		1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurglasserCell.swift; sourceTree = "<group>"; };
-		1ED96E8F1E2A0CB500891EA8 /* ChooseOurglasserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseOurglasserViewController.swift; sourceTree = "<group>"; };
-		1ED96E901E2A0CB500891EA8 /* OurglasserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurglasserViewController.swift; sourceTree = "<group>"; };
 		1ED96E961E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTabsStoryboard.storyboard; sourceTree = "<group>"; };
 		1ED96E971E2A0CEB00891EA8 /* MainTabsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabsController.swift; sourceTree = "<group>"; };
 		1ED96E9B1E2A0D2000891EA8 /* RegistrationStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegistrationStoryboard.storyboard; sourceTree = "<group>"; };
@@ -109,6 +109,10 @@
 		4F61B4A81E661D22005FB11F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F61B4CA1E6A236B005FB11F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Bourbon-iOS/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		4F61B4CC1E6A236F005FB11F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Bourbon-iOS/Info.plist"; sourceTree = SOURCE_ROOT; };
+		4F6A669C1E73900D001547E8 /* ChooseVenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseVenueViewController.swift; sourceTree = "<group>"; };
+		4F6A669E1E739069001547E8 /* OGVenue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGVenue.swift; sourceTree = "<group>"; };
+		4F6A66A01E774FD9001547E8 /* VenueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
+		4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDeviceViewController.swift; sourceTree = "<group>"; };
 		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
@@ -217,8 +221,9 @@
 			children = (
 				1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */,
 				1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */,
-				1ED96E8F1E2A0CB500891EA8 /* ChooseOurglasserViewController.swift */,
-				1ED96E901E2A0CB500891EA8 /* OurglasserViewController.swift */,
+				4F6A669C1E73900D001547E8 /* ChooseVenueViewController.swift */,
+				4F6A66A01E774FD9001547E8 /* VenueCell.swift */,
+				4F6A66A21E775B72001547E8 /* ChooseDeviceViewController.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				1ED96EC51E2A0D8600891EA8 /* Style.swift */,
 				1ED96EC61E2A0D8600891EA8 /* Settings.swift */,
 				1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */,
+				4F6A669E1E739069001547E8 /* OGVenue.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -458,8 +464,6 @@
 				1ED96EBD1E2A0D6000891EA8 /* SettingsCell.swift in Sources */,
 				1ED96EC81E2A0D8600891EA8 /* ASNotification.swift in Sources */,
 				1ED96EAC1E2A0D2000891EA8 /* CheckAuthViewController.swift in Sources */,
-				1ED96E931E2A0CB500891EA8 /* ChooseOurglasserViewController.swift in Sources */,
-				1ED96E941E2A0CB500891EA8 /* OurglasserViewController.swift in Sources */,
 				1ED96EC91E2A0D8600891EA8 /* OCS.swift in Sources */,
 				1ED96EBA1E2A0D6000891EA8 /* EditAccountViewController.swift in Sources */,
 				1ED96EB11E2A0D4700891EA8 /* MapViewController.swift in Sources */,
@@ -473,6 +477,7 @@
 				1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */,
 				1ED96EA71E2A0D2000891EA8 /* EnterEmailViewController.swift in Sources */,
 				1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */,
+				4F6A669F1E739069001547E8 /* OGVenue.swift in Sources */,
 				1ED96EBC1E2A0D6000891EA8 /* AccountViewController.swift in Sources */,
 				4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */,
 				1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */,
@@ -483,6 +488,9 @@
 				1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */,
 				1ED96E921E2A0CB500891EA8 /* OurglasserCell.swift in Sources */,
 				1ED96EA91E2A0D2000891EA8 /* LoginViewController.swift in Sources */,
+				4F6A66A31E775B72001547E8 /* ChooseDeviceViewController.swift in Sources */,
+				4F6A66A11E774FD9001547E8 /* VenueCell.swift in Sources */,
+				4F6A669D1E73900D001547E8 /* ChooseVenueViewController.swift in Sources */,
 				1ED96ECD1E2A0D8600891EA8 /* StringExtensions.swift in Sources */,
 				1ED96EAA1E2A0D2000891EA8 /* LoginBaseViewController.swift in Sources */,
 				1ED96EC01E2A0D6000891EA8 /* InviteFriendsViewController.swift in Sources */,
