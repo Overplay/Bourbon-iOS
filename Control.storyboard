@@ -209,14 +209,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="312" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq9-q1-bnq">
-                                                    <rect key="frame" x="0.0" y="11" width="52" height="57"/>
-                                                    <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="40"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq9-q1-bnq">
+                                                    <rect key="frame" x="0.0" y="11" width="60" height="57"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="eAP-BU-inB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="30"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86c-km-q6f">
-                                                    <rect key="frame" x="72" y="8" width="2" height="63"/>
+                                                    <rect key="frame" x="80" y="8" width="2" height="63"/>
                                                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="2" id="44t-xL-dNS"/>
@@ -239,6 +242,7 @@
                                             <constraint firstItem="gq9-q1-bnq" firstAttribute="top" secondItem="5pQ-3Y-sjl" secondAttribute="topMargin" constant="3" id="mBZ-O4-Qow"/>
                                             <constraint firstItem="MNi-Ma-tOw" firstAttribute="centerY" secondItem="5pQ-3Y-sjl" secondAttribute="centerY" id="oDM-cI-gei"/>
                                             <constraint firstItem="86c-km-q6f" firstAttribute="top" secondItem="5pQ-3Y-sjl" secondAttribute="topMargin" id="xqS-uD-yO5"/>
+                                            <constraint firstItem="gq9-q1-bnq" firstAttribute="centerY" secondItem="5pQ-3Y-sjl" secondAttribute="centerY" id="xvu-Qb-5a2"/>
                                             <constraint firstItem="MNi-Ma-tOw" firstAttribute="leading" secondItem="5pQ-3Y-sjl" secondAttribute="leadingMargin" constant="100" id="zXr-bP-1j5"/>
                                         </constraints>
                                         <connections>

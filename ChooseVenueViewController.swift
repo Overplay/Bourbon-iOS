@@ -116,12 +116,12 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
             self.venues.append(OGVenue(name: name, address: addressString, latitude: latitude, longitude: longitude, uuid: uuid))
         }
         
+        self.sortByLocationAndReload()
     }
     
     func stopRefresh() {
         self.refreshing = false
         self.refreshControl.endRefreshing()
-        self.sortByLocationAndReload()
     }
     
     func sortByLocationAndReload() {
@@ -146,7 +146,7 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
     // MARK: - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.location = manager.location?.coordinate
-        self.sortByLocationAndReload()
+        self.findVenues()
     }
     // MARK: - UICollectionViewDelegate
     
