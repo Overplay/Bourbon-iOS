@@ -47,7 +47,7 @@ class EnterPasswordViewController: LoginBaseViewController {
         
         
         let cancelAction = UIAlertAction(title: "Try Again", style: .cancel) { (action) in
-            self.navigationController!.popToRootViewController(animated: true)
+            
         }
         
         alertController.addAction(cancelAction)

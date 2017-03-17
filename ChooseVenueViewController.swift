@@ -166,7 +166,6 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toFindDevice", sender: indexPath)
-        log.debug("venue selected")
     }
     
     // Set header view height low if we're not showing the error message
