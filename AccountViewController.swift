@@ -103,7 +103,7 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
                 
                 // TODO: is this how we should handle errors?
                 .catch{ err -> Void in
-                    log.error("Error logging out")
+                    log.error("Asahi error logging out")
                     Settings.sharedInstance.userAsahiJWT = nil
                     Settings.sharedInstance.userPassword = nil
                     HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 1.0, completion: { (_) in

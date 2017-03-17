@@ -72,18 +72,22 @@ class CheckAuthViewController: UIViewController {
                                 }
                                 
                                 .catch{ err -> Void in
+                                    log.debug("not authorized")
                                     reject(err)
                             }
                         }
                         
                         .catch{ err -> Void in
+                            log.debug("not able to log in")
                             reject(err)
                     }
                     
                 } else {
+                    log.debug("no password stored")
                     reject(AuthError.noPasswordError)
                 }
             } else {
+                log.debug("no email stored")
                 reject(AuthError.noEmailError)
             }
         }

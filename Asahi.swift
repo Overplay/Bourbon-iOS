@@ -97,7 +97,14 @@ open class Asahi: NSObject {
 
             return postJson(createApiEndpoint("/auth/addUser"), data: params as Dictionary<String, AnyObject>)
                 .then{ json -> JSON in
-                    self.currentEmail = params["email"] as? String
+                    self.loggedIn = true
+                    self.currentEmail = email
+                    
+                    Settings.sharedInstance.userEmail = email
+                    if (Settings.sharedInstance.isDevelopmentMode){
+                        Settings.sharedInstance.userPassword = password
+                    }
+                    
                     return json
                     
         }
