@@ -206,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				4F9308601E550AD0005B5EAB /* Introduction */,
-				1ED96EB21E2A0D4F00891EA8 /* Account */,
+				1ED96EB21E2A0D4F00891EA8 /* Settings */,
 				1ED96EAD1E2A0D3500891EA8 /* Map */,
 				1ED96E9A1E2A0CFA00891EA8 /* Registration */,
 				1ED96E951E2A0CD700891EA8 /* Tabs */,
@@ -263,7 +263,7 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
-		1ED96EB21E2A0D4F00891EA8 /* Account */ = {
+		1ED96EB21E2A0D4F00891EA8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */,
@@ -274,7 +274,7 @@
 				1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */,
 				1ED96EB91E2A0D6000891EA8 /* InviteFriendsViewController.swift */,
 			);
-			name = Account;
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		1ED96EC11E2A0D7500891EA8 /* Model */ = {
