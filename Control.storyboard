@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="y8q-sV-GMZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="y8q-sV-GMZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -175,7 +175,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p4Y-zN-aD0">
-                                        <rect key="frame" x="37" y="15" width="318" height="41"/>
+                                        <rect key="frame" x="37" y="14.5" width="318" height="41"/>
                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="25"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -344,11 +344,51 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="x9A-0L-DJ8" id="hfM-C9-3Ys"/>
+                        <segue destination="v6x-rs-EUn" kind="show" identifier="toAppControl" id="j0W-bs-rCS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXA-Yo-Edp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4338" y="1303"/>
+            <point key="canvasLocation" x="4383" y="1303"/>
+        </scene>
+        <!--DeviceViewController-->
+        <scene sceneID="Uee-pc-2rW">
+            <objects>
+                <viewController storyboardIdentifier="AppControlViewController" title="DeviceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="v6x-rs-EUn" customClass="AppControlViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B8G-PX-gSQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8BB-eD-fd2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TMA-e8-0rK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AVv-OW-yTb">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AVv-OW-yTb" secondAttribute="trailing" id="Sle-cY-bNn"/>
+                            <constraint firstItem="AVv-OW-yTb" firstAttribute="leading" secondItem="TMA-e8-0rK" secondAttribute="leading" id="dRd-sq-J3d"/>
+                            <constraint firstItem="8BB-eD-fd2" firstAttribute="top" secondItem="AVv-OW-yTb" secondAttribute="bottom" id="lju-cD-Sll"/>
+                            <constraint firstItem="AVv-OW-yTb" firstAttribute="top" secondItem="B8G-PX-gSQ" secondAttribute="bottom" id="wT9-YG-cdI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="z1h-3X-mJn">
+                        <barButtonItem key="backBarButtonItem" title=" " id="JfB-KV-PyA"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="AVv-OW-yTb" id="ULH-Qz-O5l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KDc-vU-DKy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5396" y="1303"/>
         </scene>
     </scenes>
     <resources>
