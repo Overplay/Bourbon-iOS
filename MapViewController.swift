@@ -47,10 +47,17 @@ class MapViewController : UIViewController {
                 existingLocations.append(location)
             }
             let geocoder: CLGeocoder = CLGeocoder()
+            
             // Convert address into coordinates for visual map items
             geocoder.geocodeAddressString(location,completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
-                if ((placemarks?.count)! > 0) {
-                    let topResult: CLPlacemark = (placemarks?[0])!
+                
+                guard let pmrks = placemarks else {
+                    log.error("Not able to find any placemarks")
+                    return
+                }
+                
+                if ((pmrks.count) > 0) {
+                    let topResult: CLPlacemark = (pmrks[0])
                     let placemark = MKPlacemark(placemark: topResult)
                     let pointAnnotation = MKPointAnnotation()
                     pointAnnotation.coordinate = placemark.coordinate
@@ -58,7 +65,7 @@ class MapViewController : UIViewController {
                     pointAnnotation.subtitle = location
                     self.mapView.addAnnotation(pointAnnotation)
                 }
-            } )  // changed NSError in 54 to error to avoid app crach
+            } )
         }
 
         
