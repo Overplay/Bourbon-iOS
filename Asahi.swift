@@ -38,11 +38,11 @@ open class Asahi: NSObject {
     
     
     func createApiEndpoint(_ endpoint: String) -> String {
-        return Settings.sharedInstance.ourglassCloudBaseUrl + endpoint
+        return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + Settings.sharedInstance.ourglassBasePort + endpoint
     }
     
-    func createNewApiEndpoint(_ endpoint: String) -> String {
-        return Settings.sharedInstance.newOurglassCloudBaseUrl + endpoint
+    func createApiEndpointWithPort(_ endpoint: String, port: String) -> String {
+        return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + port + endpoint
     }
     
     // Promisified JSON getter
@@ -191,11 +191,11 @@ open class Asahi: NSObject {
 
     
     func getVenues() -> Promise<JSON> {
-        return getJson(createNewApiEndpoint(":2000/api/v1/venue"))
+        return getJson(createApiEndpoint("/api/v1/venue"))
     }
     
     func getDevices(_ venueUUID: String) -> Promise<JSON> {
-        return getJson(createNewApiEndpoint(":2001/venue/devices?atVenueUUID=" + venueUUID))
+        return getJson(createApiEndpointWithPort("/venue/devices?atVenueUUID=" + venueUUID, port: "2001"))
     }
     
     // TODO Why is this a promise?

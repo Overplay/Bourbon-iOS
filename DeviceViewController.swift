@@ -27,7 +27,6 @@ class DeviceViewController: WebViewBaseViewController {
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        
         if let rUrl = request.url?.absoluteString,  let _ = rUrl.range(of: "app/control/index.html") {
             
             controlAppUrlString = rUrl
