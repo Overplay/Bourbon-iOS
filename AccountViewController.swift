@@ -94,8 +94,8 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
             
             Asahi.sharedInstance.logout()
                 .then{ response -> Void in
-                    Settings.sharedInstance.userAsahiJWT = nil
-                    Settings.sharedInstance.userPassword = nil
+                    Settings.sharedInstance.userBelliniJWT = nil
+                    Settings.sharedInstance.userBelliniJWTExpiry = nil
                     HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 1.0, completion: { (_) in
                         self.performSegue(withIdentifier: "fromAccountToRegistration", sender: nil)
                     })
@@ -104,8 +104,8 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
                 // TODO: is this how we should handle errors?
                 .catch{ err -> Void in
                     log.error("Asahi error logging out")
-                    Settings.sharedInstance.userAsahiJWT = nil
-                    Settings.sharedInstance.userPassword = nil
+                    Settings.sharedInstance.userBelliniJWT = nil
+                    Settings.sharedInstance.userBelliniJWTExpiry = nil
                     HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 1.0, completion: { (_) in
                         self.performSegue(withIdentifier: "fromAccountToRegistration", sender: nil)
                     })

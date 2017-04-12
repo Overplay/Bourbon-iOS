@@ -116,32 +116,21 @@ class Settings {
         }
     }
 
-    var userAsahiJWT: String? {
+    var userBelliniJWT: String? {
         get {
-            return userDefaults.string(forKey: "userAsahiJWT")
+            return userDefaults.string(forKey: "userBelliniJWT")
         }
         set {
-            userDefaults.set(newValue, forKey: "userAsahiJWT")
+            userDefaults.set(newValue, forKey: "userBelliniJWT")
         }
     }
     
-    var userAsahiJWTExpiry: Int {
+    var userBelliniJWTExpiry: Double? {
         get {
-            return userDefaults.integer(forKey: "userAsahiJWTExpiry")
+            return userDefaults.double(forKey: "userBelliniJWTExpiry")
         }
         set {
-            userDefaults.set(newValue, forKey: "userAsahiJWTExpiry")
-        }
-    }
-
-    
-    // TODO: This absolutely should never be used plaintext after release!!!
-    var userPassword: String? {
-        get {
-            return userDefaults.string(forKey: "userPwd")
-        }
-        set {
-            userDefaults.set(newValue, forKey: "userPwd")
+            userDefaults.set(newValue, forKey: "userBelliniJWTExpiry")
         }
     }
 
