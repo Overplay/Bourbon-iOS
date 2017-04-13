@@ -115,7 +115,7 @@ class EditAccountViewController: AccountBaseViewController {
                     self.lastName.text = last
                 }
                 
-                if let email = response["auth"]["email"].string {
+                if let email = response["email"].string {
                     Settings.sharedInstance.userEmail = email
                     self.email.text = email
                     self.checkEmail()
