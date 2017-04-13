@@ -91,9 +91,6 @@ class EditAccountViewController: AccountBaseViewController {
         self.email.text = Settings.sharedInstance.userEmail
         checkEmail()
         
-        log.debug(Settings.sharedInstance.userBelliniJWT)
-        
-        
         // TODO: use either check JWT or checkAuthStatus, not both
         
         Asahi.sharedInstance.checkJWT()

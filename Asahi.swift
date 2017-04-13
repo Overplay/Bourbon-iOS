@@ -27,9 +27,6 @@ open class Asahi: NSObject {
 
     static let sharedInstance = Asahi()
     
-    var loggedIn = false
-    var currentEmail: String?
-    
     var _postNotification = false
     
     
@@ -84,11 +81,7 @@ open class Asahi: NSObject {
 
             return postJson(createApiEndpoint("/auth/addUser"), data: params as Dictionary<String, AnyObject>)
                 .then{ json -> JSON in
-                    self.loggedIn = true
-                    self.currentEmail = email
-                    
                     Settings.sharedInstance.userEmail = email
-                    
                     return json
                     
         }
@@ -112,12 +105,7 @@ open class Asahi: NSObject {
         
         return postJson(createApiEndpoint("/auth/login"), data: params)
             .then{ json -> Bool in
-                
-                self.loggedIn = true
-                self.currentEmail = email
-
                 Settings.sharedInstance.userEmail = email
-
                 ASNotification.asahiLoggedIn.issue()
                 return true
                 
@@ -129,7 +117,7 @@ open class Asahi: NSObject {
         return getJson(createApiEndpoint("/user/jwt"))
             .then{ json -> String in
                 Settings.sharedInstance.userBelliniJWT = (json["token"].stringValue)
-                Settings.sharedInstance.userBelliniJWTExpiry = Double((json["expires"].intValue)) / 1000
+                Settings.sharedInstance.userBelliniJWTExpiry = json["expires"].doubleValue/1000.0
                 return Settings.sharedInstance.userBelliniJWT!
         }
     }
