@@ -91,6 +91,16 @@ class EditAccountViewController: AccountBaseViewController {
         self.email.text = Settings.sharedInstance.userEmail
         checkEmail()
         
+        // TODO: use either check JWT or checkAuthStatus, not both
+        
+        Asahi.sharedInstance.checkJWT()
+            .then { response -> Void in
+                log.debug("JWT check good")
+        }
+            .catch { error -> Void in
+                log.debug("BAD JWT")
+        }
+        
         Asahi.sharedInstance.checkAuthStatus()
             
             .then{ response -> Void in
@@ -105,7 +115,7 @@ class EditAccountViewController: AccountBaseViewController {
                     self.lastName.text = last
                 }
                 
-                if let email = response["auth"]["email"].string {
+                if let email = response["email"].string {
                     Settings.sharedInstance.userEmail = email
                     self.email.text = email
                     self.checkEmail()
@@ -116,18 +126,21 @@ class EditAccountViewController: AccountBaseViewController {
                 }
             }
             
-            // TODO: how do we want to handle this error?
             .catch{ err -> Void in
-                log.error("Error checking auth")
-                print(err)
+                log.error("error checking auth")
                 
-                let alertController = UIAlertController(title: "Error loading account information", message: "There was an issue loading your account information.", preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                switch err {
+                    
+                case Asahi.AsahiError.authFailure:
+                    self.showAlert("Uh oh!", message: "You aren't authorized to access this resource.")
+                    
+                case Asahi.AsahiError.tokenInvalid:
+                    Asahi.sharedInstance.logout()
+                    self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+
+                default:
+                    self.showAlert("Uh oh!", message: "There was an issue loading your account information.")
                 }
-                
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkEmail), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)

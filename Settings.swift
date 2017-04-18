@@ -41,19 +41,19 @@ class Settings {
     
     var ourglassCloudBase: String {
         get {
-            return userDefaults.string(forKey: "asahiBase") ?? "whoopsie"
+            return userDefaults.string(forKey: "ourglassBase") ?? "whoopsie"
         }
         set {
-            userDefaults.set(newValue, forKey: "asahiBase")
+            userDefaults.set(newValue, forKey: "ourglassBase")
         }
     }
     
     var ourglassCloudScheme: String {
         get {
-            return userDefaults.string(forKey: "asahiScheme") ?? "http://"
+            return userDefaults.string(forKey: "ourglassScheme") ?? "http://"
         }
         set {
-            userDefaults.set(newValue, forKey: "asahiScheme")
+            userDefaults.set(newValue, forKey: "ourglassScheme")
         }
     }
     
@@ -61,12 +61,12 @@ class Settings {
         return ourglassCloudScheme + ourglassCloudBase
     }
     
-    var newOurglassCloudBaseUrl: String {
+    var ourglassBasePort: String {
         get {
-            return userDefaults.string(forKey: "newOGBase") ?? "nope"
+            return userDefaults.string(forKey: "ourglassBasePort") ?? "2000"
         }
         set {
-            userDefaults.set(newValue, forKey: "newOGBase")
+            userDefaults.set(newValue, forKey: "ourglassBasePort")
         }
     }
     
@@ -116,32 +116,21 @@ class Settings {
         }
     }
 
-    var userAsahiJWT: String? {
+    var userBelliniJWT: String? {
         get {
-            return userDefaults.string(forKey: "userAsahiJWT")
+            return userDefaults.string(forKey: "userBelliniJWT")
         }
         set {
-            userDefaults.set(newValue, forKey: "userAsahiJWT")
+            userDefaults.set(newValue, forKey: "userBelliniJWT")
         }
     }
     
-    var userAsahiJWTExpiry: Int {
+    var userBelliniJWTExpiry: Double? {
         get {
-            return userDefaults.integer(forKey: "userAsahiJWTExpiry")
+            return userDefaults.double(forKey: "userBelliniJWTExpiry")
         }
         set {
-            userDefaults.set(newValue, forKey: "userAsahiJWTExpiry")
-        }
-    }
-
-    
-    // TODO: This absolutely should never be used plaintext after release!!!
-    var userPassword: String? {
-        get {
-            return userDefaults.string(forKey: "userPwd")
-        }
-        set {
-            userDefaults.set(newValue, forKey: "userPwd")
+            userDefaults.set(newValue, forKey: "userBelliniJWTExpiry")
         }
     }
 
@@ -191,9 +180,9 @@ class Settings {
             "devMode" :  true,
             "alwaysShowIntro": false,
             "allowAccountCreation": true,
-            "asahiScheme" : "http://",
-            "asahiBase" : "107.170.209.248",
-            "newOGBase" : "http://138.68.230.239",
+            "ourglassScheme" : "http://",
+            "ourglassBase" : "138.68.230.239",
+            "ourglassBasePort": "2000",
             "appleReviewMode" : false,
             "isRegistered" : false
             

@@ -57,6 +57,7 @@
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
 		4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308711E57B904005B5EAB /* NetworkReachability.swift */; };
+		4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */; };
 		4FC2FE181E66157F00753035 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2FE141E66153600753035 /* Poppins-Bold.ttf */; };
 		4FC2FE191E66157F00753035 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2FE151E66154100753035 /* Poppins-Light.ttf */; };
 		4FC2FE1A1E66157F00753035 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2FE161E66154E00753035 /* Poppins-Medium.ttf */; };
@@ -121,6 +122,7 @@
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
 		4F9308711E57B904005B5EAB /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
+		4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsahiBaseViewController.swift; sourceTree = "<group>"; };
 		4FC2FE131E66152900753035 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		4FC2FE141E66153600753035 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		4FC2FE151E66154100753035 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				1ED96E861E2A0C6300891EA8 /* RequestRouter.swift */,
 				1EE7B96E1E2DEDD800E00370 /* Network.swift */,
 				4F9308711E57B904005B5EAB /* NetworkReachability.swift */,
+				4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				1ED96EAA1E2A0D2000891EA8 /* LoginBaseViewController.swift in Sources */,
 				1ED96EC01E2A0D6000891EA8 /* InviteFriendsViewController.swift in Sources */,
 				1ED96EA61E2A0D2000891EA8 /* EnterNameViewController.swift in Sources */,
+				4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */,
 				1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */,
 				1ED96E991E2A0CEB00891EA8 /* MainTabsController.swift in Sources */,
 			);

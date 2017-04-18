@@ -84,33 +84,15 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
     func logout() {
         let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "No", style: .cancel) { (action) in
-            
-        }
+        let cancelAction = UIAlertAction(title: "No", style: .cancel) { (action) in }
         
         alertController.addAction(cancelAction)
         
         let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            
             Asahi.sharedInstance.logout()
-                .then{ response -> Void in
-                    Settings.sharedInstance.userAsahiJWT = nil
-                    Settings.sharedInstance.userPassword = nil
-                    HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 1.0, completion: { (_) in
-                        self.performSegue(withIdentifier: "fromAccountToRegistration", sender: nil)
-                    })
-                }
-                
-                // TODO: is this how we should handle errors?
-                .catch{ err -> Void in
-                    log.error("Asahi error logging out")
-                    Settings.sharedInstance.userAsahiJWT = nil
-                    Settings.sharedInstance.userPassword = nil
-                    HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 1.0, completion: { (_) in
-                        self.performSegue(withIdentifier: "fromAccountToRegistration", sender: nil)
-                    })
-            }
-            
+            HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 0.5, completion: { (_) in
+                self.performSegue(withIdentifier: "fromAccountToRegistration", sender: nil)
+            })
         }
         
         alertController.addAction(okAction)

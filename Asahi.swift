@@ -19,59 +19,56 @@ import SwiftyJSON
 open class Asahi: NSObject {
     
     enum AsahiError: Error {
-        case missingOrMalformedParams
-        case responseWasNotValidJson
+        case authFailure
+        case tokenInvalid
     }
     
     let q = DispatchQueue.global()
 
-    
     static let sharedInstance = Asahi()
     
-    var currentToken = String()
-    
-    var loggedIn = false
-    var currentEmail: String?
-    
     var _postNotification = false
-    let token = "ASAHIROCKS!"
     
     
     func createApiEndpoint(_ endpoint: String) -> String {
-        return Settings.sharedInstance.ourglassCloudBaseUrl + endpoint
+        return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + Settings.sharedInstance.ourglassBasePort + endpoint
     }
     
-    func createNewApiEndpoint(_ endpoint: String) -> String {
-        return Settings.sharedInstance.newOurglassCloudBaseUrl + endpoint
-    }
-    
-    // Promisified JSON getter
-    func getJson(_ endpoint: String, parameters: [String: Any] = [:]) -> Promise<JSON> {
-        
-        return firstly {
-            Alamofire.request( endpoint, method: .get, parameters: parameters )
-                .validate()
-                .responseJSON()
-            }
-            .then(on:q){ value  in
-                JSON(value)
-        }
-        
+    func createApiEndpointWithPort(_ endpoint: String, port: String) -> String {
+        return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + port + endpoint
     }
     
     // TODO: empty JSON will return as an error, do we want this?
     func postOrPutJson( _ endpoint: String, data: Dictionary<String, Any>, method: HTTPMethod ) -> Promise<JSON> {
-        return firstly {
+        return Promise { fulfill, reject in
             Alamofire.request(endpoint, method: method, parameters: data,
-                              headers: [ "X-ASAHI-Token" : self.token ])
-                .validate()  //Checks for non-200 response
-                .responseJSON()
+                              headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
+                .validate()
+                .responseJSON() { response in
+                    switch response.result {
+                        
+                    case .success(let dict):
+                        fulfill(JSON(dict))
+                        
+                    case .failure(let error):
+                        if let statusCode = response.response?.statusCode {
+                            if statusCode == 403 {
+                                Asahi.sharedInstance.checkJWT()
+                                    .then { response -> Void in
+                                        log.debug("resource not allowed for this user")
+                                        reject(AsahiError.authFailure)
+                                    }
+                                    .catch { error -> Void in
+                                        log.debug("token invalid")
+                                        reject(AsahiError.tokenInvalid)
+                                    }
+                            }
+                        } else {
+                            reject(error)
+                        }
+                }
             }
-            .then( on:q){ value  in
-                //log.info(value)
-                JSON(value)
         }
-
     }
     
     // Promisified JSON Poster
@@ -83,11 +80,16 @@ open class Asahi: NSObject {
     func putJson( _ endpoint: String, data: Dictionary<String, Any> ) -> Promise<JSON> {
         return postOrPutJson(endpoint, data: data, method: .put)
     }
+    
+    // Promisified JSON Getter
+    func getJson(_ endpoint: String, parameters: [String: Any] = [:]) -> Promise<JSON> {
+        return postOrPutJson(endpoint, data: parameters, method: .get)
+    }
 
     
     // TODO: sign in with Facebook (use "type": "facebook" on login and register)
     
-    func register(_ email: String, password: String, user: Dictionary<String, Any>) -> Promise<JSON> {
+    func register(_ email: String, password: String, user: Dictionary<String, Any>) -> Promise<String> {
             
             let params: Dictionary<String, Any> = [
                 "email":email,
@@ -96,42 +98,20 @@ open class Asahi: NSObject {
                 "type":"local"]
 
             return postJson(createApiEndpoint("/auth/addUser"), data: params as Dictionary<String, AnyObject>)
-                .then{ json -> JSON in
-                    self.loggedIn = true
-                    self.currentEmail = email
-                    
+                .then{ _ -> Promise<String> in
                     Settings.sharedInstance.userEmail = email
-                    if (Settings.sharedInstance.isDevelopmentMode){
-                        Settings.sharedInstance.userPassword = password
-                    }
-                    
-                    return json
+                    return self.getToken()
                     
         }
     }
     
-    // We need a JSON login endpoint. Keep this here until it is done
-    func loginJSON(_ email: String, password: String) -> Promise<JSON> {
+    func login(_ email: String, password: String) -> Promise<String> {
         
-        let params = ["email":email,
-                      "password":password,
-                      "type":"local"]
-        
-        return postJson(createApiEndpoint("/auth/login"), data: params as Dictionary<String, AnyObject>)
-            .then{ json -> JSON in
-                self.loggedIn = true
-                self.currentEmail = email
-
-                Settings.sharedInstance.userEmail = email
-                if (Settings.sharedInstance.isDevelopmentMode){
-                    Settings.sharedInstance.userPassword = password
-                }
-
-                ASNotification.asahiLoggedIn.issue()
-                return json
+        return loginOnly(email, password: password)
+            .then{ _ -> Promise<String> in
+                return self.getToken()
         }
     }
-    
 
     // TODO: MAK This should be replaced with a proper JSON login endpoint (see above)
     func loginOnly(_ email: String, password: String) -> Promise<Bool> {
@@ -143,15 +123,7 @@ open class Asahi: NSObject {
         
         return postJson(createApiEndpoint("/auth/login"), data: params)
             .then{ json -> Bool in
-                
-                self.loggedIn = true
-                self.currentEmail = email
-
                 Settings.sharedInstance.userEmail = email
-                if (Settings.sharedInstance.isDevelopmentMode){
-                    Settings.sharedInstance.userPassword = password
-                }
-
                 ASNotification.asahiLoggedIn.issue()
                 return true
                 
@@ -159,52 +131,46 @@ open class Asahi: NSObject {
     }
     
     
-    func login(_ email: String, password: String) -> Promise<String> {
-        
-        return loginOnly(email, password: password)
-            .then{ _ -> Promise<String> in
-                return self.getToken()
-        }
-    }
-    
     func getToken() -> Promise<String> {
-        
         return getJson(createApiEndpoint("/user/jwt"))
             .then{ json -> String in
-                Settings.sharedInstance.userAsahiJWT = (json["token"].stringValue)
-                Settings.sharedInstance.userAsahiJWTExpiry = (json["expires"].intValue)
-                return Settings.sharedInstance.userAsahiJWT!
+                Settings.sharedInstance.userBelliniJWT = (json["token"].stringValue)
+                Settings.sharedInstance.userBelliniJWTExpiry = json["expires"].doubleValue/1000.0
+                return Settings.sharedInstance.userBelliniJWT!
         }
     }
 
     func changePassword(_ email: String, newPassword: String) -> Promise<Bool> {
-        
         let params = ["email": email, "newpass": newPassword]
         return postJson(createApiEndpoint("/auth/changePwd"), data: params)
             .then{ json -> Bool in
-                if (Settings.sharedInstance.isDevelopmentMode){
-                    Settings.sharedInstance.userPassword = newPassword
-                }
                 return true
         }
     }
-
     
     func getVenues() -> Promise<JSON> {
-        return getJson(createNewApiEndpoint(":2000/api/v1/venue"))
+        return getJson(createApiEndpoint("/api/v1/venue"))
     }
     
     func getDevices(_ venueUUID: String) -> Promise<JSON> {
-        return getJson(createNewApiEndpoint(":2001/venue/devices?atVenueUUID=" + venueUUID))
-    }
-    
-    // TODO Why is this a promise?
-    func checkAuthorized() -> Promise<Bool> {
-        return Promise.init(value: Settings.sharedInstance.userAsahiJWT != nil)
+        return getJson(createApiEndpointWithPort("/venue/devices?atVenueUUID=" + venueUUID, port: "2001"))
     }
     
     func checkAuthStatus() -> Promise<JSON> {
         return getJson(createApiEndpoint("/auth/status"))
+    }
+    
+    func checkJWT() -> Promise<JSON> {
+        // cannot use same get() as everyone else or we might end up in a loop on 403 handling
+        return firstly {
+            Alamofire.request(createApiEndpoint("/user/checkjwt"), method: .get,
+                              headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
+                .validate()  //Checks for non-200 response
+                .responseJSON()
+            }
+            .then(on:q){ value  in
+                JSON(value)
+        }
     }
     
     func changeAccountInfo(_ firstName: String, lastName: String, email: String, userId: String) -> Promise<JSON> {
@@ -212,15 +178,16 @@ open class Asahi: NSObject {
         return putJson(createApiEndpoint("/api/v1/user/\(userId)"), data: params)
     }
     
-    //TODO this will almost certainly not work since I do not think this page returns JSON
-    func logout() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/auth/logoutPage"))
+    // TODO: is there more we need to do here? send anything to the server?
+    func logout() {
+        Settings.sharedInstance.userBelliniJWT = nil
+        Settings.sharedInstance.userBelliniJWTExpiry = nil
+        Settings.sharedInstance.userId = nil
     }
     
-    
     func inviteNewUser(_ email: String) -> Promise<JSON> {
-            let params = ["email": email]
-            return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
+        let params = ["email": email]
+        return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
     }
     
     

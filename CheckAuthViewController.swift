@@ -10,8 +10,8 @@ import UIKit
 import PromiseKit
 
 enum AuthError: Error {
-    case noEmailError
-    case noPasswordError
+    case JWTExpired
+    case noJWTFound
 }
 
 class CheckAuthViewController: UIViewController {
@@ -37,58 +37,22 @@ class CheckAuthViewController: UIViewController {
         return .lightContent
     }
 
+    // TODO: unless we want to do a call to checkJWT, this doesn't need to be a promise
     func checkUserStatus() -> Promise<Bool> {
         
         return Promise<Bool> { resolve, reject in
             
-            if let email = Settings.sharedInstance.userEmail {
-                if let pwd = Settings.sharedInstance.userPassword {
-                    
-                    Asahi.sharedInstance.login(email, password: pwd)
-                        
-                        .then{ response -> Void in
-                            
-                            Asahi.sharedInstance.checkAuthStatus()
-                                
-                                .then{ response -> Void in
-                                    log.debug("Successfully checked auth")
-                                    if let first = response["firstName"].string {
-                                        Settings.sharedInstance.userFirstName = first
-                                    }
-                                    
-                                    if let last = response["lastName"].string {
-                                        Settings.sharedInstance.userLastName = last
-                                    }
-                                    
-                                    if let email = response["auth"]["email"].string {
-                                        Settings.sharedInstance.userEmail = email
-                                    }
-                                    
-                                    if let id = response["id"].string {
-                                        Settings.sharedInstance.userId = id
-                                    }
-                                    
-                                    resolve(true)
-                                }
-                                
-                                .catch{ err -> Void in
-                                    log.debug("not authorized")
-                                    reject(err)
-                            }
-                        }
-                        
-                        .catch{ err -> Void in
-                            log.debug("not able to log in")
-                            reject(err)
-                    }
-                    
+            if let expiry = Settings.sharedInstance.userBelliniJWTExpiry,
+                let _ = Settings.sharedInstance.userBelliniJWT {
+
+                if Date() > Date(timeIntervalSince1970: expiry - 86400.0) { // JWT has expired or will expire in the next day
+                    reject(AuthError.JWTExpired)
                 } else {
-                    log.debug("no password stored")
-                    reject(AuthError.noPasswordError)
+                    resolve(true)
                 }
+                
             } else {
-                log.debug("no email stored")
-                reject(AuthError.noEmailError)
+                reject(AuthError.noJWTFound)
             }
         }
     }
