@@ -90,7 +90,7 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
         
         let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
             Asahi.sharedInstance.logout()
-            HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 1.0, completion: { (_) in
+            HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 0.5, completion: { (_) in
                 self.performSegue(withIdentifier: "fromAccountToRegistration", sender: nil)
             })
         }

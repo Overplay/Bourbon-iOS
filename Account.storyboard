@@ -43,7 +43,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSK-Fu-kDi">
-                                            <rect key="frame" x="78" y="19" width="42" height="20"/>
+                                            <rect key="frame" x="78" y="15" width="45" height="28"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -352,6 +352,7 @@
                         <outlet property="firstName" destination="Wze-wc-GTb" id="Pdz-Nc-Woq"/>
                         <outlet property="lastName" destination="Wrj-L7-5C8" id="2Ue-vm-K5Y"/>
                         <outlet property="saveButton" destination="KDg-2d-3AP" id="NBm-gn-yKn"/>
+                        <segue destination="Y8W-br-ngb" kind="showDetail" identifier="fromEditAccountToRegistration" action="showViewController:sender:" id="Xav-D5-LI7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QUB-Vv-Hq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -561,4 +562,7 @@
         <image name="ic_fast_rewind_white_36pt" width="36" height="36"/>
         <image name="ic_settings_white" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Xav-D5-LI7"/>
+    </inferredMetricsTieBreakers>
 </document>
