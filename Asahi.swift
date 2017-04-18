@@ -19,8 +19,8 @@ import SwiftyJSON
 open class Asahi: NSObject {
     
     enum AsahiError: Error {
-        case missingOrMalformedParams
-        case responseWasNotValidJson
+        case authFailure
+        case tokenInvalid
     }
     
     let q = DispatchQueue.global()
@@ -40,17 +40,35 @@ open class Asahi: NSObject {
     
     // TODO: empty JSON will return as an error, do we want this?
     func postOrPutJson( _ endpoint: String, data: Dictionary<String, Any>, method: HTTPMethod ) -> Promise<JSON> {
-        
-        return firstly {
+        return Promise { fulfill, reject in
             Alamofire.request(endpoint, method: method, parameters: data,
                               headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
-                .validate()  //Checks for non-200 response
-                .responseJSON()
+                .validate()
+                .responseJSON() { response in
+                    switch response.result {
+                        
+                    case .success(let dict):
+                        fulfill(JSON(dict))
+                        
+                    case .failure(let error):
+                        if let statusCode = response.response?.statusCode {
+                            if statusCode == 403 {
+                                Asahi.sharedInstance.checkJWT()
+                                    .then { response -> Void in
+                                        log.debug("resource not allowed for this user")
+                                        reject(AsahiError.authFailure)
+                                    }
+                                    .catch { error -> Void in
+                                        log.debug("token invalid")
+                                        reject(AsahiError.tokenInvalid)
+                                    }
+                            }
+                        } else {
+                            reject(error)
+                        }
+                }
             }
-            .then( on:q){ value  in
-                JSON(value)
         }
-
     }
     
     // Promisified JSON Poster
@@ -71,7 +89,7 @@ open class Asahi: NSObject {
     
     // TODO: sign in with Facebook (use "type": "facebook" on login and register)
     
-    func register(_ email: String, password: String, user: Dictionary<String, Any>) -> Promise<JSON> {
+    func register(_ email: String, password: String, user: Dictionary<String, Any>) -> Promise<String> {
             
             let params: Dictionary<String, Any> = [
                 "email":email,
@@ -80,9 +98,9 @@ open class Asahi: NSObject {
                 "type":"local"]
 
             return postJson(createApiEndpoint("/auth/addUser"), data: params as Dictionary<String, AnyObject>)
-                .then{ json -> JSON in
+                .then{ _ -> Promise<String> in
                     Settings.sharedInstance.userEmail = email
-                    return json
+                    return self.getToken()
                     
         }
     }
@@ -112,8 +130,8 @@ open class Asahi: NSObject {
         }
     }
     
+    
     func getToken() -> Promise<String> {
-        
         return getJson(createApiEndpoint("/user/jwt"))
             .then{ json -> String in
                 Settings.sharedInstance.userBelliniJWT = (json["token"].stringValue)
@@ -123,7 +141,6 @@ open class Asahi: NSObject {
     }
 
     func changePassword(_ email: String, newPassword: String) -> Promise<Bool> {
-        
         let params = ["email": email, "newpass": newPassword]
         return postJson(createApiEndpoint("/auth/changePwd"), data: params)
             .then{ json -> Bool in
@@ -144,7 +161,16 @@ open class Asahi: NSObject {
     }
     
     func checkJWT() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/user/checkjwt"))
+        // cannot use same get() as everyone else or we might end up in a loop on 403 handling
+        return firstly {
+            Alamofire.request(createApiEndpoint("/user/checkjwt"), method: .get,
+                              headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
+                .validate()  //Checks for non-200 response
+                .responseJSON()
+            }
+            .then(on:q){ value  in
+                JSON(value)
+        }
     }
     
     func changeAccountInfo(_ firstName: String, lastName: String, email: String, userId: String) -> Promise<JSON> {
@@ -152,9 +178,11 @@ open class Asahi: NSObject {
         return putJson(createApiEndpoint("/api/v1/user/\(userId)"), data: params)
     }
     
-    //TODO this will almost certainly not work since I do not think this page returns JSON
-    func logout() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/auth/logoutPage"))
+    // TODO: is there more we need to do here? send anything to the server?
+    func logout() {
+        Settings.sharedInstance.userBelliniJWT = nil
+        Settings.sharedInstance.userBelliniJWTExpiry = nil
+        Settings.sharedInstance.userId = nil
     }
     
     func inviteNewUser(_ email: String) -> Promise<JSON> {

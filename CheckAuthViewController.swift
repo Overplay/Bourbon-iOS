@@ -45,7 +45,7 @@ class CheckAuthViewController: UIViewController {
             if let expiry = Settings.sharedInstance.userBelliniJWTExpiry,
                 let _ = Settings.sharedInstance.userBelliniJWT {
 
-                if Date() > Date(timeIntervalSince1970: expiry) { // JWT has expired
+                if Date() > Date(timeIntervalSince1970: expiry - 86400.0) { // JWT has expired or will expire in the next day
                     reject(AuthError.JWTExpired)
                 } else {
                     resolve(true)
@@ -54,37 +54,6 @@ class CheckAuthViewController: UIViewController {
             } else {
                 reject(AuthError.noJWTFound)
             }
-            
-            /*
-             Asahi.sharedInstance.checkAuthStatus()
-                
-                .then{ response -> Void in
-                    log.debug("Successfully checked auth")
-                    if let first = response["firstName"].string {
-                        Settings.sharedInstance.userFirstName = first
-                    }
-                    
-                    if let last = response["lastName"].string {
-                        Settings.sharedInstance.userLastName = last
-                    }
-                    
-                    if let email = response["auth"]["email"].string {
-                        Settings.sharedInstance.userEmail = email
-                    }
-                    
-                    if let id = response["id"].string {
-                        Settings.sharedInstance.userId = id
-                    }
-                    
-                    resolve(true)
-                }
-                
-                .catch{ err -> Void in
-                    log.debug("not authorized")
-                    reject(err)
-            }
-            */
-            
         }
     }
 

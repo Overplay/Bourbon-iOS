@@ -535,7 +535,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your password must be at least 5 characters long." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF0-oS-QkS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your password must be at least 8 characters long." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF0-oS-QkS">
                                 <rect key="frame" x="20" y="222" width="374" height="20"/>
                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -784,6 +784,6 @@
         <image name="ic_play_circle_outline_white_48pt" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UTh-5h-oXD"/>
+        <segue reference="xhs-be-PIL"/>
     </inferredMetricsTieBreakers>
 </document>

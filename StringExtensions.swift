@@ -26,7 +26,7 @@ extension String {
     
     func isValidPwd() -> Bool {
         
-        let pwdRegEx = ".{5,}"
+        let pwdRegEx = ".{8,}"
         //let pwdRegEx = "^(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
         let passwordTest = NSPredicate(format:"SELF MATCHES %@",pwdRegEx)
         let result = passwordTest.evaluate(with: self)
