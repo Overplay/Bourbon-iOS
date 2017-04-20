@@ -91,20 +91,9 @@ class EditAccountViewController: AccountBaseViewController {
         self.email.text = Settings.sharedInstance.userEmail
         checkEmail()
         
-        // TODO: use either check JWT or checkAuthStatus, not both
-        
         Asahi.sharedInstance.checkJWT()
             .then { response -> Void in
                 log.debug("JWT check good")
-        }
-            .catch { error -> Void in
-                log.debug("BAD JWT")
-        }
-        
-        Asahi.sharedInstance.checkAuthStatus()
-            
-            .then{ response -> Void in
-                log.debug("Successfully checked auth")
                 if let first = response["firstName"].string {
                     Settings.sharedInstance.userFirstName = first
                     self.firstName.text = first
@@ -124,23 +113,38 @@ class EditAccountViewController: AccountBaseViewController {
                 if let userId = response["id"].string {
                     Settings.sharedInstance.userId = userId
                 }
-            }
-            
-            .catch{ err -> Void in
-                log.error("error checking auth")
+
+        }
+            .catch { error -> Void in
+                log.debug("BAD JWT")
+                let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
                 
-                switch err {
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    Asahi.sharedInstance.logout()
+                    self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+                }
+                
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                /*switch error {
                     
                 case Asahi.AsahiError.authFailure:
                     self.showAlert("Uh oh!", message: "You aren't authorized to access this resource.")
                     
                 case Asahi.AsahiError.tokenInvalid:
-                    Asahi.sharedInstance.logout()
-                    self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
-
+                    let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                        Asahi.sharedInstance.logout()
+                        self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+                    }
+                    
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
                 default:
                     self.showAlert("Uh oh!", message: "There was an issue loading your account information.")
-                }
+                }*/
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkEmail), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)

@@ -38,8 +38,7 @@ open class Asahi: NSObject {
         return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + port + endpoint
     }
     
-    // TODO: empty JSON will return as an error, do we want this?
-    func postOrPutJson( _ endpoint: String, data: Dictionary<String, Any>, method: HTTPMethod ) -> Promise<JSON> {
+    func doJsonTransaction( _ endpoint: String, data: Dictionary<String, Any>, method: HTTPMethod ) -> Promise<JSON> {
         return Promise { fulfill, reject in
             Alamofire.request(endpoint, method: method, parameters: data,
                               headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
@@ -62,6 +61,8 @@ open class Asahi: NSObject {
                                         log.debug("token invalid")
                                         reject(AsahiError.tokenInvalid)
                                     }
+                            } else {
+                                reject(error)
                             }
                         } else {
                             reject(error)
@@ -73,17 +74,17 @@ open class Asahi: NSObject {
     
     // Promisified JSON Poster
     func postJson( _ endpoint: String, data: Dictionary<String, Any> ) -> Promise<JSON> {
-        return postOrPutJson(endpoint, data: data, method: .post)
+        return doJsonTransaction(endpoint, data: data, method: .post)
     }
     
     // Promisified JSON Putter
     func putJson( _ endpoint: String, data: Dictionary<String, Any> ) -> Promise<JSON> {
-        return postOrPutJson(endpoint, data: data, method: .put)
+        return doJsonTransaction(endpoint, data: data, method: .put)
     }
     
     // Promisified JSON Getter
     func getJson(_ endpoint: String, parameters: [String: Any] = [:]) -> Promise<JSON> {
-        return postOrPutJson(endpoint, data: parameters, method: .get)
+        return doJsonTransaction(endpoint, data: parameters, method: .get)
     }
 
     
@@ -156,20 +157,22 @@ open class Asahi: NSObject {
         return getJson(createApiEndpointWithPort("/venue/devices?atVenueUUID=" + venueUUID, port: "2001"))
     }
     
-    func checkAuthStatus() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/auth/status"))
-    }
-    
     func checkJWT() -> Promise<JSON> {
         // cannot use same get() as everyone else or we might end up in a loop on 403 handling
-        return firstly {
+        return Promise { fulfill, reject in
             Alamofire.request(createApiEndpoint("/user/checkjwt"), method: .get,
                               headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
-                .validate()  //Checks for non-200 response
-                .responseJSON()
+                .validate()
+                .responseJSON() { response in
+                    switch response.result {
+                        
+                    case .success(let dict):
+                        fulfill(JSON(dict))
+                        
+                    case .failure(let error):
+                        reject(error)
+                    }
             }
-            .then(on:q){ value  in
-                JSON(value)
         }
     }
     
