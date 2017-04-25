@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import SwiftyJSON
 
-class MapViewController : UIViewController {
+class MapViewController : VenueBaseViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -22,53 +22,31 @@ class MapViewController : UIViewController {
     
     let nc = NotificationCenter.default
     
-    func processVenues( _ inboundVenueJson: JSON ){
+    func placeVenues() {
         
-        guard let venueArray = inboundVenueJson.array else {
-            log.debug("No venues found!")
-            return
-        }
-        
-        var existingLocations = [String]()
-        
-        // val is one restaurant object
-        for venue in venueArray {
+        for venue in self.venues {
             
-            let address = venue["address"]
-            let name  = venue["name"].stringValue
-            
-            // Address components compiled into one human readable string
-            let location = String(format: "%@, %@, %@, %@", address["street"].stringValue, address["city"].stringValue, address["state"].stringValue, address["zip"].stringValue)
-            
-            // There were some duplicates in the database so I'm filtering those out here. We don't really need this in the future though because that's more a database issue
-            if existingLocations.contains(location) {
-                continue
-            }else {
-                existingLocations.append(location)
-            }
             let geocoder: CLGeocoder = CLGeocoder()
             
             // Convert address into coordinates for visual map items
-            geocoder.geocodeAddressString(location,completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
-                
+            geocoder.geocodeAddressString(venue.address, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
+            
                 guard let pmrks = placemarks else {
-                    log.error("Not able to find any placemarks")
+                    log.error("Not able to find any placemarks for venue \(venue.name)")
                     return
                 }
-                
+            
                 if ((pmrks.count) > 0) {
                     let topResult: CLPlacemark = (pmrks[0])
                     let placemark = MKPlacemark(placemark: topResult)
                     let pointAnnotation = MKPointAnnotation()
                     pointAnnotation.coordinate = placemark.coordinate
-                    pointAnnotation.title = name
-                    pointAnnotation.subtitle = location
+                    pointAnnotation.title = venue.name
+                    pointAnnotation.subtitle = venue.address
                     self.mapView.addAnnotation(pointAnnotation)
                 }
-            } )
+            })
         }
-
-        
     }
     
     override func viewDidLoad() {
@@ -90,6 +68,7 @@ class MapViewController : UIViewController {
             .then { response -> Void in
                 log.debug("Got venues!")
                 self.processVenues(response)
+                self.placeVenues()
             }
             
             .catch{ err -> Void in
@@ -111,6 +90,7 @@ class MapViewController : UIViewController {
             .then { response -> Void in
                 log.debug("Got venues!")
                 self.processVenues(response)
+                self.placeVenues()
             }
             
             .catch{ err -> Void in
