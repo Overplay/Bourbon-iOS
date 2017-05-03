@@ -22,6 +22,33 @@ class MapViewController : VenueBaseViewController {
     
     let nc = NotificationCenter.default
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        let recenterBarButton = UIBarButtonItem(title: "Recenter", style: .plain, target: self, action: #selector(recenter))
+        self.navigationItem.rightBarButtonItem = recenterBarButton
+        
+        self.mapView.delegate = self
+        
+        nc.addObserver(self, selector: #selector(getAndPlaceVenues), name: NSNotification.Name(rawValue: ASNotification.networkChanged.rawValue), object: nil)
+        
+        self.getAndPlaceVenues()
+    }
+    
+    func getAndPlaceVenues() {
+        self.findAndProcessVenues()
+            .then { _ in
+                self.placeVenues()
+            }
+            .catch { _ in
+                log.error("Error getting venues")
+            }
+    }
+    
     func placeVenues() {
         
         for venue in self.venues {
@@ -30,12 +57,12 @@ class MapViewController : VenueBaseViewController {
             
             // Convert address into coordinates for visual map items
             geocoder.geocodeAddressString(venue.address, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
-            
+                
                 guard let pmrks = placemarks else {
                     log.error("Not able to find any placemarks for venue \(venue.name)")
                     return
                 }
-            
+                
                 if ((pmrks.count) > 0) {
                     let topResult: CLPlacemark = (pmrks[0])
                     let placemark = MKPlacemark(placemark: topResult)
@@ -49,56 +76,11 @@ class MapViewController : VenueBaseViewController {
         }
     }
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
-        let recenterBarButton = UIBarButtonItem(title: "Recenter", style: .plain, target: self, action: #selector(recenter))
-        self.navigationItem.rightBarButtonItem = recenterBarButton
-        
-        self.mapView.delegate = self
-        
-        nc.addObserver(self, selector: #selector(networkChanged), name: NSNotification.Name(rawValue: ASNotification.networkChanged.rawValue), object: nil)
-        
-        Asahi.sharedInstance.getVenues()
-            
-            .then { response -> Void in
-                log.debug("Got venues!")
-                self.processVenues(response)
-                self.placeVenues()
-            }
-            
-            .catch{ err -> Void in
-                log.error("Error getting venues")
-                print(err)
-        }
-    }
-    
     func recenter() {
         // Zoom in on current location
         // 0.3 is some number. The smaller it is, the smaller the frame (huh, makes sense right?)
         self.mapView.setRegion(MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.3, 0.3)), animated: true)
     }
-    
-    // reload venues when network changes
-    func networkChanged() {
-        Asahi.sharedInstance.getVenues()
-            
-            .then { response -> Void in
-                log.debug("Got venues!")
-                self.processVenues(response)
-                self.placeVenues()
-            }
-            
-            .catch{ err -> Void in
-                log.error("Error getting venues")
-                print(err)
-        }
-    }
-    
 }
 
 extension MapViewController : UITableViewDelegate, UITableViewDataSource {

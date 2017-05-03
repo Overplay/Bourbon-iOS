@@ -12,7 +12,7 @@
         <!--Locations-->
         <scene sceneID="igD-as-gaG">
             <objects>
-                <viewController title="Locations" id="fsJ-wE-pWs" customClass="MapViewController" customModule="Absinthe_iOS_X8" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Locations" id="fsJ-wE-pWs" customClass="MapViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Isd-pb-ccg"/>
                         <viewControllerLayoutGuide type="bottom" id="hdV-7d-k2q"/>

@@ -89,7 +89,6 @@ open class Asahi: NSObject {
 
     
     // TODO: sign in with Facebook (use "type": "facebook" on login and register)
-    
     func register(_ email: String, password: String, user: Dictionary<String, Any>) -> Promise<String> {
             
             let params: Dictionary<String, Any> = [
@@ -150,7 +149,7 @@ open class Asahi: NSObject {
     }
     
     func getVenues() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/api/v1/venue"))
+        return getJson(createApiEndpoint("/venue/all"))
     }
     
     func getDevices(_ venueUUID: String) -> Promise<JSON> {
@@ -178,10 +177,10 @@ open class Asahi: NSObject {
     
     func changeAccountInfo(_ firstName: String, lastName: String, email: String, userId: String) -> Promise<JSON> {
         let params: Dictionary<String, Any> = ["email": email, "firstName": firstName, "lastName": lastName]
-        return putJson(createApiEndpoint("/api/v1/user/\(userId)"), data: params)
+        return putJson(createApiEndpoint("/user/\(userId)"), data: params)
     }
     
-    // TODO: is there more we need to do here? send anything to the server?
+    // TODO: is there more we need to do here?
     func logout() {
         Settings.sharedInstance.userBelliniJWT = nil
         Settings.sharedInstance.userBelliniJWTExpiry = nil
@@ -191,6 +190,11 @@ open class Asahi: NSObject {
     func inviteNewUser(_ email: String) -> Promise<JSON> {
         let params = ["email": email]
         return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
+    }
+    
+    func findByRegCode(_ regCode: String) -> Promise<JSON> {
+        let params = ["regcode": regCode]
+        return getJson(createApiEndpointWithPort("/ogdevice/findByRegCode", port: "2001"), parameters: params)
     }
     
     

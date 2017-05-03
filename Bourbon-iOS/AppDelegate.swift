@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Asahi.sharedInstance.testRegistration()
         //Asahi.sharedInstance.testLogin()
         
+        UITextField.appearance().keyboardAppearance = .dark
+        
         return true
     }
     

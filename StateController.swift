@@ -1,18 +1,22 @@
 //
-//  VenueBaseViewController.swift
+//  StateController.swift
 //  Bourbon-iOS
 //
-//  Created by Alyssa Torres on 4/24/17.
+//  Created by Alyssa Torres on 5/1/17.
 //  Copyright © 2017 Ourglass. All rights reserved.
 //
 
-import UIKit
-import SwiftyJSON
+import Foundation
 import PromiseKit
+import SwiftyJSON
 
-class VenueBaseViewController: UIViewController {
+class StateController {
     
-    var venues = [OGVenue]()
+    static let sharedInstance = StateController()
+    
+    private(set) var venues = [OGVenue]()
+    
+    private init() {}
     
     func findAndProcessVenues() -> Promise<JSON> {
         return Promise { fulfill, reject in
@@ -20,7 +24,7 @@ class VenueBaseViewController: UIViewController {
                 .then { response -> Void in
                     self.processVenues(response)
                     fulfill(response)
-            }
+                }
                 .catch { err -> Void  in
                     reject(err)
             }
@@ -50,7 +54,6 @@ class VenueBaseViewController: UIViewController {
                 continue
             }
             
-            // Address components compiled into one human readable string
             guard let street = address["street"].string, let city = address["city"].string,
                 let state = address["state"].string, let zip = address["zip"].string else {
                     log.debug("found a venue with incomplete address, skipping")
@@ -65,4 +68,6 @@ class VenueBaseViewController: UIViewController {
             self.venues.append(OGVenue(name: name, street: street, city: city, state: state, zip: zip, latitude: latitude, longitude: longitude, uuid: uuid))
         }
     }
+    
+    // TODO: save venues with NSCoder things (https://www.smashingmagazine.com/2016/05/better-architecture-for-ios-apps-model-view-controller-pattern/)
 }

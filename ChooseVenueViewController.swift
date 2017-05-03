@@ -71,20 +71,19 @@ class ChooseVenueViewController : VenueBaseViewController, UICollectionViewDeleg
     }
     
     func findVenues() {
-        
         self.refreshing = true
         self.refreshControl.beginRefreshing()
         
-        Asahi.sharedInstance.getVenues()
-            .then{ json -> Void in
-                self.processVenues(json)
+        self.findAndProcessVenues()
+            .then { _ -> Void in
                 self.sortByLocationAndReload()
                 self.stopRefresh()
             }
-            
-            .catch{ err -> Void in
+            .catch { _ in
+                log.error("Error getting venues")
+                self.sortByLocationAndReload()
                 self.stopRefresh()
-            }
+        }
         
         // Stops the spinner if we have seen no venues
         Timer.scheduledTimer(timeInterval: SEARCHING_TIMEOUT_INTERVAL, target: self, selector: #selector(stopRefresh), userInfo: nil, repeats: false)
@@ -96,7 +95,6 @@ class ChooseVenueViewController : VenueBaseViewController, UICollectionViewDeleg
     }
     
     func sortByLocationAndReload() {
-        
         guard let curLocObj = self.location else {
             self.venueCollection.reloadData()
             return
@@ -115,10 +113,13 @@ class ChooseVenueViewController : VenueBaseViewController, UICollectionViewDeleg
     }
     
     // MARK: - CLLocationManagerDelegate
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.location = manager.location?.coordinate
-        self.findVenues()
+        self.location = locations.last?.coordinate
+        //log.debug("updated location")
+        //self.findVenues()
     }
+    
     // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

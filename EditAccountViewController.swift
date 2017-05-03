@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import PKHUD
 
-class EditAccountViewController: AccountBaseViewController {
+class EditAccountViewController: AccountBaseViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
@@ -25,22 +25,24 @@ class EditAccountViewController: AccountBaseViewController {
     @IBAction func save(_ sender: AnyObject) {
         self.view.endEditing(true)
         
-        guard let first = self.firstName.text
-            else {
-                showAlert("Oops!", message: "The information you put in is not valid.")
-                return
+        guard let first = self.firstName.text else {
+            showAlert("Oops!", message: "The information you put in is not valid.")
+            return
         }
         
-        guard let last = self.lastName.text
-            else {
-                showAlert("Oops!", message: "The information you put in is not valid.")
-                return
+        guard let last = self.lastName.text else {
+            showAlert("Oops!", message: "The information you put in is not valid.")
+            return
         }
         
-        guard let email = self.email.text
-            else {
-                showAlert("Oops!", message: "The information you put in is not valid.")
-                return
+        guard let email = self.email.text else {
+            showAlert("Oops!", message: "The information you put in is not valid.")
+            return
+        }
+        
+        if !email.isValidEmail() {
+            showAlert("Oops!", message: "That isn't a valid email.")
+            return
         }
         
         let alertController = UIAlertController(title: "Save Changes", message: "Are you sure you want to save changes to your account information?", preferredStyle: .alert)
@@ -83,6 +85,10 @@ class EditAccountViewController: AccountBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.firstName.useCustomBottomBorder()
+        self.lastName.useCustomBottomBorder()
+        self.email.useCustomBottomBorder()
+        
         self.emailGoodCheck.alpha = 0
         self.saveButton.alpha = 0
 
@@ -90,7 +96,7 @@ class EditAccountViewController: AccountBaseViewController {
         self.lastName.text = Settings.sharedInstance.userLastName
         self.email.text = Settings.sharedInstance.userEmail
         checkEmail()
-        
+        /*
         Asahi.sharedInstance.checkJWT()
             .then { response -> Void in
                 log.debug("JWT check good")
@@ -145,7 +151,7 @@ class EditAccountViewController: AccountBaseViewController {
                 default:
                     self.showAlert("Uh oh!", message: "There was an issue loading your account information.")
                 }*/
-        }
+        }*/
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkEmail), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
     }
@@ -156,7 +162,6 @@ class EditAccountViewController: AccountBaseViewController {
     }
     
     func checkEmail() {
-        
         if let email = self.email.text {
             
             if email.isValidEmail() && self.emailGoodCheck.alpha == 0 {
@@ -171,15 +176,13 @@ class EditAccountViewController: AccountBaseViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
-    */
-
 }

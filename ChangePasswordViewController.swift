@@ -12,9 +12,6 @@ import PKHUD
 class ChangePasswordViewController: AccountBaseViewController {
     
     var email: String?
-
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var currentPassword: UITextField!
     @IBOutlet weak var newPassword: UITextField!
@@ -99,25 +96,18 @@ class ChangePasswordViewController: AccountBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Change password"
+        
+        self.currentPassword.useCustomBottomBorder()
+        self.newPassword.useCustomBottomBorder()
+        self.repeatNewPassword.useCustomBottomBorder()
 
         self.passwordCheck.alpha = 0
         self.newPasswordCheck.alpha = 0
         self.repeatNewPasswordCheck.alpha = 0
         self.saveButton.alpha = 0
-        
-        
         self.email = Settings.sharedInstance.userEmail
-        
-        if let first = Settings.sharedInstance.userFirstName {
-            if let last = Settings.sharedInstance.userLastName {
-                self.nameLabel.text = "\(first) \(last)"
-            } else {
-                self.nameLabel.text = "\(first)"
-            }
-        }
-        
-        self.emailLabel.text = Settings.sharedInstance.userEmail
-        
         _ = checkInputs()
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkInputs), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)

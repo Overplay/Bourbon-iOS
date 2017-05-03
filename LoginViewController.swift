@@ -17,14 +17,14 @@ class LoginViewController: LoginBaseViewController {
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var emailGoodCheck: UIImageView!
     
-    var emailOK = false;
-    
     @IBAction func goPressed(_ sender: UIButton){
         loginWithSegue(emailTextField.text!, pwd: pwdTextField.text!, segueId: segueId)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.useCustomBottomBorder()
         
         UIView.animate(withDuration: 0.35, delay: 0.65, options: .curveEaseInOut, animations: { 
             self.emailLabel.alpha = CGFloat(1.0)
@@ -40,24 +40,13 @@ class LoginViewController: LoginBaseViewController {
     }
     
     override func checkFields(_ notification: Notification) {
-        super.checkFields(notification)
-        
-        if let email = emailTextField.text {
-            
-            if email.isValidEmail() && emailGoodCheck.alpha == 0 {
-                fadeIn(emailGoodCheck)
-                fadeIn(nextButton)
-                emailOK = true
-            }
-            
-            if !email.isValidEmail() {
-                fadeOut(emailGoodCheck)
-                fadeOut(nextButton)
-                emailOK = false
-                
-            }
+        guard let email = emailTextField.text, let pwd = pwdTextField.text else {
+            return
         }
 
+        fade(emailGoodCheck, onCondition: email.isValidEmail())
+        fade(pwdGoodCheck, onCondition: pwd.isValidPwd())
+        fade(nextButton, onCondition: email.isValidEmail() && pwd.isValidPwd())
     }
     
     override func recoverFromLoginFailure() {
