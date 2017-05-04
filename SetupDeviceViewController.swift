@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import PromiseKit
+import SwiftyJSON
+import PKHUD
 
 class SetupDeviceViewController: AccountBaseViewController {
     
@@ -110,42 +113,54 @@ class SetupDeviceViewController: AccountBaseViewController {
                 return
         }
         
-        Asahi.sharedInstance.findByRegCode(code)
-            .then { response -> Void in
-                log.debug(response)
-        }
-            .catch { error -> Void in
-                switch error {
+        Asahi.sharedInstance.findByRegCode(code).then { deviceData -> Promise<String> in
+            guard let deviceUdid = deviceData["deviceUDID"].string else {
+                throw AsahiError.malformedJson
+            }
+            return Asahi.sharedInstance.changeDeviceName(deviceUdid, name: name)
+            
+        }.then { deviceUdid in
+            return Asahi.sharedInstance.associate(deviceUdid: deviceUdid,
+                                           withVenueUuid: venue.uuid)
+        }.then { _ -> Void in
+            self.createDeviceActivityIndicator.stopAnimating()
+            HUD.flash(.success, delay: 1.0)
+        
+        }.catch { error -> Void in
+            
+            switch error {
                     
-                case Asahi.AsahiError.authFailure:
-                    self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to create a device!"
-                    self.errorBlock.isHidden = false
+            case AsahiError.authFailure:
+                self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to create a device!"
+                self.errorBlock.isHidden = false
                     
-                case Asahi.AsahiError.tokenInvalid:
-                    let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
+            case AsahiError.tokenInvalid:
+                let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
                     
-                    let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                        Asahi.sharedInstance.logout()
-                        self.performSegue(withIdentifier: "fromSetupDeviceToRegistration", sender: nil)
-                    }
-                    
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                default: // reg code was invalid
-                    self.regCodeErrorLabel.isHidden = false
-                    self.regCode.changeBorderColor(UIColor.red)
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    Asahi.sharedInstance.logout()
+                    self.performSegue(withIdentifier: "fromSetupDeviceToRegistration", sender: nil)
                 }
+                    
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                    
+            default: // reg code was invalid
+                self.regCodeErrorLabel.isHidden = false
+                self.regCode.changeBorderColor(UIColor.red)
+            }
                 
-                self.createDeviceButton.isEnabled = true
-                self.createDeviceButton.alpha = 1.0
-                self.createDeviceActivityIndicator.stopAnimating()
+            self.createDeviceButton.isEnabled = true
+            self.createDeviceButton.alpha = 1.0
+            self.createDeviceActivityIndicator.stopAnimating()
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? PickVenueViewController {
-            vc.delegate = self
+        if let navVC = segue.destination as? UINavigationController {
+            let venuesVC = navVC.viewControllers.first as! PickVenueViewController
+            venuesVC.delegate = self
         }
     }
 

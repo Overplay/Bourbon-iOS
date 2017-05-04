@@ -14,16 +14,21 @@ class StateController {
     
     static let sharedInstance = StateController()
     
-    private(set) var venues = [OGVenue]()
+    private(set) var allVenues = [OGVenue]()
+    
+    private(set) var myVenues = [OGVenue]()
     
     private init() {}
     
-    func findAndProcessVenues() -> Promise<JSON> {
+    func findAllVenues() -> Promise<Bool> {
+        
         return Promise { fulfill, reject in
+            
             Asahi.sharedInstance.getVenues()
+                
                 .then { response -> Void in
-                    self.processVenues(response)
-                    fulfill(response)
+                    self.allVenues = self.processVenues(response)
+                    fulfill(true)
                 }
                 .catch { err -> Void  in
                     reject(err)
@@ -31,14 +36,34 @@ class StateController {
         }
     }
     
-    func processVenues( _ inboundVenueJson: JSON ){
+    func findMyVenues() -> Promise<Bool> {
+        return Promise { fulfill, reject in
+            
+            Asahi.sharedInstance.getUserVenues()
+                
+                .then { response -> Void in
+                    
+                    if let owned = response["owned"].array, let managed = response["managed"].array {
+                        self.myVenues = self.processVenues(JSON(owned + managed))
+                        fulfill(true)
+                    } else {
+                        reject(AsahiError.malformedJson)
+                    }
+                }
+                .catch { err -> Void  in
+                    reject(err)
+            }
+        }
+    }
+    
+    func processVenues( _ inboundVenueJson: JSON ) -> [OGVenue] {
+        
+        var venues = [OGVenue]()
         
         guard let venueArray = inboundVenueJson.array else {
             log.debug("No venues found!")
-            return
+            return venues
         }
-        
-        self.venues = [OGVenue]()
         
         for venue in venueArray {
             
@@ -53,20 +78,20 @@ class StateController {
                 log.debug("found a venue with no uuid, skipping")
                 continue
             }
-            
             guard let street = address["street"].string, let city = address["city"].string,
                 let state = address["state"].string, let zip = address["zip"].string else {
                     log.debug("found a venue with incomplete address, skipping")
                     continue
             }
-            
             guard let latitude = geolocation["latitude"].double, let longitude = geolocation["longitude"].double else {
                 log.debug("found a venue with no geolocation, skipping")
                 continue
             }
-            
-            self.venues.append(OGVenue(name: name, street: street, city: city, state: state, zip: zip, latitude: latitude, longitude: longitude, uuid: uuid))
+            venues.append(OGVenue(name: name, street: street, city: city, state: state, zip: zip, latitude: latitude, longitude: longitude, uuid: uuid))
         }
+        
+        venues.sort{ $0.name < $1.name }
+        return venues
     }
     
     // TODO: save venues with NSCoder things (https://www.smashingmagazine.com/2016/05/better-architecture-for-ios-apps-model-view-controller-pattern/)

@@ -16,12 +16,13 @@ import Alamofire
 import PromiseKit
 import SwiftyJSON
 
+enum AsahiError: Error {
+    case authFailure
+    case tokenInvalid
+    case malformedJson
+}
+
 open class Asahi: NSObject {
-    
-    enum AsahiError: Error {
-        case authFailure
-        case tokenInvalid
-    }
     
     let q = DispatchQueue.global()
 
@@ -192,9 +193,26 @@ open class Asahi: NSObject {
         return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
     }
     
+    func getUserVenues() -> Promise<JSON> {
+        return getJson(createApiEndpoint("/venue/myvenues"))
+    }
+    
     func findByRegCode(_ regCode: String) -> Promise<JSON> {
         let params = ["regcode": regCode]
         return getJson(createApiEndpointWithPort("/ogdevice/findByRegCode", port: "2001"), parameters: params)
+    }
+    
+    func changeDeviceName(_ udid: String, name: String) -> Promise<String> {
+        let params = ["deviceUDID": udid, "name": name]
+        return postJson(createApiEndpointWithPort("/ogdevice/changeName", port: "2001"), data: params)
+            .then { _ -> String in
+                return udid
+        }
+    }
+    
+    func associate(deviceUdid: String, withVenueUuid: String) -> Promise<JSON> {
+        let params = ["deviceUDID": deviceUdid, "venueUUID": withVenueUuid]
+        return postJson(createApiEndpointWithPort("/ogdevice/associateWithVenue", port: "2001"), data: params)
     }
     
     

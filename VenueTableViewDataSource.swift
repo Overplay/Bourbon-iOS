@@ -8,21 +8,42 @@
 
 import UIKit
 
+enum VenueType {
+    case ALL, MINE
+}
+
 class VenueTableViewDataSource: NSObject {
     
-    init(tableView: UITableView) {
+    var type: VenueType = VenueType.ALL
+    
+    init(tableView: UITableView, type: VenueType) {
         super.init()
         tableView.dataSource = self
+        self.type = type
     }
 }
 
 extension VenueTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StateController.sharedInstance.venues.count
+        switch type {
+        case VenueType.ALL:
+            return StateController.sharedInstance.allVenues.count
+        case VenueType.MINE:
+            return StateController.sharedInstance.myVenues.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let venue = StateController.sharedInstance.venues[indexPath.row]
+        
+        let venue: OGVenue
+        
+        switch type {
+        case VenueType.ALL:
+            venue = StateController.sharedInstance.allVenues[indexPath.row]
+        case VenueType.MINE:
+            venue = StateController.sharedInstance.myVenues[indexPath.row]
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: VenueTableCell.identifier, for: indexPath) as UITableViewCell
         
         cell.backgroundColor = UIColor(white: 51/255, alpha: 1.0)
