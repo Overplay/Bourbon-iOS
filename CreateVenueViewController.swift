@@ -12,6 +12,8 @@ class CreateVenueViewController: AccountBaseViewController {
     
     @IBOutlet weak var yelpSearchTerm: UITextField!
     @IBOutlet weak var yelpSearchLocation: UITextField!
+    @IBOutlet weak var useCurrentLocationButton: UIButton!
+    @IBOutlet weak var findButton: UIButton!
     
     @IBOutlet weak var venueName: UITextField!
     @IBOutlet weak var address1: UITextField!
@@ -19,6 +21,36 @@ class CreateVenueViewController: AccountBaseViewController {
     @IBOutlet weak var city: UITextField!
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zip: UITextField!
+    
+    @IBAction func useCurrentLocation(_ sender: Any) {
+        
+    }
+    
+    @IBAction func yelpSearchTermEditingChanged(_ sender: Any) {
+        checkReadyToYelp()
+    }
+    
+    @IBAction func yelpSearchLocationEditingChanged(_ sender: Any) {
+        checkReadyToYelp()
+    }
+    
+    func checkReadyToYelp() {
+        guard let searchTerm = yelpSearchTerm.text, let location = yelpSearchLocation.text else {
+            findButton.isEnabled = false
+            findButton.alpha = 0.5
+            return
+        }
+        
+        if searchTerm == "" || location == "" {
+            findButton.isEnabled = false
+            findButton.alpha = 0.5
+            return
+        }
+        
+        // TODO: actually check location
+        findButton.isEnabled = true
+        fadeIn(findButton)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,20 +64,21 @@ class CreateVenueViewController: AccountBaseViewController {
         
         yelpSearchTerm.useCustomBottomBorder()
         let searchImageView = UIImageView()
-        let searchImage = #imageLiteral(resourceName: "ic_search_white_36pt")
-        searchImageView.image = searchImage
-        searchImageView.alpha = 0.6
+        searchImageView.image = #imageLiteral(resourceName: "ic_search_white_36pt")
+        searchImageView.alpha = 0.5
         searchImageView.frame = CGRect(x: 5, y: 0, width: yelpSearchTerm.frame.height, height: yelpSearchTerm.frame.height)
         yelpSearchTerm.leftView = searchImageView
         yelpSearchTerm.leftViewMode = .always
         
         yelpSearchLocation.useCustomBottomBorder()
         let locationImageView = UIImageView()
-        let locationImage = #imageLiteral(resourceName: "ic_location_on_white_36pt")
-        locationImageView.image = locationImage
-        locationImageView.alpha = 0.6
+        locationImageView.image = #imageLiteral(resourceName: "ic_place_white")
+        locationImageView.alpha = 0.5
         locationImageView.frame = CGRect(x: 5, y: 0, width: yelpSearchLocation.frame.height, height: yelpSearchLocation.frame.height)
         yelpSearchLocation.leftView = locationImageView
         yelpSearchLocation.leftViewMode = .always
+        
+        findButton.isEnabled = false
+        findButton.alpha = 0.5
     }
 }
