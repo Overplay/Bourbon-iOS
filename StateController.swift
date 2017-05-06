@@ -21,7 +21,6 @@ class StateController {
     private init() {}
     
     func findAllVenues() -> Promise<Bool> {
-        
         return Promise { fulfill, reject in
             
             Asahi.sharedInstance.getVenues()
@@ -94,5 +93,5 @@ class StateController {
         return venues
     }
     
-    // TODO: save venues with NSCoder things (https://www.smashingmagazine.com/2016/05/better-architecture-for-ios-apps-model-view-controller-pattern/)
+    // TODO: save state with NSCoder things, example: https://www.smashingmagazine.com/2016/05/better-architecture-for-ios-apps-model-view-controller-pattern/
 }

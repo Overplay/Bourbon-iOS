@@ -18,7 +18,6 @@ class SetupDeviceViewController: AccountBaseViewController {
     @IBOutlet weak var regCodeErrorLabel: UILabel!
     
     @IBOutlet weak var deviceName: UITextField!
-    @IBOutlet weak var deviceNameCheck: UIImageView!
     @IBOutlet weak var deviceNameLabel: UILabel!
     @IBOutlet weak var deviceNameErrorLabel: UILabel!
     
@@ -31,6 +30,9 @@ class SetupDeviceViewController: AccountBaseViewController {
     @IBOutlet weak var errorBlock: UIView!
     @IBOutlet weak var errorBlockLabel: UILabel!
     
+    var regCodeDelegate: UITextFieldDelegate?
+    var deviceNameDelegate: UITextFieldDelegate?
+    
     var venue: OGVenue?
     
     override func viewDidLoad() {
@@ -38,8 +40,8 @@ class SetupDeviceViewController: AccountBaseViewController {
         
         self.errorBlock.isHidden = true
         
-        self.regCode.useCustomBottomBorder()
-        self.deviceName.useCustomBottomBorder()
+        regCodeDelegate = CustomTextFieldDelegate(regCode, isValid: isValidRegCode, errorLabel: regCodeErrorLabel)
+        deviceNameDelegate = CustomTextFieldDelegate(deviceName, isValid: isValidDeviceName, errorLabel: deviceNameErrorLabel)
         
         let disclosure = UITableViewCell()
         disclosure.frame = chooseVenue.bounds
@@ -52,42 +54,8 @@ class SetupDeviceViewController: AccountBaseViewController {
         self.deviceName.becomeFirstResponder()
     }
     
-    @IBAction func regCodeEditingDidEnd(_ sender: Any) {
-        if self.isValidRegCode(self.regCode.text) {
-            self.regCodeErrorLabel.isHidden = true
-            self.regCode.changeBorderColor(UIColor.white)
-        }
-            
-        else {
-            self.regCodeErrorLabel.isHidden = false
-            self.regCode.changeBorderColor(UIColor.red)
-        }
-
-    }
-    
-    @IBAction func regCodeBeginEditing(_ sender: Any) {
-        self.regCodeErrorLabel.isHidden = true
-        self.regCode.changeBorderColor(UIColor.white)
-    }
-    
     @IBAction func deviceNameNext(_ sender: Any) {
         self.view.endEditing(true)
-    }
-    
-    @IBAction func deviceNameEditingDidEnd(_ sender: Any) {
-        if self.isValidDeviceName(deviceName.text) {
-            self.deviceNameErrorLabel.isHidden = true
-            self.deviceName.changeBorderColor(UIColor.white)
-            
-        } else {
-            deviceNameErrorLabel.isHidden = false
-            deviceName.changeBorderColor(UIColor.red)
-        }
-    }
-    
-    @IBAction func deviceNameBeginEditing(_ sender: Any) {
-        self.deviceNameErrorLabel.isHidden = true
-        self.deviceName.changeBorderColor(UIColor.white)
     }
     
     @IBAction func createDevice(_ sender: Any) {
@@ -100,8 +68,9 @@ class SetupDeviceViewController: AccountBaseViewController {
         guard let name = self.deviceName.text, let code = self.regCode.text,
             let venue = self.venue, isValidRegCode(code), isValidDeviceName(name) else {
                 
-                deviceNameEditingDidEnd(sender)
-                regCodeEditingDidEnd(sender)
+                // trigger errors on the text fields if there is not valid input
+                regCodeDelegate?.textFieldDidEndEditing!(regCode)
+                deviceNameDelegate?.textFieldDidEndEditing!(deviceName)
             
                 if self.venue == nil {
                     self.chooseVenueErrorLabel.isHidden = false
@@ -181,7 +150,7 @@ class SetupDeviceViewController: AccountBaseViewController {
 }
 
 extension SetupDeviceViewController: PickVenueViewControllerDelegate {
-    func pickVenue(_ venue: OGVenue) {
+    func selectVenue(_ venue: OGVenue) {
         self.venue = venue
         self.chooseVenueErrorLabel.isHidden = true
         

@@ -36,10 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Log into Asahi if possible
         _ = Asahi.sharedInstance
-      
-        //Asahi.sharedInstance.testRegistration()
-        //Asahi.sharedInstance.testLogin()
-        
+
+        // Setup some universal style things
         UITextField.appearance().keyboardAppearance = .dark
         
         return true

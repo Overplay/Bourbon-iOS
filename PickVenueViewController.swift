@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PickVenueViewControllerDelegate {
-    func pickVenue(_ venue: OGVenue)
+    func selectVenue(_ venue: OGVenue)
 }
 
 class PickVenueViewController: UIViewController {
@@ -22,19 +22,15 @@ class PickVenueViewController: UIViewController {
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
-    @IBAction func addVenue(_ sender: Any) {
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(white: 51/255, alpha: 1.0)
-        
-
+    
         self.tableViewDataSource = VenueTableViewDataSource(tableView: tableView, type: VenueType.MINE)
         tableView.delegate = self
+        tableView.tableFooterView = UIView(frame: .zero)
         
         StateController.sharedInstance.findMyVenues()
             .then { _ -> Void in
@@ -48,9 +44,13 @@ class PickVenueViewController: UIViewController {
 
 extension PickVenueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.delegate != nil {
-            self.delegate!.pickVenue(StateController.sharedInstance.myVenues[indexPath.row])
+        if let del = self.delegate {
+            del.selectVenue(StateController.sharedInstance.myVenues[indexPath.row])
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50.0
     }
 }

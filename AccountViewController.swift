@@ -91,6 +91,10 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
         return 15.0
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40.0
+    }
+    
     func logout() {
         let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: .alert)
         

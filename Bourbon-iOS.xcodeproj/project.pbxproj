@@ -35,7 +35,6 @@
 		1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */; };
 		1ED96EC01E2A0D6000891EA8 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB91E2A0D6000891EA8 /* InviteFriendsViewController.swift */; };
 		1ED96EC81E2A0D8600891EA8 /* ASNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC21E2A0D8600891EA8 /* ASNotification.swift */; };
-		1ED96EC91E2A0D8600891EA8 /* OCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC31E2A0D8600891EA8 /* OCS.swift */; };
 		1ED96ECB1E2A0D8600891EA8 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC51E2A0D8600891EA8 /* Style.swift */; };
 		1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC61E2A0D8600891EA8 /* Settings.swift */; };
 		1ED96ECD1E2A0D8600891EA8 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */; };
@@ -55,6 +54,10 @@
 		4F6A66AB1E7781AE001547E8 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6A66AA1E7781AE001547E8 /* DeviceViewController.swift */; };
 		4F7885961EBAC20F00F91ED5 /* CreateVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7885951EBAC20F00F91ED5 /* CreateVenueViewController.swift */; };
 		4F78859B1EBBBCEF00F91ED5 /* FindYelpVenuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78859A1EBBBCEF00F91ED5 /* FindYelpVenuesViewController.swift */; };
+		4F78859D1EBD38BF00F91ED5 /* YelpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78859C1EBD38BF00F91ED5 /* YelpTableViewCell.swift */; };
+		4F78859F1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */; };
+		4F7885A11EBD645600F91ED5 /* YelpVenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7885A01EBD645600F91ED5 /* YelpVenue.swift */; };
+		4F7885A31EBD73C200F91ED5 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */; };
 		4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9308611E550B11005B5EAB /* IntroSlides.storyboard */; };
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
@@ -104,7 +107,6 @@
 		1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountBaseViewController.swift; sourceTree = "<group>"; };
 		1ED96EB91E2A0D6000891EA8 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		1ED96EC21E2A0D8600891EA8 /* ASNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASNotification.swift; sourceTree = "<group>"; };
-		1ED96EC31E2A0D8600891EA8 /* OCS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCS.swift; sourceTree = "<group>"; };
 		1ED96EC51E2A0D8600891EA8 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		1ED96EC61E2A0D8600891EA8 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -129,6 +131,10 @@
 		4F6A66AA1E7781AE001547E8 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		4F7885951EBAC20F00F91ED5 /* CreateVenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVenueViewController.swift; sourceTree = "<group>"; };
 		4F78859A1EBBBCEF00F91ED5 /* FindYelpVenuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindYelpVenuesViewController.swift; sourceTree = "<group>"; };
+		4F78859C1EBD38BF00F91ED5 /* YelpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpTableViewCell.swift; sourceTree = "<group>"; };
+		4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFieldDelegate.swift; sourceTree = "<group>"; };
+		4F7885A01EBD645600F91ED5 /* YelpVenue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpVenue.swift; sourceTree = "<group>"; };
+		4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
@@ -310,7 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				1ED96EC21E2A0D8600891EA8 /* ASNotification.swift */,
-				1ED96EC31E2A0D8600891EA8 /* OCS.swift */,
 				1ED96EC51E2A0D8600891EA8 /* Style.swift */,
 				1ED96EC61E2A0D8600891EA8 /* Settings.swift */,
 				1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */,
@@ -320,6 +325,9 @@
 				4FEE45D81EB836D30031C261 /* StateController.swift */,
 				4FEE45DA1EB837D90031C261 /* VenueTableViewDataSource.swift */,
 				4FEE45DC1EB838F40031C261 /* VenueTableCell.swift */,
+				4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */,
+				4F7885A01EBD645600F91ED5 /* YelpVenue.swift */,
+				4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -355,6 +363,7 @@
 				4FEE45D61EB82CBF0031C261 /* PickVenueViewController.swift */,
 				4F7885951EBAC20F00F91ED5 /* CreateVenueViewController.swift */,
 				4F78859A1EBBBCEF00F91ED5 /* FindYelpVenuesViewController.swift */,
+				4F78859C1EBD38BF00F91ED5 /* YelpTableViewCell.swift */,
 			);
 			name = "Setup Device";
 			sourceTree = "<group>";
@@ -508,7 +517,6 @@
 				1ED96EBD1E2A0D6000891EA8 /* SettingsCell.swift in Sources */,
 				1ED96EC81E2A0D8600891EA8 /* ASNotification.swift in Sources */,
 				1ED96EAC1E2A0D2000891EA8 /* CheckAuthViewController.swift in Sources */,
-				1ED96EC91E2A0D8600891EA8 /* OCS.swift in Sources */,
 				4F78859B1EBBBCEF00F91ED5 /* FindYelpVenuesViewController.swift in Sources */,
 				1ED96EBA1E2A0D6000891EA8 /* EditAccountViewController.swift in Sources */,
 				1ED96EB11E2A0D4700891EA8 /* MapViewController.swift in Sources */,
@@ -519,6 +527,7 @@
 				4FEE45D91EB836D30031C261 /* StateController.swift in Sources */,
 				1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */,
 				1ED96EA81E2A0D2000891EA8 /* EnterPasswordViewController.swift in Sources */,
+				4F78859D1EBD38BF00F91ED5 /* YelpTableViewCell.swift in Sources */,
 				1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */,
 				1ED96EA71E2A0D2000891EA8 /* EnterEmailViewController.swift in Sources */,
 				1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */,
@@ -538,6 +547,8 @@
 				4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */,
 				1ED96EA51E2A0D2000891EA8 /* LoginOrRegViewController.swift in Sources */,
 				1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */,
+				4F7885A31EBD73C200F91ED5 /* UIImageViewExtensions.swift in Sources */,
+				4F78859F1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift in Sources */,
 				4FEE45D71EB82CBF0031C261 /* PickVenueViewController.swift in Sources */,
 				1ED96E921E2A0CB500891EA8 /* OurglasserCell.swift in Sources */,
 				1ED96EA91E2A0D2000891EA8 /* LoginViewController.swift in Sources */,
@@ -550,6 +561,7 @@
 				1ED96EA61E2A0D2000891EA8 /* EnterNameViewController.swift in Sources */,
 				4FEE45DD1EB838F40031C261 /* VenueTableCell.swift in Sources */,
 				4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */,
+				4F7885A11EBD645600F91ED5 /* YelpVenue.swift in Sources */,
 				4FEE45DB1EB837D90031C261 /* VenueTableViewDataSource.swift in Sources */,
 				1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */,
 				1ED96E991E2A0CEB00891EA8 /* MainTabsController.swift in Sources */,

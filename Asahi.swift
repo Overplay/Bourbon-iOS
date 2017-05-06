@@ -215,6 +215,16 @@ open class Asahi: NSObject {
         return postJson(createApiEndpointWithPort("/ogdevice/associateWithVenue", port: "2001"), data: params)
     }
     
+    func yelpSearch(location: String, term: String) -> Promise<JSON> {
+        let params = ["location": location, "term": term]
+        return getJson(createApiEndpoint("/venue/yelpSearch"), parameters: params)
+    }
+    
+    func yelpSearch(latitude: Double, longitude: Double, term: String) -> Promise<JSON> {
+        let params = ["latitude": latitude, "longitude": longitude, "term": term] as [String : Any]
+        return getJson(createApiEndpoint("/venue/yelpSearch"), parameters: params)
+    }
+    
     
         // Auto sign in on app startup, but this is if we're saving the username/password in plain text so this is only temporary
         // Eventually move to JWTs so we can uncomment this when that is setup and migrate over to using those

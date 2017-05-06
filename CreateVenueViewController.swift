@@ -10,6 +10,8 @@ import UIKit
 
 class CreateVenueViewController: AccountBaseViewController {
     
+    let curLocStr = "Current location"
+    
     @IBOutlet weak var yelpSearchTerm: UITextField!
     @IBOutlet weak var yelpSearchLocation: UITextField!
     @IBOutlet weak var useCurrentLocationButton: UIButton!
@@ -22,8 +24,14 @@ class CreateVenueViewController: AccountBaseViewController {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zip: UITextField!
     
+    var selectedYelpVenue: YelpVenue?
+    
+    // keep a reference to the text field delegates or they will get deallocated
+    var textFieldDelegates = [CustomTextFieldDelegate]()
+    
     @IBAction func useCurrentLocation(_ sender: Any) {
-        
+        yelpSearchLocation.text = curLocStr
+        yelpSearchLocation.textColor = useCurrentLocationButton.tintColor
     }
     
     @IBAction func yelpSearchTermEditingChanged(_ sender: Any) {
@@ -31,6 +39,7 @@ class CreateVenueViewController: AccountBaseViewController {
     }
     
     @IBAction func yelpSearchLocationEditingChanged(_ sender: Any) {
+        yelpSearchLocation.textColor = UIColor.white
         checkReadyToYelp()
     }
     
@@ -40,14 +49,11 @@ class CreateVenueViewController: AccountBaseViewController {
             findButton.alpha = 0.5
             return
         }
-        
         if searchTerm == "" || location == "" {
             findButton.isEnabled = false
             findButton.alpha = 0.5
             return
         }
-        
-        // TODO: actually check location
         findButton.isEnabled = true
         fadeIn(findButton)
     }
@@ -55,12 +61,14 @@ class CreateVenueViewController: AccountBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        venueName.useCustomBottomBorder()
-        address1.useCustomBottomBorder()
-        address2.useCustomBottomBorder()
-        city.useCustomBottomBorder()
-        state.useCustomBottomBorder()
-        zip.useCustomBottomBorder()
+        textFieldDelegates.append(contentsOf: [
+            CustomTextFieldDelegate(venueName, isValid: isValidEntry),
+            CustomTextFieldDelegate(address1, isValid: isValidEntry),
+            CustomTextFieldDelegate(address2, isValid: { _ in return true}),
+            CustomTextFieldDelegate(city, isValid: isValidEntry),
+            CustomTextFieldDelegate(state, isValid: isValidEntry),
+            CustomTextFieldDelegate(zip, isValid: isValidEntry)
+        ])
         
         yelpSearchTerm.useCustomBottomBorder()
         let searchImageView = UIImageView()
@@ -81,4 +89,43 @@ class CreateVenueViewController: AccountBaseViewController {
         findButton.isEnabled = false
         findButton.alpha = 0.5
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navVC = segue.destination as? UINavigationController {
+            let yelpVenuesVC = navVC.viewControllers.first as! FindYelpVenuesViewController
+            
+            // TODO: actually do this
+            if let loc = self.yelpSearchLocation.text, loc == curLocStr {
+                yelpVenuesVC.searchLat = 35.2828752
+                yelpVenuesVC.searchLong = -120.659616
+            } else {
+                yelpVenuesVC.searchLocation = self.yelpSearchLocation.text
+            }
+            
+            yelpVenuesVC.searchTerm = self.yelpSearchTerm.text
+            yelpVenuesVC.yelpVenueDelegate = self
+        }
+    }
+    
+    func isValidEntry(_ entry: String?) -> Bool {
+        if entry != nil && entry != "" {
+            return true
+        }
+        return false
+    }
 }
+
+extension CreateVenueViewController: FindYelpVenuesDelegate {
+    func selectYelpVenue(_ venue: YelpVenue) {
+        self.venueName.text = venue.name
+        self.address1.text = venue.address1
+        self.address2.text = venue.address2
+        self.city.text = venue.city
+        self.state.text = venue.state
+        self.zip.text = venue.zip
+        self.selectedYelpVenue = venue
+
+        // TODO: call text field delegate methods to check validity
+    }
+}
+
