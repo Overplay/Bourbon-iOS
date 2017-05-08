@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eQd-ea-sNz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eQd-ea-sNz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -310,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QUB-Vv-Hq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="821.60000000000002" y="249.62518740629687"/>
+            <point key="canvasLocation" x="822" y="250"/>
         </scene>
         <!--Change Password-->
         <scene sceneID="kXK-NJ-3Gc">
@@ -1141,13 +1141,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_close_white" width="16" height="16"/>
+        <image name="ic_close_white" width="24" height="24"/>
         <image name="ic_done_64_w" width="64" height="64"/>
         <image name="ic_near_me_white" width="24" height="24"/>
         <image name="ic_settings_white" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Xav-D5-LI7"/>
+        <segue reference="b9Y-4H-KKm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

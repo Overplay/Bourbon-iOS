@@ -10,6 +10,9 @@ import UIKit
 import SwiftyJSON
 
 protocol FindYelpVenuesDelegate {
+    /// Delegate method called when a `YelpVenue` is selected.
+    ///
+    /// - Parameter venue: the selected venue
     func selectYelpVenue(_ venue: YelpVenue)
 }
 
@@ -89,7 +92,6 @@ class FindYelpVenuesViewController: UIViewController {
         var venues = [YelpVenue]()
         
         guard let venueJsonArr = inboundVenueJson["businesses"].array else {
-            log.debug("HRERR")
             return venues
         }
         

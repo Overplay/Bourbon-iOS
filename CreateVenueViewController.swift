@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CreateVenueViewController: AccountBaseViewController {
     
     let curLocStr = "Current location"
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
     
     @IBOutlet weak var yelpSearchTerm: UITextField!
     @IBOutlet weak var yelpSearchLocation: UITextField!
-    @IBOutlet weak var useCurrentLocationButton: UIButton!
+    @IBOutlet weak var useCurrentLocationButton: UIButton! {
+        didSet {
+            useCurrentLocationButton.isEnabled = false
+        }
+    }
     @IBOutlet weak var findButton: UIButton!
     
     @IBOutlet weak var venueName: UITextField!
@@ -24,14 +31,15 @@ class CreateVenueViewController: AccountBaseViewController {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zip: UITextField!
     
-    var selectedYelpVenue: YelpVenue?
-    
     // keep a reference to the text field delegates or they will get deallocated
     var textFieldDelegates = [CustomTextFieldDelegate]()
+    
+    var selectedYelpVenue: YelpVenue?
     
     @IBAction func useCurrentLocation(_ sender: Any) {
         yelpSearchLocation.text = curLocStr
         yelpSearchLocation.textColor = useCurrentLocationButton.tintColor
+        checkReadyToYelp()
     }
     
     @IBAction func yelpSearchTermEditingChanged(_ sender: Any) {
@@ -60,6 +68,9 @@ class CreateVenueViewController: AccountBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.requestLocation()
         
         textFieldDelegates.append(contentsOf: [
             CustomTextFieldDelegate(venueName, isValid: isValidEntry),
@@ -94,15 +105,16 @@ class CreateVenueViewController: AccountBaseViewController {
         if let navVC = segue.destination as? UINavigationController {
             let yelpVenuesVC = navVC.viewControllers.first as! FindYelpVenuesViewController
             
-            // TODO: actually do this
-            if let loc = self.yelpSearchLocation.text, loc == curLocStr {
-                yelpVenuesVC.searchLat = 35.2828752
-                yelpVenuesVC.searchLong = -120.659616
+            if let loc = yelpSearchLocation.text, loc == curLocStr {
+                if let curLoc = currentLocation {
+                    yelpVenuesVC.searchLat = curLoc.coordinate.latitude
+                    yelpVenuesVC.searchLong = curLoc.coordinate.longitude
+                }
             } else {
-                yelpVenuesVC.searchLocation = self.yelpSearchLocation.text
+                yelpVenuesVC.searchLocation = yelpSearchLocation.text
             }
             
-            yelpVenuesVC.searchTerm = self.yelpSearchTerm.text
+            yelpVenuesVC.searchTerm = yelpSearchTerm.text
             yelpVenuesVC.yelpVenueDelegate = self
         }
     }
@@ -116,6 +128,7 @@ class CreateVenueViewController: AccountBaseViewController {
 }
 
 extension CreateVenueViewController: FindYelpVenuesDelegate {
+    
     func selectYelpVenue(_ venue: YelpVenue) {
         self.venueName.text = venue.name
         self.address1.text = venue.address1
@@ -125,7 +138,23 @@ extension CreateVenueViewController: FindYelpVenuesDelegate {
         self.zip.text = venue.zip
         self.selectedYelpVenue = venue
 
-        // TODO: call text field delegate methods to check validity
+        for del in textFieldDelegates {
+            del.textFieldDidEndEditing(UITextField())
+        }
+    }
+}
+
+extension CreateVenueViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            self.currentLocation = location
+            self.useCurrentLocationButton.isEnabled = true
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        log.error("failed to find user's location: \(error.localizedDescription)")
     }
 }
 

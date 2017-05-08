@@ -58,6 +58,7 @@
 		4F78859F1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */; };
 		4F7885A11EBD645600F91ED5 /* YelpVenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7885A01EBD645600F91ED5 /* YelpVenue.swift */; };
 		4F7885A31EBD73C200F91ED5 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */; };
+		4F7B2ECA1EC13A6900E94512 /* SetupDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F7B2EC91EC13A6900E94512 /* SetupDevice.storyboard */; };
 		4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9308611E550B11005B5EAB /* IntroSlides.storyboard */; };
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
@@ -135,6 +136,7 @@
 		4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFieldDelegate.swift; sourceTree = "<group>"; };
 		4F7885A01EBD645600F91ED5 /* YelpVenue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpVenue.swift; sourceTree = "<group>"; };
 		4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
+		4F7B2EC91EC13A6900E94512 /* SetupDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetupDevice.storyboard; sourceTree = "<group>"; };
 		4F9308611E550B11005B5EAB /* IntroSlides.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroSlides.storyboard; sourceTree = "<group>"; };
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				4F7885951EBAC20F00F91ED5 /* CreateVenueViewController.swift */,
 				4F78859A1EBBBCEF00F91ED5 /* FindYelpVenuesViewController.swift */,
 				4F78859C1EBD38BF00F91ED5 /* YelpTableViewCell.swift */,
+				4F7B2EC91EC13A6900E94512 /* SetupDevice.storyboard */,
 			);
 			name = "Setup Device";
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				4FC2FE191E66157F00753035 /* Poppins-Light.ttf in Resources */,
 				4FC2FE1A1E66157F00753035 /* Poppins-Medium.ttf in Resources */,
 				4FC2FE1B1E66157F00753035 /* Poppins-Regular.ttf in Resources */,
+				4F7B2ECA1EC13A6900E94512 /* SetupDevice.storyboard in Resources */,
 				4FC2FE1E1E6615F600753035 /* Assets.xcassets in Resources */,
 				4FC2FE1C1E66157F00753035 /* Poppins-SemiBold.ttf in Resources */,
 				1ED96EA41E2A0D2000891EA8 /* RegistrationStoryboard.storyboard in Resources */,
