@@ -75,8 +75,8 @@
 		4FC2FE1E1E6615F600753035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2FE1D1E6615F600753035 /* Assets.xcassets */; };
 		4FEE45D71EB82CBF0031C261 /* PickVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEE45D61EB82CBF0031C261 /* PickVenueViewController.swift */; };
 		4FEE45D91EB836D30031C261 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEE45D81EB836D30031C261 /* StateController.swift */; };
-		4FEE45DB1EB837D90031C261 /* VenueTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEE45DA1EB837D90031C261 /* VenueTableViewDataSource.swift */; };
-		4FEE45DD1EB838F40031C261 /* VenueTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEE45DC1EB838F40031C261 /* VenueTableCell.swift */; };
+		4FEE45DB1EB837D90031C261 /* OGVenueTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEE45DA1EB837D90031C261 /* OGVenueTableViewDataSource.swift */; };
+		4FEE45DD1EB838F40031C261 /* OGVenueTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEE45DC1EB838F40031C261 /* OGVenueTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,8 +153,8 @@
 		4FC2FE1D1E6615F600753035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FEE45D61EB82CBF0031C261 /* PickVenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickVenueViewController.swift; sourceTree = "<group>"; };
 		4FEE45D81EB836D30031C261 /* StateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
-		4FEE45DA1EB837D90031C261 /* VenueTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueTableViewDataSource.swift; sourceTree = "<group>"; };
-		4FEE45DC1EB838F40031C261 /* VenueTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueTableCell.swift; sourceTree = "<group>"; };
+		4FEE45DA1EB837D90031C261 /* OGVenueTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGVenueTableViewDataSource.swift; sourceTree = "<group>"; };
+		4FEE45DC1EB838F40031C261 /* OGVenueTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGVenueTableCell.swift; sourceTree = "<group>"; };
 		76773BF4487830429B407773 /* Pods-Bourbon-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bourbon-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bourbon_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4748688D992AF49C9841725 /* Pods-Bourbon-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bourbon-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -325,8 +325,8 @@
 				4F6A66A61E776E2D001547E8 /* OGDevice.swift */,
 				4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */,
 				4FEE45D81EB836D30031C261 /* StateController.swift */,
-				4FEE45DA1EB837D90031C261 /* VenueTableViewDataSource.swift */,
-				4FEE45DC1EB838F40031C261 /* VenueTableCell.swift */,
+				4FEE45DA1EB837D90031C261 /* OGVenueTableViewDataSource.swift */,
+				4FEE45DC1EB838F40031C261 /* OGVenueTableCell.swift */,
 				4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */,
 				4F7885A01EBD645600F91ED5 /* YelpVenue.swift */,
 				4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */,
@@ -563,10 +563,10 @@
 				1ED96EAA1E2A0D2000891EA8 /* LoginBaseViewController.swift in Sources */,
 				1ED96EC01E2A0D6000891EA8 /* InviteFriendsViewController.swift in Sources */,
 				1ED96EA61E2A0D2000891EA8 /* EnterNameViewController.swift in Sources */,
-				4FEE45DD1EB838F40031C261 /* VenueTableCell.swift in Sources */,
+				4FEE45DD1EB838F40031C261 /* OGVenueTableCell.swift in Sources */,
 				4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */,
 				4F7885A11EBD645600F91ED5 /* YelpVenue.swift in Sources */,
-				4FEE45DB1EB837D90031C261 /* VenueTableViewDataSource.swift in Sources */,
+				4FEE45DB1EB837D90031C261 /* OGVenueTableViewDataSource.swift in Sources */,
 				1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */,
 				1ED96E991E2A0CEB00891EA8 /* MainTabsController.swift in Sources */,
 				4FB9249E1EAEBE7E0074FBF7 /* VenueBaseViewController.swift in Sources */,

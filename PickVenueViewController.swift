@@ -14,8 +14,10 @@ protocol PickVenueViewControllerDelegate {
 
 class PickVenueViewController: UIViewController {
     
+    let emptyTableText = "It looks like you don't have any venues!"
+    
     var delegate: PickVenueViewControllerDelegate?
-    var tableViewDataSource: VenueTableViewDataSource?
+    var tableViewDataSource: OGVenueTableViewDataSource?
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,7 +30,7 @@ class PickVenueViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(white: 51/255, alpha: 1.0)
     
-        self.tableViewDataSource = VenueTableViewDataSource(tableView: tableView, type: VenueType.MINE)
+        self.tableViewDataSource = OGVenueTableViewDataSource(tableView: tableView, type: VenueType.MINE, noDataText: emptyTableText)
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
         
@@ -66,6 +68,6 @@ extension PickVenueViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
+        return 60.0
     }
 }
