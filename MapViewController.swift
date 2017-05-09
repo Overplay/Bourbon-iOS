@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import SwiftyJSON
 
-class MapViewController : UIViewController {
+class MapViewController : VenueBaseViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -21,55 +21,6 @@ class MapViewController : UIViewController {
     var currentLocation: CLLocation!
     
     let nc = NotificationCenter.default
-    
-    func processVenues( _ inboundVenueJson: JSON ){
-        
-        guard let venueArray = inboundVenueJson.array else {
-            log.debug("No venues found!")
-            return
-        }
-        
-        var existingLocations = [String]()
-        
-        // val is one restaurant object
-        for venue in venueArray {
-            
-            let address = venue["address"]
-            let name  = venue["name"].stringValue
-            
-            // Address components compiled into one human readable string
-            let location = String(format: "%@, %@, %@, %@", address["street"].stringValue, address["city"].stringValue, address["state"].stringValue, address["zip"].stringValue)
-            
-            // There were some duplicates in the database so I'm filtering those out here. We don't really need this in the future though because that's more a database issue
-            if existingLocations.contains(location) {
-                continue
-            }else {
-                existingLocations.append(location)
-            }
-            let geocoder: CLGeocoder = CLGeocoder()
-            
-            // Convert address into coordinates for visual map items
-            geocoder.geocodeAddressString(location,completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
-                
-                guard let pmrks = placemarks else {
-                    log.error("Not able to find any placemarks")
-                    return
-                }
-                
-                if ((pmrks.count) > 0) {
-                    let topResult: CLPlacemark = (pmrks[0])
-                    let placemark = MKPlacemark(placemark: topResult)
-                    let pointAnnotation = MKPointAnnotation()
-                    pointAnnotation.coordinate = placemark.coordinate
-                    pointAnnotation.title = name
-                    pointAnnotation.subtitle = location
-                    self.mapView.addAnnotation(pointAnnotation)
-                }
-            } )
-        }
-
-        
-    }
     
     override func viewDidLoad() {
         
@@ -83,18 +34,45 @@ class MapViewController : UIViewController {
         
         self.mapView.delegate = self
         
-        nc.addObserver(self, selector: #selector(networkChanged), name: NSNotification.Name(rawValue: ASNotification.networkChanged.rawValue), object: nil)
+        nc.addObserver(self, selector: #selector(getAndPlaceVenues), name: NSNotification.Name(rawValue: ASNotification.networkChanged.rawValue), object: nil)
         
-        Asahi.sharedInstance.getVenues()
-            
-            .then { response -> Void in
-                log.debug("Got venues!")
-                self.processVenues(response)
+        self.getAndPlaceVenues()
+    }
+    
+    func getAndPlaceVenues() {
+        self.findAndProcessVenues()
+            .then { _ in
+                self.placeVenues()
             }
-            
-            .catch{ err -> Void in
+            .catch { _ in
                 log.error("Error getting venues")
-                print(err)
+            }
+    }
+    
+    func placeVenues() {
+        
+        for venue in self.venues {
+            
+            let geocoder: CLGeocoder = CLGeocoder()
+            
+            // Convert address into coordinates for visual map items
+            geocoder.geocodeAddressString(venue.address, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
+                
+                guard let pmrks = placemarks else {
+                    log.error("Not able to find any placemarks for venue \(venue.name)")
+                    return
+                }
+                
+                if ((pmrks.count) > 0) {
+                    let topResult: CLPlacemark = (pmrks[0])
+                    let placemark = MKPlacemark(placemark: topResult)
+                    let pointAnnotation = MKPointAnnotation()
+                    pointAnnotation.coordinate = placemark.coordinate
+                    pointAnnotation.title = venue.name
+                    pointAnnotation.subtitle = venue.address
+                    self.mapView.addAnnotation(pointAnnotation)
+                }
+            })
         }
     }
     
@@ -103,22 +81,6 @@ class MapViewController : UIViewController {
         // 0.3 is some number. The smaller it is, the smaller the frame (huh, makes sense right?)
         self.mapView.setRegion(MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.3, 0.3)), animated: true)
     }
-    
-    // reload venues when network changes
-    func networkChanged() {
-        Asahi.sharedInstance.getVenues()
-            
-            .then { response -> Void in
-                log.debug("Got venues!")
-                self.processVenues(response)
-            }
-            
-            .catch{ err -> Void in
-                log.error("Error getting venues")
-                print(err)
-        }
-    }
-    
 }
 
 extension MapViewController : UITableViewDelegate, UITableViewDataSource {

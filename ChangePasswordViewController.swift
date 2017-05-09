@@ -12,9 +12,6 @@ import PKHUD
 class ChangePasswordViewController: AccountBaseViewController {
     
     var email: String?
-
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var currentPassword: UITextField!
     @IBOutlet weak var newPassword: UITextField!
@@ -24,24 +21,39 @@ class ChangePasswordViewController: AccountBaseViewController {
     @IBOutlet weak var newPasswordCheck: UIImageView!
     @IBOutlet weak var repeatNewPasswordCheck: UIImageView!
     
-    @IBOutlet weak var saveButton: UIButton!
-    
-    @IBAction func goBack(_ sender: AnyObject) {
-        self.navigationController!.popViewController(animated: true)
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func saveNewPassword(_ sender: AnyObject) {
-        
+    @IBAction func save(_ sender: Any) {
+        savePassword()
+    }
+    
+    @IBAction func currentPasswordNext(_ sender: Any) {
+        newPassword.becomeFirstResponder()
+    }
+    
+    @IBAction func newPasswordNext(_ sender: Any) {
+        repeatNewPassword.becomeFirstResponder()
+    }
+    
+    @IBAction func repeatPasswordNext(_ sender: Any) {
+        savePassword()
+    }
+    
+   func savePassword() {
         // TODO: check that given password matches account?
-
+        
+        self.view.endEditing(true)
+        
         if checkInputs() && checkRepeatPassword() {
             
             let alertController = UIAlertController(title: "Change Password", message: "Are you sure you want to change your password?", preferredStyle: .alert)
-        
+            
             let cancelAction = UIAlertAction(title: "No", style: .cancel) { (action) in }
-        
+            
             alertController.addAction(cancelAction)
-        
+            
             let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
                 
                 HUD.show(.progress)
@@ -55,11 +67,11 @@ class ChangePasswordViewController: AccountBaseViewController {
                                 log.debug("Password changed")
                                 HUD.flash(.success, delay:0.7)
                             }
-
+                            
                             .catch{ err -> Void in
                                 HUD.hide()
                                 self.showAlert("Unable to change password", message: "")
-                            }
+                        }
                     } else {
                         HUD.hide()
                         self.showAlert("Unable to change password", message: "")
@@ -69,12 +81,12 @@ class ChangePasswordViewController: AccountBaseViewController {
                     self.showAlert("Unable to change password", message: "")
                 }
             }
-        
+            
             alertController.addAction(okAction)
-        
+            
             self.present(alertController, animated: true, completion: nil)
         }
-        
+            
         else if !checkRepeatPassword() {
             let alertController = UIAlertController(title: "New Password", message: "Your passwords do not match.", preferredStyle: .alert)
             
@@ -84,7 +96,7 @@ class ChangePasswordViewController: AccountBaseViewController {
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
         }
-        
+            
         else {
             let alertController = UIAlertController(title: "Oops!", message: "The information you provided is not valid.", preferredStyle: .alert)
             
@@ -94,30 +106,22 @@ class ChangePasswordViewController: AccountBaseViewController {
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
         }
-        
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Change password"
+        
+        self.currentPassword.useCustomBottomBorder()
+        self.newPassword.useCustomBottomBorder()
+        self.repeatNewPassword.useCustomBottomBorder()
 
         self.passwordCheck.alpha = 0
         self.newPasswordCheck.alpha = 0
         self.repeatNewPasswordCheck.alpha = 0
-        self.saveButton.alpha = 0
-        
-        
         self.email = Settings.sharedInstance.userEmail
-        
-        if let first = Settings.sharedInstance.userFirstName {
-            if let last = Settings.sharedInstance.userLastName {
-                self.nameLabel.text = "\(first) \(last)"
-            } else {
-                self.nameLabel.text = "\(first)"
-            }
-        }
-        
-        self.emailLabel.text = Settings.sharedInstance.userEmail
-        
         _ = checkInputs()
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkInputs), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
@@ -135,15 +139,7 @@ class ChangePasswordViewController: AccountBaseViewController {
         let newPasswordValid = checkPassword(self.newPassword, checkImage: self.newPasswordCheck)
         let repeatPasswordValid = checkRepeatPassword()
         
-        if currentPasswordValid && newPasswordValid && repeatPasswordValid {
-            fadeIn(self.saveButton)
-            return true
-        }
-        
-        else {
-            fadeOut(self.saveButton)
-            return false
-        }
+        return currentPasswordValid && newPasswordValid && repeatPasswordValid
     }
     
     func checkPassword(_ textField: UITextField, checkImage: UIImageView) -> Bool {

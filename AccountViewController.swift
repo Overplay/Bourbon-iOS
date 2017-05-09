@@ -30,8 +30,8 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
     
     let options = [
         //SettingsOption(label: "Invite Friends", image: "ic_card_giftcard_white_18pt"),
+        SettingsOption(label: "Setup OG Device", image: ""),
         SettingsOption(label: "Edit Account", image: "ic_perm_identity_white_18pt"),
-        //SettingsOption(label: "Add New Ourglass Device", image: "ic_queue_play_next_white_18pt"),
         // SettingsOption(label: "Add/Manage Venues", image: "ic_add_location_white_18pt"),
         SettingsOption(label: "Log Out", image: "ic_first_page_white_18pt")]
     
@@ -54,11 +54,15 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        switch options[indexPath.row].label {
+        let op = options[indexPath.row]
+        
+        switch op.label {
+        case "Setup OG Device":
+            self.performSegue(withIdentifier: "fromAccountToSetup", sender: op)
         case "Invite Friends":
-            inviteFriends()
+            self.performSegue(withIdentifier: "fromAccountToInvite", sender: op)
         case "Edit Account":
-            self.performSegue(withIdentifier: "fromAccountToEdit", sender: nil)
+            self.performSegue(withIdentifier: "fromAccountToEdit", sender: op)
         case "Log Out":
             logout()
         default:
@@ -74,11 +78,21 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
         
         cell.label.text = options[indexPath.row].label
         
-        if let image = options[indexPath.row].image {
-            cell.icon.image = UIImage(named: image)
+        if options[indexPath.row].label == "Log Out" {
+            cell.accessoryType = .none
+        } else {
+            cell.accessoryType = .disclosureIndicator
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 15.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40.0
     }
     
     func logout() {
@@ -101,12 +115,13 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
 
     }
     
-    func inviteFriends() {
-        self.performSegue(withIdentifier: "fromAccountToInvite", sender: nil)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let op = sender as? SettingsOption {
+            segue.destination.title = op.label
+        }
+    }
 }

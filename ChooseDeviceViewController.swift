@@ -24,8 +24,7 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
     
     var devices = [OGDevice]()
     
-    var venue: OGVenue = OGVenue()
-    //var venueUUID = String()
+    var venue: OGVenue!
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent

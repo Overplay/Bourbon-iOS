@@ -21,6 +21,7 @@ PODS:
   - XCGLogger (4.0.0):
     - XCGLogger/Core (= 4.0.0)
   - XCGLogger/Core (4.0.0)
+  - YelpAPI (2.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - PromiseKit/Alamofire (~> 4.0)
   - SwiftyJSON
   - XCGLogger
+  - YelpAPI
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -40,7 +42,8 @@ SPEC CHECKSUMS:
   PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
+  YelpAPI: a0475cf4a7b6f9fe81f1bb7b8a8492770f21e3c7
 
-PODFILE CHECKSUM: 892fc9adcc8860efa3cfccde7a57fe56bce14997
+PODFILE CHECKSUM: 62ce19e19f88287f4dbd163bc3b628c945b1f91a
 
-COCOAPODS: 1.2.0.rc.1
+COCOAPODS: 1.2.0

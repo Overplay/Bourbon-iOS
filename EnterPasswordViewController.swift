@@ -39,6 +39,11 @@ class EnterPasswordViewController: LoginBaseViewController {
         recoverFromRegFailure()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        pwdTextField.useCustomBottomBorder()
+    }
+    
     func recoverFromRegFailure(){
         
         HUD.hide()

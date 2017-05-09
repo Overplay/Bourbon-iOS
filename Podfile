@@ -15,6 +15,7 @@ pod 'PromiseKit'
 pod 'CocoaAsyncSocket'
 pod 'PromiseKit/Alamofire', '~> 4.0'
 pod 'NetUtils'
+pod 'YelpAPI'
 
 end
 

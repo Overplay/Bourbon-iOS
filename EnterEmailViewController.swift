@@ -24,6 +24,7 @@ class EnterEmailViewController: RegSceneBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailTextField.useCustomBottomBorder()
         
         emailLabel.alpha = 0
         nextButton.alpha = 0
@@ -56,35 +57,19 @@ class EnterEmailViewController: RegSceneBaseViewController {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
         return true
     }
     
     
     func checkEmail(_ notification: Notification){
-        
         if let email = emailTextField.text {
-            
-            if email.isValidEmail() && emailGoodCheck.alpha == 0 {
-                fadeIn(emailGoodCheck)
-                fadeIn(nextButton)
-                emailOK = true
-            }
-            
-            if !email.isValidEmail() {
-                fadeOut(emailGoodCheck)
-                fadeOut(nextButton)
-                emailOK = false
-                
-            }
+            fade(emailGoodCheck, onCondition: email.isValidEmail())
+            fade(nextButton, onCondition: email.isValidEmail())
         }
-        
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         Settings.sharedInstance.userEmail = emailTextField.text
-        
     }
 }

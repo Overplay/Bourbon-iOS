@@ -12,12 +12,10 @@ import PromiseKit
 import SwiftyJSON
 import CoreLocation
 
-class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,
+class ChooseVenueViewController : VenueBaseViewController, UICollectionViewDelegate, UICollectionViewDataSource,
     UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate  {
     
     @IBOutlet weak var venueCollection: UICollectionView!
-    
-    var venues = [OGVenue]()
     
     let SEARCHING_TIMEOUT_INTERVAL = 7.0
     
@@ -73,50 +71,22 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
     }
     
     func findVenues() {
-        
         self.refreshing = true
         self.refreshControl.beginRefreshing()
         
-        Asahi.sharedInstance.getVenues()
-            .then{ json -> Void in
-                self.processVenues(json)
+        self.findAndProcessVenues()
+            .then { _ -> Void in
+                self.sortByLocationAndReload()
                 self.stopRefresh()
             }
-            
-            .catch{ err -> Void in
+            .catch { _ in
+                log.error("Error getting venues")
+                self.sortByLocationAndReload()
                 self.stopRefresh()
-            }
+        }
         
         // Stops the spinner if we have seen no venues
         Timer.scheduledTimer(timeInterval: SEARCHING_TIMEOUT_INTERVAL, target: self, selector: #selector(stopRefresh), userInfo: nil, repeats: false)
-    }
-    
-    func processVenues( _ inboundVenueJson: JSON ){
-        
-        guard let venueArray = inboundVenueJson.array else {
-            log.debug("No venues found!")
-            return
-        }
-        
-        self.venues = [OGVenue]()
-        
-        for venue in venueArray {
-            
-            let address = venue["address"]
-            let name  = venue["name"].stringValue
-            let geolocation = venue["geolocation"]
-            let uuid = venue["uuid"].stringValue
-            
-            // Address components compiled into one human readable string
-            let addressString = String(format: "%@, %@, %@, %@", address["street"].stringValue, address["city"].stringValue, address["state"].stringValue, address["zip"].stringValue)
-            
-            let latitude = geolocation["latitude"].doubleValue
-            let longitude = geolocation["longitude"].doubleValue
-            
-            self.venues.append(OGVenue(name: name, address: addressString, latitude: latitude, longitude: longitude, uuid: uuid))
-        }
-        
-        self.sortByLocationAndReload()
     }
     
     func stopRefresh() {
@@ -125,7 +95,6 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
     }
     
     func sortByLocationAndReload() {
-        
         guard let curLocObj = self.location else {
             self.venueCollection.reloadData()
             return
@@ -144,10 +113,13 @@ class ChooseVenueViewController : UIViewController, UICollectionViewDelegate, UI
     }
     
     // MARK: - CLLocationManagerDelegate
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.location = manager.location?.coordinate
-        self.findVenues()
+        self.location = locations.last?.coordinate
+        //log.debug("updated location")
+        //self.findVenues()
     }
+    
     // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

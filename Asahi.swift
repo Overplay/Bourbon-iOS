@@ -16,12 +16,13 @@ import Alamofire
 import PromiseKit
 import SwiftyJSON
 
+enum AsahiError: Error {
+    case authFailure
+    case tokenInvalid
+    case malformedJson
+}
+
 open class Asahi: NSObject {
-    
-    enum AsahiError: Error {
-        case authFailure
-        case tokenInvalid
-    }
     
     let q = DispatchQueue.global()
 
@@ -38,8 +39,7 @@ open class Asahi: NSObject {
         return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + port + endpoint
     }
     
-    // TODO: empty JSON will return as an error, do we want this?
-    func postOrPutJson( _ endpoint: String, data: Dictionary<String, Any>, method: HTTPMethod ) -> Promise<JSON> {
+    func doJsonTransaction( _ endpoint: String, data: Dictionary<String, Any>, method: HTTPMethod ) -> Promise<JSON> {
         return Promise { fulfill, reject in
             Alamofire.request(endpoint, method: method, parameters: data,
                               headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
@@ -62,6 +62,8 @@ open class Asahi: NSObject {
                                         log.debug("token invalid")
                                         reject(AsahiError.tokenInvalid)
                                     }
+                            } else {
+                                reject(error)
                             }
                         } else {
                             reject(error)
@@ -73,22 +75,21 @@ open class Asahi: NSObject {
     
     // Promisified JSON Poster
     func postJson( _ endpoint: String, data: Dictionary<String, Any> ) -> Promise<JSON> {
-        return postOrPutJson(endpoint, data: data, method: .post)
+        return doJsonTransaction(endpoint, data: data, method: .post)
     }
     
     // Promisified JSON Putter
     func putJson( _ endpoint: String, data: Dictionary<String, Any> ) -> Promise<JSON> {
-        return postOrPutJson(endpoint, data: data, method: .put)
+        return doJsonTransaction(endpoint, data: data, method: .put)
     }
     
     // Promisified JSON Getter
     func getJson(_ endpoint: String, parameters: [String: Any] = [:]) -> Promise<JSON> {
-        return postOrPutJson(endpoint, data: parameters, method: .get)
+        return doJsonTransaction(endpoint, data: parameters, method: .get)
     }
 
     
     // TODO: sign in with Facebook (use "type": "facebook" on login and register)
-    
     func register(_ email: String, password: String, user: Dictionary<String, Any>) -> Promise<String> {
             
             let params: Dictionary<String, Any> = [
@@ -149,36 +150,38 @@ open class Asahi: NSObject {
     }
     
     func getVenues() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/api/v1/venue"))
+        return getJson(createApiEndpoint("/venue/all"))
     }
     
     func getDevices(_ venueUUID: String) -> Promise<JSON> {
         return getJson(createApiEndpointWithPort("/venue/devices?atVenueUUID=" + venueUUID, port: "2001"))
     }
     
-    func checkAuthStatus() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/auth/status"))
-    }
-    
     func checkJWT() -> Promise<JSON> {
         // cannot use same get() as everyone else or we might end up in a loop on 403 handling
-        return firstly {
+        return Promise { fulfill, reject in
             Alamofire.request(createApiEndpoint("/user/checkjwt"), method: .get,
                               headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
-                .validate()  //Checks for non-200 response
-                .responseJSON()
+                .validate()
+                .responseJSON() { response in
+                    switch response.result {
+                        
+                    case .success(let dict):
+                        fulfill(JSON(dict))
+                        
+                    case .failure(let error):
+                        reject(error)
+                    }
             }
-            .then(on:q){ value  in
-                JSON(value)
         }
     }
     
     func changeAccountInfo(_ firstName: String, lastName: String, email: String, userId: String) -> Promise<JSON> {
         let params: Dictionary<String, Any> = ["email": email, "firstName": firstName, "lastName": lastName]
-        return putJson(createApiEndpoint("/api/v1/user/\(userId)"), data: params)
+        return putJson(createApiEndpoint("/user/\(userId)"), data: params)
     }
     
-    // TODO: is there more we need to do here? send anything to the server?
+    // TODO: is there more we need to do here?
     func logout() {
         Settings.sharedInstance.userBelliniJWT = nil
         Settings.sharedInstance.userBelliniJWTExpiry = nil
@@ -188,6 +191,38 @@ open class Asahi: NSObject {
     func inviteNewUser(_ email: String) -> Promise<JSON> {
         let params = ["email": email]
         return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
+    }
+    
+    func getUserVenues() -> Promise<JSON> {
+        return getJson(createApiEndpoint("/venue/myvenues"))
+    }
+    
+    func findByRegCode(_ regCode: String) -> Promise<JSON> {
+        let params = ["regcode": regCode]
+        return getJson(createApiEndpointWithPort("/ogdevice/findByRegCode", port: "2001"), parameters: params)
+    }
+    
+    func changeDeviceName(_ udid: String, name: String) -> Promise<String> {
+        let params = ["deviceUDID": udid, "name": name]
+        return postJson(createApiEndpointWithPort("/ogdevice/changeName", port: "2001"), data: params)
+            .then { _ -> String in
+                return udid
+        }
+    }
+    
+    func associate(deviceUdid: String, withVenueUuid: String) -> Promise<JSON> {
+        let params = ["deviceUDID": deviceUdid, "venueUUID": withVenueUuid]
+        return postJson(createApiEndpointWithPort("/ogdevice/associateWithVenue", port: "2001"), data: params)
+    }
+    
+    func yelpSearch(location: String, term: String) -> Promise<JSON> {
+        let params = ["location": location, "term": term]
+        return getJson(createApiEndpoint("/venue/yelpSearch"), parameters: params)
+    }
+    
+    func yelpSearch(latitude: Double, longitude: Double, term: String) -> Promise<JSON> {
+        let params = ["latitude": latitude, "longitude": longitude, "term": term] as [String : Any]
+        return getJson(createApiEndpoint("/venue/yelpSearch"), parameters: params)
     }
     
     

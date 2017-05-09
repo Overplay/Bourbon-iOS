@@ -29,6 +29,8 @@ class EnterNameViewController: RegSceneBaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        fnameTextField.useCustomBottomBorder()
+        lnameTextField.useCustomBottomBorder()
         
         fnameLabel.alpha = 0
         lnameLabel.alpha = 0
@@ -52,14 +54,11 @@ class EnterNameViewController: RegSceneBaseViewController, UITextFieldDelegate {
       
     // MARK: UITextField Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        log.debug("Delegate: should return")
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        log.debug("Delegate: did end editing")
         //checkNames()
-
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

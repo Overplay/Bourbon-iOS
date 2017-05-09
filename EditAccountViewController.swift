@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import PKHUD
 
-class EditAccountViewController: AccountBaseViewController {
+class EditAccountViewController: AccountBaseViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
@@ -25,22 +25,24 @@ class EditAccountViewController: AccountBaseViewController {
     @IBAction func save(_ sender: AnyObject) {
         self.view.endEditing(true)
         
-        guard let first = self.firstName.text
-            else {
-                showAlert("Oops!", message: "The information you put in is not valid.")
-                return
+        guard let first = self.firstName.text else {
+            showAlert("Oops!", message: "The information you put in is not valid.")
+            return
         }
         
-        guard let last = self.lastName.text
-            else {
-                showAlert("Oops!", message: "The information you put in is not valid.")
-                return
+        guard let last = self.lastName.text else {
+            showAlert("Oops!", message: "The information you put in is not valid.")
+            return
         }
         
-        guard let email = self.email.text
-            else {
-                showAlert("Oops!", message: "The information you put in is not valid.")
-                return
+        guard let email = self.email.text else {
+            showAlert("Oops!", message: "The information you put in is not valid.")
+            return
+        }
+        
+        if !email.isValidEmail() {
+            showAlert("Oops!", message: "That isn't a valid email.")
+            return
         }
         
         let alertController = UIAlertController(title: "Save Changes", message: "Are you sure you want to save changes to your account information?", preferredStyle: .alert)
@@ -83,6 +85,10 @@ class EditAccountViewController: AccountBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.firstName.useCustomBottomBorder()
+        self.lastName.useCustomBottomBorder()
+        self.email.useCustomBottomBorder()
+        
         self.emailGoodCheck.alpha = 0
         self.saveButton.alpha = 0
 
@@ -90,21 +96,10 @@ class EditAccountViewController: AccountBaseViewController {
         self.lastName.text = Settings.sharedInstance.userLastName
         self.email.text = Settings.sharedInstance.userEmail
         checkEmail()
-        
-        // TODO: use either check JWT or checkAuthStatus, not both
-        
+        /*
         Asahi.sharedInstance.checkJWT()
             .then { response -> Void in
                 log.debug("JWT check good")
-        }
-            .catch { error -> Void in
-                log.debug("BAD JWT")
-        }
-        
-        Asahi.sharedInstance.checkAuthStatus()
-            
-            .then{ response -> Void in
-                log.debug("Successfully checked auth")
                 if let first = response["firstName"].string {
                     Settings.sharedInstance.userFirstName = first
                     self.firstName.text = first
@@ -124,24 +119,39 @@ class EditAccountViewController: AccountBaseViewController {
                 if let userId = response["id"].string {
                     Settings.sharedInstance.userId = userId
                 }
-            }
-            
-            .catch{ err -> Void in
-                log.error("error checking auth")
+
+        }
+            .catch { error -> Void in
+                log.debug("BAD JWT")
+                let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
                 
-                switch err {
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    Asahi.sharedInstance.logout()
+                    self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+                }
+                
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                /*switch error {
                     
                 case Asahi.AsahiError.authFailure:
                     self.showAlert("Uh oh!", message: "You aren't authorized to access this resource.")
                     
                 case Asahi.AsahiError.tokenInvalid:
-                    Asahi.sharedInstance.logout()
-                    self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
-
+                    let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                        Asahi.sharedInstance.logout()
+                        self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+                    }
+                    
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
                 default:
                     self.showAlert("Uh oh!", message: "There was an issue loading your account information.")
-                }
-        }
+                }*/
+        }*/
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkEmail), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
     }
@@ -152,7 +162,6 @@ class EditAccountViewController: AccountBaseViewController {
     }
     
     func checkEmail() {
-        
         if let email = self.email.text {
             
             if email.isValidEmail() && self.emailGoodCheck.alpha == 0 {
@@ -167,15 +176,13 @@ class EditAccountViewController: AccountBaseViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
-    */
-
 }

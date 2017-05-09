@@ -27,7 +27,7 @@ class InviteFriendsViewController: AccountBaseViewController {
         if e.isValidEmail() {
             
             Asahi.sharedInstance.inviteNewUser(e)
-                
+            
                 .then{ response -> Void in
                     log.debug("invitation sent")
                     HUD.flash(.success, delay: 1.0)
@@ -45,6 +45,8 @@ class InviteFriendsViewController: AccountBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.email.useCustomBottomBorder()
         
         self.emailGoodCheck.alpha = 0
         self.inviteButton.alpha = 0

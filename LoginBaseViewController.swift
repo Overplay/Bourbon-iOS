@@ -16,23 +16,23 @@ class LoginBaseViewController: RegSceneBaseViewController {
     @IBOutlet var pwdGoodCheck: UIImageView!
     @IBOutlet var nextButton: UIButton!
     
-    var pwdOK = false
-    var password: String?
-
-    
     @IBAction func showPwdPressed(_ sender: UIButton) {
-        
         pwdTextField.isSecureTextEntry = !pwdTextField.isSecureTextEntry
-        
+        if pwdTextField.isSecureTextEntry {
+            sender.setTitle("SHOW", for: .normal)
+        } else {
+            sender.setTitle("HIDE", for: .normal)
+        }
     }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pwdTextField.useCustomBottomBorder()
 
         pwdLabel.alpha = 0
         nextButton.alpha = 0
-        
         pwdGoodCheck.alpha = 0
         
         UIView.animate(withDuration: 0.65, animations: {
@@ -44,29 +44,14 @@ class LoginBaseViewController: RegSceneBaseViewController {
     }
     
 
-    func checkFields(_ notification: Notification){
-        
+    func checkFields(_ notification: Notification) {
         if let pwd = pwdTextField.text {
-            
-            if pwd.isValidPwd() && pwdGoodCheck.alpha == 0 {
-                fadeIn(pwdGoodCheck)
-                fadeIn(nextButton)
-                pwdOK = true
-                password = pwd
-            }
-            
-            if !pwd.isValidPwd() {
-                fadeOut(pwdGoodCheck)
-                fadeOut(nextButton)
-                pwdOK = false
-                password = nil
-            }
+            fade(pwdGoodCheck, onCondition: pwd.isValidPwd())
+            fade(nextButton, onCondition: pwd.isValidPwd())
         }
-        
     }
     
     func login(_ email: String, pwd: String){
-        
         Asahi.sharedInstance.login(email, password: pwd)
             .then{ response -> Void in
                 HUD.flash(.labeledSuccess(title: "Logged In!", subtitle: nil ))
@@ -75,7 +60,6 @@ class LoginBaseViewController: RegSceneBaseViewController {
                 self.recoverFromLoginFailure()
                 
         }
-        
     }
     
     func loginWithSegue(_ email: String, pwd: String, segueId: String){
