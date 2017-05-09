@@ -8,8 +8,15 @@
 
 import UIKit
 import CoreLocation
+import PKHUD
 
-class CreateVenueViewController: AccountBaseViewController {
+protocol CreateVenueViewControllerDelegate {
+    func createdVenue(_ venue: OGVenue)
+}
+
+class CreateVenueViewController: UITableViewController {
+    
+    var delegate: CreateVenueViewControllerDelegate?
     
     let curLocStr = "Current location"
     let locationManager = CLLocationManager()
@@ -23,6 +30,8 @@ class CreateVenueViewController: AccountBaseViewController {
         }
     }
     @IBOutlet weak var findButton: UIButton!
+    @IBOutlet weak var createVenueButton: UIButton!
+    @IBOutlet weak var createVenueActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var venueName: UITextField!
     @IBOutlet weak var address1: UITextField!
@@ -36,6 +45,47 @@ class CreateVenueViewController: AccountBaseViewController {
     
     var selectedYelpVenue: YelpVenue?
     
+    @IBAction func createVenue(_ sender: Any) {
+        self.view.endEditing(true)
+        createVenueButton.isEnabled = false
+        createVenueButton.alpha = 0.5
+        createVenueActivityIndicator.startAnimating()
+        
+        let uuid = "fake_uuid"
+        
+        // TODO: make API call and include yelpId if we have it
+        
+        guard let name = venueName.text, let addr1 = address1.text,
+            let addr2 = address2.text, let city = city.text,
+            let state = state.text, let zip = zip.text else {
+                createVenueButton.isEnabled = true
+                createVenueButton.alpha = 1.0
+                createVenueActivityIndicator.stopAnimating()
+                return
+        }
+        
+        let venue = OGVenue(name: name, street: addr1 + " " + addr2, city: city, state: state, zip: zip, latitude: 0.0, longitude: 0.0, uuid: uuid)
+        let geocoder = CLGeocoder()
+            
+        geocoder.geocodeAddressString(venue.address) { (placemarks, error) -> Void in
+            guard let placemark = placemarks?.first,
+                let coords = placemark.location?.coordinate else {
+                    self.createVenueButton.isEnabled = true
+                    self.createVenueButton.alpha = 1.0
+                    self.createVenueActivityIndicator.stopAnimating()
+                    return
+            }
+            venue.latitude = coords.latitude
+            venue.longitude = coords.longitude
+            
+            if let del = self.delegate {
+                del.createdVenue(venue)
+                HUD.flash(.success, delay: 1.0)
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
     @IBAction func useCurrentLocation(_ sender: Any) {
         yelpSearchLocation.text = curLocStr
         yelpSearchLocation.textColor = useCurrentLocationButton.tintColor
@@ -46,9 +96,17 @@ class CreateVenueViewController: AccountBaseViewController {
         checkReadyToYelp()
     }
     
+    @IBAction func yelpSearchTermNext(_ sender: Any) {
+        yelpSearchLocation.becomeFirstResponder()
+    }
+    
     @IBAction func yelpSearchLocationEditingChanged(_ sender: Any) {
         yelpSearchLocation.textColor = UIColor.white
         checkReadyToYelp()
+    }
+    
+    @IBAction func yelpSearchLocationNext(_ sender: Any) {
+        self.view.endEditing(true)
     }
     
     func checkReadyToYelp() {
@@ -73,12 +131,12 @@ class CreateVenueViewController: AccountBaseViewController {
         locationManager.requestLocation()
         
         textFieldDelegates.append(contentsOf: [
-            CustomTextFieldDelegate(venueName, isValid: isValidEntry),
-            CustomTextFieldDelegate(address1, isValid: isValidEntry),
-            CustomTextFieldDelegate(address2, isValid: { _ in return true}),
-            CustomTextFieldDelegate(city, isValid: isValidEntry),
-            CustomTextFieldDelegate(state, isValid: isValidEntry),
-            CustomTextFieldDelegate(zip, isValid: isValidEntry)
+            CustomTextFieldDelegate(venueName, isValid: isValidEntry, inTableView: true),
+            CustomTextFieldDelegate(address1, isValid: isValidEntry, inTableView: true),
+            CustomTextFieldDelegate(address2, isValid: { _ in return true}, inTableView: true),
+            CustomTextFieldDelegate(city, isValid: isValidEntry, inTableView: true),
+            CustomTextFieldDelegate(state, isValid: isValidEntry, inTableView: true),
+            CustomTextFieldDelegate(zip, isValid: isValidEntry, inTableView: true)
         ])
         
         yelpSearchTerm.useCustomBottomBorder()
@@ -124,6 +182,18 @@ class CreateVenueViewController: AccountBaseViewController {
             return true
         }
         return false
+    }
+    
+    func fadeIn(_ view: UIView){
+        UIView.animate(withDuration: 0.5, animations: {
+            view.alpha = 1.0
+        })
+    }
+    
+    func fadeOut(_ view: UIView){
+        UIView.animate(withDuration: 0.5, animations: {
+            view.alpha = 0.0
+        })
     }
 }
 

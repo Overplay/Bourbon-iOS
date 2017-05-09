@@ -50,14 +50,6 @@ class SetupDeviceViewController: AccountBaseViewController {
         chooseVenue.addSubview(disclosure)
     }
     
-    @IBAction func regCodeNext(_ sender: Any) {
-        self.deviceName.becomeFirstResponder()
-    }
-    
-    @IBAction func deviceNameNext(_ sender: Any) {
-        self.view.endEditing(true)
-    }
-    
     @IBAction func createDevice(_ sender: Any) {
         self.view.endEditing(true)
         self.errorBlock.isHidden = true

@@ -13,11 +13,13 @@ class CustomTextFieldDelegate: NSObject {
     var errorLabel: UILabel?
     var isValid: (String?) -> Bool
     var textField: UITextField
+    var inTableView: Bool
     
-    init(_ textField: UITextField, isValid: @escaping (String?) -> Bool, errorLabel: UILabel? = nil) {
+    init(_ textField: UITextField, isValid: @escaping (String?) -> Bool, errorLabel: UILabel? = nil, inTableView: Bool = false) {
         self.errorLabel = errorLabel
         self.isValid = isValid
         self.textField = textField
+        self.inTableView = inTableView
         super.init()
         textField.delegate = self
         
@@ -58,5 +60,18 @@ extension CustomTextFieldDelegate: UITextFieldDelegate {
             }
             self.textField.changeBorderColor(UIColor.red)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if self.inTableView, let nextField = textField.superview?.superview?.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+            
+        } else if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
 }

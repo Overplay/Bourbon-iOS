@@ -28,7 +28,7 @@
 		1ED96EB01E2A0D4700891EA8 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96EAE1E2A0D4700891EA8 /* Map.storyboard */; };
 		1ED96EB11E2A0D4700891EA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EAF1E2A0D4700891EA8 /* MapViewController.swift */; };
 		1ED96EBA1E2A0D6000891EA8 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */; };
-		1ED96EBB1E2A0D6000891EA8 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96EB41E2A0D6000891EA8 /* Account.storyboard */; };
+		1ED96EBB1E2A0D6000891EA8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */; };
 		1ED96EBC1E2A0D6000891EA8 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */; };
 		1ED96EBD1E2A0D6000891EA8 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */; };
 		1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */; };
@@ -101,7 +101,7 @@
 		1ED96EAE1E2A0D4700891EA8 /* Map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		1ED96EAF1E2A0D4700891EA8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
-		1ED96EB41E2A0D6000891EA8 /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 			children = (
 				4F7885991EBBBC7100F91ED5 /* Setup Device */,
 				1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */,
-				1ED96EB41E2A0D6000891EA8 /* Account.storyboard */,
+				1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */,
 				1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */,
 				1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */,
 				1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */,
@@ -458,7 +458,7 @@
 				1ED96EB01E2A0D4700891EA8 /* Map.storyboard in Resources */,
 				1ED96E981E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard in Resources */,
 				1ED96E911E2A0CB500891EA8 /* Control.storyboard in Resources */,
-				1ED96EBB1E2A0D6000891EA8 /* Account.storyboard in Resources */,
+				1ED96EBB1E2A0D6000891EA8 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

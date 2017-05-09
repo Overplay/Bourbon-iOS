@@ -20,7 +20,7 @@ class OGVenue {
     var uuid: String
     
     var address: String {
-        return String(format: "%@, %@, %@, %@", street, city, state, zip)
+        return String(format: "%@, %@, %@ %@", street, city, state, zip)
     }
     
     init(name: String, street:String, city: String, state: String, zip: String, latitude: Double, longitude: Double, uuid: String) {

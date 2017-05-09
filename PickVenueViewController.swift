@@ -40,6 +40,21 @@ class PickVenueViewController: UIViewController {
                 log.debug(err)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? CreateVenueViewController {
+            vc.delegate = self
+        }
+    }
+}
+
+extension PickVenueViewController: CreateVenueViewControllerDelegate {
+    func createdVenue(_ venue: OGVenue) {
+        if let del = self.delegate {
+            del.selectVenue(venue)
+            dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 extension PickVenueViewController: UITableViewDelegate {

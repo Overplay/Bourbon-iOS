@@ -76,6 +76,9 @@ class YelpVenue {
         self.longitude = lng
     }
     
+    func toOGVenue(uuid: String) -> OGVenue {
+        return OGVenue(name: name, street: address1 + address2, city: city, state: state, zip: zip, latitude: latitude, longitude: longitude, uuid: uuid)
+    }
     
     func description() -> String {
         return "name: \(self.name) " +
