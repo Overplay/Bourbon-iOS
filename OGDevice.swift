@@ -27,7 +27,9 @@ class OGDevice {
     }
     
     func getUrl() -> String {
-        return "\(Settings.sharedInstance.ourglassCloudBaseUrl):2001/blueline/control/?deviceUDID=\(self.udid)"
+        return Asahi.sharedInstance.createApiEndpoint(
+            "/blueline/control/?deviceUDID=\(self.udid)",
+            withPort: "2001")
     }
     
 }

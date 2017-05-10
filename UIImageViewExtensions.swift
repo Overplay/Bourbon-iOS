@@ -10,6 +10,9 @@ import UIKit
 
 extension UIImageView {
     
+    /// Sets the image of this `UIImageView` object to be the image in the provided URL.
+    ///
+    /// - Parameter url: image URL
     func setImageFromURL(_ url: String) {
         if let url = URL(string: url) {
             do {

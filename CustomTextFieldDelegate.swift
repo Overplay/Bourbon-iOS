@@ -23,18 +23,25 @@ class CustomTextFieldDelegate: NSObject {
         super.init()
         textField.delegate = self
         
-        // do some styling
-        textField.useCustomBottomBorder()
-        
-        if let el = self.errorLabel {
-            el.textColor = UIColor.red
-        }
-        
-       
+        applyTextFieldStyle()
+        applyErrorLabelStyle()
     }
     
-    func style(str: String) -> Bool {
-        return true
+    
+    /// Applies a default style to the text field.
+    func applyTextFieldStyle() {
+        textField.useCustomBottomBorder()
+        textField.textColor = UIColor.white
+        textField.font = UIFont(name: Style.regularFont, size: 17.0)
+    }
+    
+    /// Applies a default style to the error label.
+    func applyErrorLabelStyle() {
+        if let el = errorLabel {
+            el.isHidden = true
+            el.textColor = UIColor.red
+            el.font = UIFont(name: Style.lightFont, size: 11.0)
+        }
     }
 }
 

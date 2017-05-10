@@ -13,6 +13,7 @@ enum YelpError: Error {
     case badJson
 }
 
+/// Represents a Yelp venue.
 class YelpVenue {
     
     var name: String
@@ -76,8 +77,12 @@ class YelpVenue {
         self.longitude = lng
     }
     
+    /// Gives the `OGVenue` representation of this `YelpVenue`.
+    ///
+    /// - Parameter uuid: UUID to assign to the venue
+    /// - Returns: an `OGVenue`
     func toOGVenue(uuid: String) -> OGVenue {
-        return OGVenue(name: name, street: address1 + address2, city: city, state: state, zip: zip, latitude: latitude, longitude: longitude, uuid: uuid)
+        return OGVenue(name: name, street: address1, street2: address2, city: city, state: state, zip: zip, latitude: latitude, longitude: longitude, uuid: uuid)
     }
     
     func description() -> String {

@@ -85,6 +85,8 @@ class SetupDeviceViewController: AccountBaseViewController {
                                            withVenueUuid: venue.uuid)
         }.then { _ -> Void in
             self.createDeviceActivityIndicator.stopAnimating()
+            self.createDeviceButton.isEnabled = true
+            self.createDeviceButton.alpha = 1.0
             HUD.flash(.success, delay: 1.0)
         
         }.catch { error -> Void in

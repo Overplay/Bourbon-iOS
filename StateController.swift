@@ -10,16 +10,22 @@ import Foundation
 import PromiseKit
 import SwiftyJSON
 
+/// Provides the current state of the application.
 class StateController {
     
     static let sharedInstance = StateController()
     
+    /// All venues.
     private(set) var allVenues = [OGVenue]()
     
+    /// Venues associated with the current user.
     private(set) var myVenues = [OGVenue]()
     
     private init() {}
     
+    /// Finds all venues and updates the current state.
+    ///
+    /// - Returns: a promise resolving in `true` on success
     func findAllVenues() -> Promise<Bool> {
         return Promise { fulfill, reject in
             
@@ -35,6 +41,9 @@ class StateController {
         }
     }
     
+    /// Finds the venues associated with the current user.
+    ///
+    /// - Returns: a promise resolving in `true` on success
     func findMyVenues() -> Promise<Bool> {
         return Promise { fulfill, reject in
             
@@ -55,7 +64,11 @@ class StateController {
         }
     }
     
-    func processVenues( _ inboundVenueJson: JSON ) -> [OGVenue] {
+    /// Processes the venues JSON as `OGVenue` objects and sorts the venues alphabetically.
+    ///
+    /// - Parameter inboundVenueJson: venue JSON
+    /// - Returns: an array of the resulting `OGVenue` objects
+    private func processVenues( _ inboundVenueJson: JSON ) -> [OGVenue] {
         
         var venues = [OGVenue]()
         
@@ -86,7 +99,19 @@ class StateController {
                 log.debug("found a venue with no geolocation, skipping")
                 continue
             }
-            venues.append(OGVenue(name: name, street: street, city: city, state: state, zip: zip, latitude: latitude, longitude: longitude, uuid: uuid))
+            let ogVenue = OGVenue(name: name, street: street, city: city, state: state,
+                                  zip: zip, latitude: latitude, longitude: longitude,
+                                  uuid: uuid)
+            
+            // check for optional values
+            if let street2 = address["street2"].string {
+                ogVenue.street2 = street2
+            }
+            if let yelpId = venue["yelpId"].string {
+                ogVenue.yelpId = yelpId
+            }
+            
+            venues.append(ogVenue)
         }
         
         venues.sort{ $0.name < $1.name }
