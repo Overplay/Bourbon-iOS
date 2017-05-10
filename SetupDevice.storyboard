@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zc4-ES-IDY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="r0R-mq-NrU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a registration code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2H-FX-kbA">
-                                <rect key="frame" x="16" y="48" width="343" height="21"/>
+                                <rect key="frame" x="16" y="206" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="9Wx-E7-HjU"/>
                                 </constraints>
@@ -44,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Registration code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tvs-gd-xDg">
-                                <rect key="frame" x="16" y="77" width="343" height="28"/>
+                                <rect key="frame" x="16" y="235" width="343" height="28"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -55,7 +55,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a name for your device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPf-dS-R4w">
-                                <rect key="frame" x="16" y="133" width="343" height="21"/>
+                                <rect key="frame" x="16" y="291" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8KA-CS-3ub"/>
                                 </constraints>
@@ -64,7 +64,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Device name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O8B-EP-e4k">
-                                <rect key="frame" x="16" y="162" width="343" height="28"/>
+                                <rect key="frame" x="16" y="320" width="343" height="28"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes" returnKeyType="next"/>
@@ -75,29 +75,19 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnH-4j-ugu">
-                                <rect key="frame" x="16" y="105" width="343" height="20"/>
+                                <rect key="frame" x="16" y="263" width="343" height="20"/>
                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It looks like you forgot a name!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1h-fy-yXz">
-                                <rect key="frame" x="16" y="190" width="343" height="20"/>
+                                <rect key="frame" x="16" y="348" width="343" height="20"/>
                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="wAC-CD-2Hq">
-                                <rect key="frame" x="16" y="225" width="343" height="37"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
-                                <state key="normal" title="Choose a venue">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="puh-2v-R9A" kind="presentation" id="8YC-Pg-1aO"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iK5-WU-plS">
-                                <rect key="frame" x="87" y="326" width="200" height="45"/>
+                                <rect key="frame" x="87" y="396" width="200" height="45"/>
                                 <color key="backgroundColor" red="0.12549019610000001" green="0.72156862749999995" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="GaL-90-08y"/>
@@ -111,10 +101,10 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="bGx-kU-d6p">
-                                <rect key="frame" x="255" y="338.5" width="20" height="20"/>
+                                <rect key="frame" x="255" y="408.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DqR-0N-SW0">
-                                <rect key="frame" x="37" y="392" width="300" height="70"/>
+                                <rect key="frame" x="37" y="462" width="300" height="70"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_close_white" translatesAutoresizingMaskIntoConstraints="NO" id="fYh-KH-RhE">
                                         <rect key="frame" x="10" y="19" width="32" height="32"/>
@@ -141,10 +131,22 @@
                                     <constraint firstItem="fYh-KH-RhE" firstAttribute="centerY" secondItem="DqR-0N-SW0" secondAttribute="centerY" id="rdS-NB-uSu"/>
                                 </constraints>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose a venue." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sob-BX-9lV">
-                                <rect key="frame" x="16" y="262" width="343" height="20"/>
-                                <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="12"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating a device for" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEd-Ck-elj">
+                                <rect key="frame" x="16" y="92" width="343" height="25"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-qf-tDz">
+                                <rect key="frame" x="16" y="125" width="343" height="28"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="venue address" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFs-hL-hRB">
+                                <rect key="frame" x="16" y="153" width="343" height="25"/>
+                                <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -155,38 +157,39 @@
                             <constraint firstItem="tvs-gd-xDg" firstAttribute="top" secondItem="x2H-FX-kbA" secondAttribute="bottom" constant="8" id="4WN-8A-DT3"/>
                             <constraint firstItem="GnH-4j-ugu" firstAttribute="top" secondItem="tvs-gd-xDg" secondAttribute="bottom" id="4ho-HO-xGS"/>
                             <constraint firstItem="bGx-kU-d6p" firstAttribute="centerY" secondItem="iK5-WU-plS" secondAttribute="centerY" id="53S-wl-ORf"/>
-                            <constraint firstItem="wAC-CD-2Hq" firstAttribute="top" secondItem="O8B-EP-e4k" secondAttribute="bottom" constant="35" id="5vh-qp-fMi"/>
                             <constraint firstItem="DqR-0N-SW0" firstAttribute="centerX" secondItem="7AU-uS-Raa" secondAttribute="centerX" id="701-0i-Gz4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="O8B-EP-e4k" secondAttribute="trailing" id="7vR-c0-j3f"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GnH-4j-ugu" secondAttribute="trailing" id="DCx-Be-0PQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HPf-dS-R4w" secondAttribute="trailing" id="EEA-2U-RVb"/>
-                            <constraint firstItem="x2H-FX-kbA" firstAttribute="top" secondItem="CEb-R6-QkG" secondAttribute="bottom" constant="28" id="Ec5-p0-HdA"/>
-                            <constraint firstItem="sob-BX-9lV" firstAttribute="top" secondItem="wAC-CD-2Hq" secondAttribute="bottom" id="IFM-w9-MuG"/>
+                            <constraint firstItem="iK5-WU-plS" firstAttribute="top" secondItem="s1h-fy-yXz" secondAttribute="bottom" constant="28" id="FJd-ro-73w"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zEd-Ck-elj" secondAttribute="trailing" id="GgL-Uo-ni0"/>
+                            <constraint firstItem="xFs-hL-hRB" firstAttribute="leading" secondItem="7AU-uS-Raa" secondAttribute="leadingMargin" id="JbB-3P-a7b"/>
+                            <constraint firstItem="FcW-qf-tDz" firstAttribute="leading" secondItem="7AU-uS-Raa" secondAttribute="leadingMargin" id="K0b-Q4-HMx"/>
                             <constraint firstItem="bGx-kU-d6p" firstAttribute="leading" secondItem="iK5-WU-plS" secondAttribute="trailing" constant="-32" id="KZI-Y6-1ax"/>
                             <constraint firstAttribute="leadingMargin" secondItem="HPf-dS-R4w" secondAttribute="leading" id="M9B-49-ztW"/>
                             <constraint firstItem="iK5-WU-plS" firstAttribute="centerX" secondItem="7AU-uS-Raa" secondAttribute="centerX" id="NZw-SW-BZf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="s1h-fy-yXz" secondAttribute="trailing" id="NmB-U5-fQs"/>
+                            <constraint firstItem="zEd-Ck-elj" firstAttribute="leading" secondItem="7AU-uS-Raa" secondAttribute="leadingMargin" id="PS6-KS-Oka"/>
+                            <constraint firstItem="FcW-qf-tDz" firstAttribute="top" secondItem="zEd-Ck-elj" secondAttribute="bottom" constant="8" id="QGd-P8-mmS"/>
+                            <constraint firstItem="xFs-hL-hRB" firstAttribute="top" secondItem="FcW-qf-tDz" secondAttribute="bottom" id="QiS-FH-mec"/>
                             <constraint firstItem="DqR-0N-SW0" firstAttribute="top" secondItem="iK5-WU-plS" secondAttribute="bottom" constant="21" id="RWs-HN-uB7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xFs-hL-hRB" secondAttribute="trailing" id="Ror-La-zVk"/>
                             <constraint firstItem="O8B-EP-e4k" firstAttribute="leading" secondItem="7AU-uS-Raa" secondAttribute="leadingMargin" id="SR0-E4-PJj"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="wAC-CD-2Hq" secondAttribute="leading" id="bYv-fo-pR7"/>
                             <constraint firstItem="HPf-dS-R4w" firstAttribute="top" secondItem="tvs-gd-xDg" secondAttribute="bottom" constant="28" id="bza-I6-4af"/>
+                            <constraint firstItem="zEd-Ck-elj" firstAttribute="top" secondItem="CEb-R6-QkG" secondAttribute="bottom" constant="28" id="dIM-ad-V00"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tvs-gd-xDg" secondAttribute="trailing" id="fdb-c1-3ZP"/>
-                            <constraint firstItem="iK5-WU-plS" firstAttribute="top" secondItem="wAC-CD-2Hq" secondAttribute="bottom" constant="64" id="lHd-Ei-qJA"/>
+                            <constraint firstItem="x2H-FX-kbA" firstAttribute="top" secondItem="xFs-hL-hRB" secondAttribute="bottom" constant="28" id="iG0-QT-dCq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FcW-qf-tDz" secondAttribute="trailing" id="jR7-d0-YBa"/>
                             <constraint firstItem="s1h-fy-yXz" firstAttribute="leading" secondItem="7AU-uS-Raa" secondAttribute="leadingMargin" id="m4M-9v-P2D"/>
                             <constraint firstItem="tvs-gd-xDg" firstAttribute="leading" secondItem="7AU-uS-Raa" secondAttribute="leadingMargin" id="m8H-AY-oe0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wAC-CD-2Hq" secondAttribute="trailing" id="pPF-s4-nRa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sob-BX-9lV" secondAttribute="trailing" id="rKy-Dd-OCt"/>
                             <constraint firstItem="x2H-FX-kbA" firstAttribute="leading" secondItem="7AU-uS-Raa" secondAttribute="leadingMargin" id="tlJ-eh-HIq"/>
                             <constraint firstItem="GnH-4j-ugu" firstAttribute="leading" secondItem="7AU-uS-Raa" secondAttribute="leadingMargin" id="vHW-Xq-kKo"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="sob-BX-9lV" secondAttribute="leading" id="ww1-C4-991"/>
                             <constraint firstItem="s1h-fy-yXz" firstAttribute="top" secondItem="O8B-EP-e4k" secondAttribute="bottom" id="xB3-wA-x1Z"/>
                             <constraint firstItem="O8B-EP-e4k" firstAttribute="top" secondItem="HPf-dS-R4w" secondAttribute="bottom" constant="8" id="xMN-dL-50z"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="chooseVenue" destination="wAC-CD-2Hq" id="KlZ-Ct-R34"/>
-                        <outlet property="chooseVenueErrorLabel" destination="sob-BX-9lV" id="VXI-lL-MnJ"/>
                         <outlet property="createDeviceActivityIndicator" destination="bGx-kU-d6p" id="pOW-Xr-hQA"/>
                         <outlet property="createDeviceButton" destination="iK5-WU-plS" id="0Ep-jW-VP0"/>
                         <outlet property="deviceName" destination="O8B-EP-e4k" id="ls7-6f-ONo"/>
@@ -197,12 +200,14 @@
                         <outlet property="regCode" destination="tvs-gd-xDg" id="u0z-Sc-ixl"/>
                         <outlet property="regCodeErrorLabel" destination="GnH-4j-ugu" id="oBL-e2-mlU"/>
                         <outlet property="regCodeLabel" destination="x2H-FX-kbA" id="MF5-FR-AfQ"/>
+                        <outlet property="venueAddress" destination="xFs-hL-hRB" id="GOQ-Gk-NJu"/>
+                        <outlet property="venueName" destination="FcW-qf-tDz" id="0ot-Md-iLm"/>
                         <segue destination="zUp-3i-xyH" kind="showDetail" identifier="fromSetupDeviceToRegistration" id="Smb-wk-eDj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Phv-7z-k9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="821.60000000000002" y="-446.62668665667172"/>
+            <point key="canvasLocation" x="2377" y="296"/>
         </scene>
         <!--RegistrationStoryboard-->
         <scene sceneID="crQ-rI-YfJ">
@@ -210,9 +215,9 @@
                 <viewControllerPlaceholder storyboardName="RegistrationStoryboard" id="zUp-3i-xyH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpQ-aA-A7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="821" y="-2"/>
+            <point key="canvasLocation" x="3144" y="295"/>
         </scene>
-        <!--My Venues-->
+        <!--Pick a venue-->
         <scene sceneID="OyD-hN-yye">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="r0R-mq-NrU" customClass="PickVenueViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -274,13 +279,7 @@
                             <constraint firstItem="Q4g-6l-KMO" firstAttribute="top" secondItem="gvX-Zm-gMO" secondAttribute="bottom" id="MxD-LV-v6P"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Venues" id="PJ5-0d-dBB">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="LAj-PF-COk">
-                            <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="cancel:" destination="r0R-mq-NrU" id="moZ-4j-MHN"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Pick a venue" id="PJ5-0d-dBB">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Eyl-8G-r1t">
                             <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -292,6 +291,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="gvX-Zm-gMO" id="q3j-98-10O"/>
+                        <segue destination="Zc4-ES-IDY" kind="show" identifier="fromPickVenueToSetup" id="ErM-DW-wGt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OO2-mH-5nc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -850,26 +850,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCu-Ao-f4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4791" y="-447"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="AMK-gQ-oNN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="puh-2v-R9A" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="hwB-dG-o7F">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="r0R-mq-NrU" kind="relationship" relationship="rootViewController" id="UyE-Md-i5M"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XsV-GB-V5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1581.5999999999999" y="-447.52623688155927"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Ve-hV-Xm7">

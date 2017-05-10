@@ -114,14 +114,14 @@ class CreateVenueViewController: UITableViewController {
             Asahi.sharedInstance.addVenue(venue: venue)
                 
                 .then { uuid -> Void in
-                    
                     venue.uuid = uuid
                     
+                    // notify the delegate so it can reload
                     if let del = self.delegate {
                         del.createdVenue(venue)
-                        HUD.flash(.success, delay: 1.0)
-                        self.dismiss(animated: true, completion: nil)
                     }
+                    HUD.flash(.success, delay: 1.0)
+                    _ = self.navigationController?.popViewController(animated: true)
                     
                 }.catch { error -> Void in
                     

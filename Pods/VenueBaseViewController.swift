@@ -46,19 +46,19 @@ class VenueBaseViewController: UIViewController {
                 continue
             }
             guard let uuid = venue["uuid"].string else {
-                log.debug("found a venue with no uuid, skipping")
+                log.debug("venue named \(name) has no uuid, skipping")
                 continue
             }
             
             // Address components compiled into one human readable string
             guard let street = address["street"].string, let city = address["city"].string,
                 let state = address["state"].string, let zip = address["zip"].string else {
-                    log.debug("found a venue with incomplete address, skipping")
+                    log.debug("venue named \(name) has incomplete address, skipping")
                     continue
             }
             
             guard let latitude = geolocation["latitude"].double, let longitude = geolocation["longitude"].double else {
-                log.debug("found a venue with no geolocation, skipping")
+                log.debug("venue named \(name) has no geolocation, skipping")
                 continue
             }
             
