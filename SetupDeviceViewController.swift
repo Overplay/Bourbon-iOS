@@ -110,7 +110,10 @@ class SetupDeviceViewController: AccountBaseViewController {
                 self.errorBlock.isHidden = false
                     
             case AsahiError.tokenInvalid:
-                let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
+                let alertController = UIAlertController(
+                    title: "Uh oh!",
+                    message: "It looks like your session has expired. Please log back in.",
+                    preferredStyle: .alert)
                     
                 let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
                     Asahi.sharedInstance.logout()

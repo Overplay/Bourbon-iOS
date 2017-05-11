@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import SwiftyJSON
 
-class MapViewController : VenueBaseViewController {
+class MapViewController : UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -39,20 +39,27 @@ class MapViewController : VenueBaseViewController {
         self.getAndPlaceVenues()
     }
     
+    /// Makes a call to find all current venues and places them on the map.
     func getAndPlaceVenues() {
-        self.findAndProcessVenues()
+        StateController.sharedInstance.findAllVenues()
             .then { _ in
-                self.placeVenues()
+                self.placeVenues(StateController.sharedInstance.allVenues)
             }
             .catch { _ in
                 log.error("Error getting venues")
             }
     }
     
-    func placeVenues() {
+    /// Creates an `MKPointAnnotation` for each venue and places them on the map.
+    ///
+    /// - Parameter venues: a list of `OGVenue` objects
+    func placeVenues(_ venues: [OGVenue]) {
         
-        for venue in self.venues {
-            
+        // clear all current annotations or we will get duplicates
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        
+        // get current annotations and add to map
+        for venue in venues {
             let geocoder: CLGeocoder = CLGeocoder()
             
             // Convert address into coordinates for visual map items

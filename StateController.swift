@@ -18,7 +18,7 @@ class StateController {
     /// All venues.
     private(set) var allVenues = [OGVenue]()
     
-    /// Venues associated with the current user.
+    /// Venues associated with the current user (owned and managed).
     private(set) var myVenues = [VenueCollection]()
     
     /// Venues owned by the current user.
@@ -96,16 +96,16 @@ class StateController {
                 continue
             }
             guard let uuid = venue["uuid"].string else {
-                log.debug("found a venue with no uuid, skipping")
+                log.debug("found venue named \(name) with no uuid, skipping")
                 continue
             }
             guard let street = address["street"].string, let city = address["city"].string,
                 let state = address["state"].string, let zip = address["zip"].string else {
-                    log.debug("found a venue with incomplete address, skipping")
+                    log.debug("found venue named \(name) with incomplete address, skipping")
                     continue
             }
             guard let latitude = geolocation["latitude"].double, let longitude = geolocation["longitude"].double else {
-                log.debug("found a venue with no geolocation, skipping")
+                log.debug("found venue named \(name) with no geolocation, skipping")
                 continue
             }
             let ogVenue = OGVenue(name: name, street: street, city: city, state: state,
@@ -130,7 +130,7 @@ class StateController {
     // TODO: save state with NSCoder things, example: https://www.smashingmagazine.com/2016/05/better-architecture-for-ios-apps-model-view-controller-pattern/
 }
 
-/// Helper class to allow a representation of venues that are of a certain type
+/// Helper class to represent venues that are of a certain type.
 class VenueCollection {
     var label: String
     var venues: [OGVenue]

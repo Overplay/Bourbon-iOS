@@ -131,10 +131,19 @@ class CreateVenueViewController: UITableViewController {
                         self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to create a venue!"
                         self.errorBlock.isHidden = false
                         
-                    case AsahiError.tokenInvalid:
-                        // TODO: this person needs to log back in
-                        self.errorBlockLabel.text = "OH NOOOO"
-                        self.errorBlock.isHidden = false
+                    case AsahiError.tokenInvalid: // this person needs to log back in
+                        let alertController = UIAlertController(
+                            title: "Uh oh!",
+                            message: "It looks like your session has expired. Please log back in.",
+                            preferredStyle: .alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                            Asahi.sharedInstance.logout()
+                            self.performSegue(withIdentifier: "fromAddVenueToRegistration", sender: nil)
+                        }
+                        
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
                         
                     default: // otherwise unable to add the venue
                         self.errorBlockLabel.text = "Oh no...it looks like something went wrong adding your venue."

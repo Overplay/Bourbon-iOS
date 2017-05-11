@@ -64,7 +64,6 @@
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
 		4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308711E57B904005B5EAB /* NetworkReachability.swift */; };
 		4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */; };
-		4FB9249E1EAEBE7E0074FBF7 /* VenueBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB9249D1EAEBE7E0074FBF7 /* VenueBaseViewController.swift */; };
 		4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */; };
 		4FB924A21EB43E8B0074FBF7 /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */; };
 		4FC2FE181E66157F00753035 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2FE141E66153600753035 /* Poppins-Bold.ttf */; };
@@ -142,7 +141,6 @@
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
 		4F9308711E57B904005B5EAB /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsahiBaseViewController.swift; sourceTree = "<group>"; };
-		4FB9249D1EAEBE7E0074FBF7 /* VenueBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VenueBaseViewController.swift; path = Pods/VenueBaseViewController.swift; sourceTree = "<group>"; };
 		4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupDeviceViewController.swift; sourceTree = "<group>"; };
 		4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		4FC2FE131E66152900753035 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 				4F6A66AA1E7781AE001547E8 /* DeviceViewController.swift */,
 				1EF5B4FB1E935A0D001FD19E /* AppControlViewController.swift */,
 				1EF5B4FD1E935A7B001FD19E /* WebViewBaseViewController.swift */,
-				4FB9249D1EAEBE7E0074FBF7 /* VenueBaseViewController.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -569,7 +566,6 @@
 				4FEE45DB1EB837D90031C261 /* OGVenueTableViewDataSource.swift in Sources */,
 				1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */,
 				1ED96E991E2A0CEB00891EA8 /* MainTabsController.swift in Sources */,
-				4FB9249E1EAEBE7E0074FBF7 /* VenueBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
