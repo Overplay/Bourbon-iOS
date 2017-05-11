@@ -29,7 +29,7 @@ open class Asahi: NSObject {
     
     static let sharedInstance = Asahi()
     
-    // time to wait on the initial dispatch group to complete
+    /// time to wait on the initial dispatch group to complete
     let INIT_WAIT_TIME = 2.0
     
     var _postNotification = false
@@ -81,7 +81,7 @@ open class Asahi: NSObject {
                             encoding: ParameterEncoding) -> Promise<JSON> {
         
         // wait for initial DispatchGroup to complete
-        initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
+        _ = initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
         
         return Promise { fulfill, reject in
             Alamofire.request(endpoint,
