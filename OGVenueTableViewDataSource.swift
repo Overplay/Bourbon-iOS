@@ -8,24 +8,16 @@
 
 import UIKit
 
-/// Identifies the type of venues to associate with the table.
-///
-/// - ALL: all venues
-/// - MINE: only venues associated with the current user
-enum VenueType {
-    case ALL, MINE
-}
-
 /// `UITableView` data source that is used to provide the table with `OGVenue` data.
 class OGVenueTableViewDataSource: NSObject {
     
     /// Used to identify which venues to use in the table.
-    var type: VenueType
+    var type: OGVenueType
     
     /// Text to display when there is no data in the table.
     var noDataText: String
     
-    init(tableView: UITableView, type: VenueType, noDataText: String) {
+    init(_ tableView: UITableView, type: OGVenueType, noDataText: String) {
         self.type = type
         self.noDataText = noDataText
         super.init()
@@ -37,19 +29,23 @@ extension OGVenueTableViewDataSource: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         switch type {
-        case VenueType.ALL:
+        case OGVenueType.ALL:
             return 1
-        case VenueType.MINE:
+        case OGVenueType.MINE:
             return StateController.sharedInstance.myVenues.count
+        case OGVenueType.OWNED:
+            return 1
+        case OGVenueType.MANAGED:
+            return 1
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch type {
-        case VenueType.ALL:
-            return nil
-        case VenueType.MINE:
+        case OGVenueType.MINE:
             return StateController.sharedInstance.myVenues[section].label
+        default:
+            return nil
         }
     }
     
@@ -57,13 +53,17 @@ extension OGVenueTableViewDataSource: UITableViewDataSource {
         var rows = 0
         
         switch type {
-        case VenueType.ALL:
+        case OGVenueType.ALL:
             rows = StateController.sharedInstance.allVenues.count
-        case VenueType.MINE:
+        case OGVenueType.MINE:
             rows = StateController.sharedInstance.myVenues[section].venues.count
+        case OGVenueType.OWNED:
+            rows = StateController.sharedInstance.ownedVenues.count
+        case OGVenueType.MANAGED:
+            rows = StateController.sharedInstance.managedVenues.count
         }
         
-        if rows == 0 && type == VenueType.ALL { // display a message indicating there is no data
+        if rows == 0 && type != OGVenueType.MINE { // display a message indicating there is no data
             
             let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             noDataLabel.text = self.noDataText
@@ -87,10 +87,14 @@ extension OGVenueTableViewDataSource: UITableViewDataSource {
         let venue: OGVenue
         
         switch type {
-        case VenueType.ALL:
+        case OGVenueType.ALL:
             venue = StateController.sharedInstance.allVenues[indexPath.row]
-        case VenueType.MINE:
+        case OGVenueType.MINE:
             venue = StateController.sharedInstance.myVenues[indexPath.section].venues[indexPath.row]
+        case OGVenueType.OWNED:
+            venue = StateController.sharedInstance.ownedVenues[indexPath.row]
+        case OGVenueType.MANAGED:
+            venue = StateController.sharedInstance.managedVenues[indexPath.row]
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: OGVenueTableCell.identifier, for: indexPath) as! OGVenueTableCell
