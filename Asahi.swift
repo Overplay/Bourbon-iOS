@@ -27,11 +27,24 @@ enum AsahiError: Error {
 /// The interface to the Ourglass Cloud Server aka Asahi aka Applejack
 open class Asahi: NSObject {
     
-    let q = DispatchQueue.global()
-
     static let sharedInstance = Asahi()
     
+    /// time to wait on the initial dispatch group to complete
+    let INIT_WAIT_TIME = 2.0
+    
     var _postNotification = false
+    
+    let initGroup = DispatchGroup()
+    
+    override init() {
+        super.init()
+        // throwaway call to set the Sails cookie
+        // put in DispatchGroup so we don't make any other calls until this completes
+        self.initGroup.enter()
+        self.checkJWT().always {
+            self.initGroup.leave()
+        }
+    }
     
     /// Creates an API endpoint with the default base URL and default 
     /// port stored in Settings.
@@ -67,6 +80,9 @@ open class Asahi: NSObject {
                             method: HTTPMethod,
                             encoding: ParameterEncoding) -> Promise<JSON> {
         
+        // wait for initial DispatchGroup to complete
+        _ = initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
+        
         return Promise { fulfill, reject in
             Alamofire.request(endpoint,
                               method: method,
@@ -87,11 +103,11 @@ open class Asahi: NSObject {
                             if statusCode == 403 {
                                 Asahi.sharedInstance.checkJWT()
                                     .then { response -> Void in
-                                        log.debug("resource not allowed for this user")
+                                        log.debug("\(statusCode): resource not allowed for this user")
                                         reject(AsahiError.authFailure)
                                     }
                                     .catch { error -> Void in
-                                        log.debug("token invalid")
+                                        log.debug("\(statusCode): token invalid")
                                         reject(AsahiError.tokenInvalid)
                                 }
                             } else {
@@ -253,6 +269,10 @@ open class Asahi: NSObject {
     ///
     /// - Returns: a promise resolving in the response JSON
     func checkJWT() -> Promise<JSON> {
+        
+        // wait for initial DispatchGroup to complete
+        initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
+        
         // cannot use same getJson() as everyone else or we might end up in a loop on 403 error handling
         return Promise { fulfill, reject in
             Alamofire.request(createApiEndpoint("/user/checkjwt"),

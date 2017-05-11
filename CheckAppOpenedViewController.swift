@@ -16,9 +16,8 @@ class CheckAppOpenedViewController: UIViewController {
         self.view.backgroundColor = Style.darkGreyColor
         
         // check if this is the first time opening the app
-        log.info(Settings.sharedInstance.appOpened)
-        
         if (Settings.sharedInstance.appOpened == false || Settings.sharedInstance.alwaysShowIntro == true) {
+            
             Settings.sharedInstance.appOpened = true
             DispatchQueue.main.async(execute: {
                 self.performSegue(withIdentifier: "fromCheckToSlides", sender: nil)
@@ -29,7 +28,6 @@ class CheckAppOpenedViewController: UIViewController {
                 self.performSegue(withIdentifier: "fromCheckToReg", sender: nil)
             })
         }
-
     }
     
     override func didReceiveMemoryWarning() {

@@ -18,17 +18,10 @@ enum ASNotification: String {
     case asahiLoggedIn
     case networkChanged
     
-    //TODO can these two be collapsed into one method with an optional userInfo param?
-    
-    func issue(){
-        NotificationCenter.default.post(name: Notification.Name(rawValue: self.rawValue), object: nil)
-    }
-    
-    func issue(userInfo: Dictionary<String, Any>){
+    func issue(userInfo: Dictionary<String, Any>? = nil){
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: self.rawValue),
                                         object: nil, userInfo: userInfo)
-        
     }
     
 }
