@@ -33,6 +33,12 @@ open class Asahi: NSObject {
     
     var _postNotification = false
     
+    override init() {
+        super.init()
+        // throwaway call to set the Sails cookie
+        _ = self.checkJWT()
+    }
+    
     /// Creates an API endpoint with the default base URL and default 
     /// port stored in Settings.
     ///
