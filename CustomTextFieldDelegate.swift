@@ -15,7 +15,10 @@ class CustomTextFieldDelegate: NSObject {
     var textField: UITextField
     var inTableView: Bool
     
-    init(_ textField: UITextField, isValid: @escaping (String?) -> Bool, errorLabel: UILabel? = nil, inTableView: Bool = false) {
+    init(_ textField: UITextField,
+         isValid: @escaping (String?) -> Bool = defaultIsValid,
+         errorLabel: UILabel? = nil,
+         inTableView: Bool = false) {
         self.errorLabel = errorLabel
         self.isValid = isValid
         self.textField = textField
@@ -26,7 +29,6 @@ class CustomTextFieldDelegate: NSObject {
         applyTextFieldStyle()
         applyErrorLabelStyle()
     }
-    
     
     /// Applies a default style to the text field.
     func applyTextFieldStyle() {
@@ -43,6 +45,18 @@ class CustomTextFieldDelegate: NSObject {
             el.font = UIFont(name: Style.lightFont, size: 11.0)
         }
     }
+}
+
+/// Default validity check on the field's text that checks that it is there
+/// and not empty.
+///
+/// - Parameter text: the field's text
+/// - Returns: `true` if valid, `false` if not
+func defaultIsValid(_ text: String?) -> Bool {
+    if let t = text, t != "" {
+        return true
+    }
+    return false
 }
 
 extension CustomTextFieldDelegate: UITextFieldDelegate {
@@ -66,6 +80,7 @@ extension CustomTextFieldDelegate: UITextFieldDelegate {
                 el.isHidden = false
             }
             self.textField.changeBorderColor(UIColor.red)
+            self.textField.shake()
         }
     }
     

@@ -108,6 +108,7 @@ class SetupDeviceViewController: AccountBaseViewController {
             case AsahiError.authFailure:
                 self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to create a device!"
                 self.errorBlock.isHidden = false
+                self.errorBlock.shake()
                     
             case AsahiError.tokenInvalid:
                 let alertController = UIAlertController(

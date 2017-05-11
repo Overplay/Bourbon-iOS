@@ -10,48 +10,42 @@ import UIKit
 import SwiftyJSON
 import PKHUD
 
-class EditAccountViewController: AccountBaseViewController, UITextFieldDelegate {
+class EditAccountViewController: UITableViewController {
 
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var emailGoodCheck: UIImageView!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var emailErrorLabel: UILabel!
     
-    @IBAction func closeEditAccount(_ sender: AnyObject) {
-        self.navigationController!.popViewController(animated: true)
-    }
+    @IBOutlet weak var errorBlock: UIView!
+    @IBOutlet weak var errorBlockLabel: UILabel!
+    
+    var firstNameDelegate: CustomTextFieldDelegate?
+    var lastNameDelegate: CustomTextFieldDelegate?
+    var emailDelegate: CustomTextFieldDelegate?
     
     @IBAction func save(_ sender: AnyObject) {
         self.view.endEditing(true)
+        errorBlock.isHidden = true
         
-        guard let first = self.firstName.text else {
-            showAlert("Oops!", message: "The information you put in is not valid.")
-            return
+        guard let first = firstName.text, isValidName(first),
+            let last = lastName.text, isValidName(last),
+            let email = email.text, isValidEmail(email)
+            else {
+                firstNameDelegate?.textFieldDidEndEditing(firstName)
+                lastNameDelegate?.textFieldDidEndEditing(lastName)
+                emailDelegate?.textFieldDidEndEditing(self.email)
+                return
         }
         
-        guard let last = self.lastName.text else {
-            showAlert("Oops!", message: "The information you put in is not valid.")
-            return
-        }
-        
-        guard let email = self.email.text else {
-            showAlert("Oops!", message: "The information you put in is not valid.")
-            return
-        }
-        
-        if !email.isValidEmail() {
-            showAlert("Oops!", message: "That isn't a valid email.")
-            return
-        }
-        
-        let alertController = UIAlertController(title: "Save Changes", message: "Are you sure you want to save changes to your account information?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Save",
+                                                message: "Are you sure you want to save these changes?",
+                                                preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "No", style: .cancel) { (action) in }
         
         alertController.addAction(cancelAction)
         
-        // TODO: change account information with call to Asahi and store new info in Settings
         let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
             
             HUD.show(.progress)
@@ -67,13 +61,37 @@ class EditAccountViewController: AccountBaseViewController, UITextFieldDelegate 
                         HUD.flash(.success, delay:0.7)
                     }
                 
-                    .catch{ err -> Void in
+                    .catch{ error -> Void in
+                        switch error {
+                            
+                        case AsahiError.authFailure:
+                            self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to change this account's information!"
+                            self.errorBlock.isHidden = false
+                            
+                        case AsahiError.tokenInvalid:
+                            let alertController = UIAlertController(
+                                title: "Uh oh!",
+                                message: "It looks like your session has expired. Please log back in.",
+                                preferredStyle: .alert)
+                            
+                            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                                Asahi.sharedInstance.logout()
+                                self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+                            }
+                            
+                            alertController.addAction(okAction)
+                            self.present(alertController, animated: true, completion: nil)
+                            
+                        default:
+                            self.errorBlockLabel.text = "Uh oh! Something went wrong changing your account info."
+                            self.errorBlock.isHidden = false
+                        }
                         HUD.hide()
-                        self.showAlert("Unable to change account info", message: "")
                     }
             } else {
+                self.errorBlockLabel.text = "Oh no! It looks like your account info might be out of date. Try logging out and logging back in."
+                self.errorBlock.isHidden = false
                 HUD.hide()
-                self.showAlert("Unable to change account info", message: "")
             }
         }
         
@@ -85,103 +103,43 @@ class EditAccountViewController: AccountBaseViewController, UITextFieldDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.firstName.useCustomBottomBorder()
-        self.lastName.useCustomBottomBorder()
-        self.email.useCustomBottomBorder()
+        errorBlock.isHidden = true
         
-        self.emailGoodCheck.alpha = 0
-        self.saveButton.alpha = 0
-
-        self.firstName.text = Settings.sharedInstance.userFirstName
-        self.lastName.text = Settings.sharedInstance.userLastName
-        self.email.text = Settings.sharedInstance.userEmail
-        checkEmail()
-        /*
-        Asahi.sharedInstance.checkJWT()
-            .then { response -> Void in
-                log.debug("JWT check good")
-                if let first = response["firstName"].string {
-                    Settings.sharedInstance.userFirstName = first
-                    self.firstName.text = first
-                }
+        firstNameDelegate = CustomTextFieldDelegate(firstName, isValid: isValidName, inTableView: true)
+        lastNameDelegate = CustomTextFieldDelegate(lastName, isValid: isValidName, inTableView: true)
+        emailDelegate = CustomTextFieldDelegate(email, isValid: isValidEmail,
+                                                errorLabel: emailErrorLabel,
+                                                inTableView: true)
+        
+        Asahi.sharedInstance.checkSession()
+            .then { _ -> Void in
+                self.firstName.text = Settings.sharedInstance.userFirstName
+                self.lastName.text = Settings.sharedInstance.userLastName
+                self.email.text = Settings.sharedInstance.userEmail
                 
-                if let last = response["lastName"].string {
-                    Settings.sharedInstance.userLastName = last
-                    self.lastName.text = last
-                }
-                
-                if let email = response["email"].string {
-                    Settings.sharedInstance.userEmail = email
-                    self.email.text = email
-                    self.checkEmail()
-                }
-                
-                if let userId = response["id"].string {
-                    Settings.sharedInstance.userId = userId
-                }
-
-        }
-            .catch { error -> Void in
-                log.debug("BAD JWT")
-                let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
+            }.catch { error -> Void in
+            
+                let alertController = UIAlertController(title: "Uh oh!", message: "There was an issue getting your account information.", preferredStyle: .alert)
                 
                 let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                    Asahi.sharedInstance.logout()
-                    self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+                    self.performSegue(withIdentifier: "unwindToSettings", sender: nil)
                 }
-                
+                    
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
-                /*switch error {
-                    
-                case Asahi.AsahiError.authFailure:
-                    self.showAlert("Uh oh!", message: "You aren't authorized to access this resource.")
-                    
-                case Asahi.AsahiError.tokenInvalid:
-                    let alertController = UIAlertController(title: "Uh oh!", message: "It looks like your session has expired. Please log back in.", preferredStyle: .alert)
-                    
-                    let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                        Asahi.sharedInstance.logout()
-                        self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
-                    }
-                    
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                default:
-                    self.showAlert("Uh oh!", message: "There was an issue loading your account information.")
-                }*/
-        }*/
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(checkEmail), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func checkEmail() {
-        if let email = self.email.text {
-            
-            if email.isValidEmail() && self.emailGoodCheck.alpha == 0 {
-                fadeIn(self.emailGoodCheck)
-                fadeIn(self.saveButton)
-            }
-            
-            if !email.isValidEmail() {
-                fadeOut(self.emailGoodCheck)
-                fadeOut(self.saveButton)
-            }
         }
     }
     
-    // MARK: - UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
-            nextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
+    func isValidEmail(_ string: String?) -> Bool {
+        if let str = string {
+            return str.isValidEmail()
+        }
+        return false
+    }
+    
+    func isValidName(_ string: String?) -> Bool {
+        if let str = string, str != "" {
+            return true
         }
         return false
     }

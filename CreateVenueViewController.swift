@@ -100,6 +100,7 @@ class CreateVenueViewController: UITableViewController {
                     
                     self.errorBlockLabel.text = "Uh oh! It looks like the address you provided isn't valid."
                     self.errorBlock.isHidden = false
+                    self.errorBlock.shake()
                     
                     self.createVenueButton.isEnabled = true
                     self.createVenueButton.alpha = 1.0
@@ -130,6 +131,7 @@ class CreateVenueViewController: UITableViewController {
                     case AsahiError.authFailure:
                         self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to create a venue!"
                         self.errorBlock.isHidden = false
+                        self.errorBlock.shake()
                         
                     case AsahiError.tokenInvalid: // this person needs to log back in
                         let alertController = UIAlertController(
@@ -148,6 +150,7 @@ class CreateVenueViewController: UITableViewController {
                     default: // otherwise unable to add the venue
                         self.errorBlockLabel.text = "Oh no...it looks like something went wrong adding your venue."
                         self.errorBlock.isHidden = false
+                        self.errorBlock.shake()
                     }
                     
                     self.createVenueButton.isEnabled = true

@@ -123,7 +123,7 @@ open class Asahi: NSObject {
                                  encoding: URLEncoding.default)
     }
 
-    /// Registers a new user.
+    /// Registers a new user, sets `Settings` user variables, and gets a JWT.
     ///
     /// - Parameters:
     ///   - email: user's email
@@ -145,11 +145,14 @@ open class Asahi: NSObject {
                 .then{ _ -> Promise<String> in
                     Settings.sharedInstance.userEmail = email
                     return self.getToken()
-                    
-        }
+                }.then { token -> Promise<String> in
+                    return self.checkSession().then {_ -> Promise<String> in
+                        return token
+                    }
+            }
     }
     
-    /// Logs in to OurGlass and gets a JWT.
+    /// Logs in to OurGlass, sets `Settings` user variables, and gets a JWT.
     ///
     /// - Parameters:
     ///   - email: user email
@@ -157,9 +160,12 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in the user's JWT
     func login(_ email: String, password: String) -> Promise<String> {
         
-        return loginOnly(email, password: password)
-            .then{ _ -> Promise<String> in
+        return loginOnly(email, password: password).then { _ -> Promise<String> in
                 return self.getToken()
+        }.then { token -> Promise<String> in
+            return self.checkSession().then {_ -> Promise<String> in
+                return token
+            }
         }
     }
     
@@ -179,7 +185,7 @@ open class Asahi: NSObject {
             "type":"local"]
         
         return postJson(createApiEndpoint("/auth/login"), data: params)
-            .then{ json -> Bool in
+            .then{ response -> Bool in
                 Settings.sharedInstance.userEmail = email
                 ASNotification.asahiLoggedIn.issue()
                 return true
@@ -192,10 +198,38 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in the JWT
     func getToken() -> Promise<String> {
         return getJson(createApiEndpoint("/user/jwt"))
-            .then{ json -> String in
-                Settings.sharedInstance.userBelliniJWT = (json["token"].stringValue)
-                Settings.sharedInstance.userBelliniJWTExpiry = json["expires"].doubleValue/1000.0
-                return Settings.sharedInstance.userBelliniJWT!
+            .then{ response -> String in
+                
+                guard let token = response["token"].string,
+                    let expires = response["expires"].double else {
+                        throw AsahiError.malformedJson
+                }
+                Settings.sharedInstance.userBelliniJWT = token
+                Settings.sharedInstance.userBelliniJWTExpiry = expires / 1000.0
+                return token
+        }
+    }
+    
+    /// Checks the current user's session and stores user info if it finds it.
+    ///
+    /// - Returns: a promise resolving in the response JSON
+    func checkSession() -> Promise<JSON> {
+        return getJson(createApiEndpoint("/user/checksession"))
+            .then { response -> JSON in
+                
+                guard let id = response["id"].string,
+                    let first = response["firstName"].string,
+                    let last = response["lastName"].string,
+                    let email = response["email"].string else {
+                        log.error("unable to get user info from /user/checksession")
+                        return response
+                }
+                Settings.sharedInstance.userId = id
+                Settings.sharedInstance.userFirstName = first
+                Settings.sharedInstance.userLastName = last
+                Settings.sharedInstance.userEmail = email
+                
+                return response
         }
     }
     
@@ -219,8 +253,7 @@ open class Asahi: NSObject {
     ///
     /// - Returns: a promise resolving in the response JSON
     func checkJWT() -> Promise<JSON> {
-        // cannot use same getJson() as everyone else or we might end up in a 
-        // loop on 403 error handling
+        // cannot use same getJson() as everyone else or we might end up in a loop on 403 error handling
         return Promise { fulfill, reject in
             Alamofire.request(createApiEndpoint("/user/checkjwt"),
                               method: .get,
@@ -230,7 +263,22 @@ open class Asahi: NSObject {
                     switch response.result {
                         
                     case .success(let dict):
-                        fulfill(JSON(dict))
+                        let response = JSON(dict)
+                        
+                        guard let id = response["id"].string,
+                            let first = response["firstName"].string,
+                            let last = response["lastName"].string,
+                            let email = response["email"].string else {
+                                log.error("unable to get user info from /user/checkjwt")
+                                fulfill(response)
+                                return
+                        }
+                        
+                        Settings.sharedInstance.userId = id
+                        Settings.sharedInstance.userFirstName = first
+                        Settings.sharedInstance.userLastName = last
+                        Settings.sharedInstance.userEmail = email
+                        fulfill(response)
                         
                     case .failure(let error):
                         reject(error)

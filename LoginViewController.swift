@@ -38,11 +38,6 @@ class LoginViewController: LoginBaseViewController {
         emailGoodCheck.alpha = 0
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func checkFields(_ notification: Notification) {
         guard let email = emailTextField.text, let pwd = pwdTextField.text else {
@@ -67,12 +62,5 @@ class LoginViewController: LoginBaseViewController {
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
-    }
-        
-    func isValidEmail(_ string: String?) -> Bool {
-        if let str = string {
-            return str.isValidEmail()
-        }
-        return false
     }
 }

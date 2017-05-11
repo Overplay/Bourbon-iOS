@@ -63,6 +63,7 @@
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
 		4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308711E57B904005B5EAB /* NetworkReachability.swift */; };
+		4FAD9F7C1EC41C02003C2E48 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */; };
 		4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */; };
 		4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */; };
 		4FB924A21EB43E8B0074FBF7 /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */; };
@@ -140,6 +141,7 @@
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
 		4F9308711E57B904005B5EAB /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
+		4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsahiBaseViewController.swift; sourceTree = "<group>"; };
 		4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupDeviceViewController.swift; sourceTree = "<group>"; };
 		4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */,
 				4F7885A01EBD645600F91ED5 /* YelpVenue.swift */,
 				4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */,
+				4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */,
 				1ED96EA51E2A0D2000891EA8 /* LoginOrRegViewController.swift in Sources */,
 				1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */,
+				4FAD9F7C1EC41C02003C2E48 /* UIViewExtensions.swift in Sources */,
 				4F7885A31EBD73C200F91ED5 /* UIImageViewExtensions.swift in Sources */,
 				4F78859F1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift in Sources */,
 				4FEE45D71EB82CBF0031C261 /* PickVenueViewController.swift in Sources */,

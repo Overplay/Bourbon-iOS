@@ -9,186 +9,115 @@
 import UIKit
 import PKHUD
 
-class ChangePasswordViewController: AccountBaseViewController {
+class ChangePasswordViewController: UITableViewController {
     
-    var email: String?
+    @IBOutlet weak var curPwd: UITextField!
+    @IBOutlet weak var curPwdErrorLabel: UILabel!
     
-    @IBOutlet weak var currentPassword: UITextField!
-    @IBOutlet weak var newPassword: UITextField!
-    @IBOutlet weak var repeatNewPassword: UITextField!
-   
-    @IBOutlet weak var passwordCheck: UIImageView!
-    @IBOutlet weak var newPasswordCheck: UIImageView!
-    @IBOutlet weak var repeatNewPasswordCheck: UIImageView!
+    @IBOutlet weak var newPwd: UITextField!
+    @IBOutlet weak var newPwdErrorLabel: UILabel!
     
+    @IBOutlet weak var repeatPwd: UITextField!
+    @IBOutlet weak var repeatPwdErrorLabel: UILabel!
+    
+    @IBOutlet weak var errorBlock: UIView!
+    @IBOutlet weak var errorBlockLabel: UILabel!
+ 
+    var curPwdDelegate: CustomTextFieldDelegate?
+    var newPwdDelegate: CustomTextFieldDelegate?
+    var repeatPwdDelegate: CustomTextFieldDelegate?
+ 
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func save(_ sender: Any) {
-        savePassword()
-    }
-    
-    @IBAction func currentPasswordNext(_ sender: Any) {
-        newPassword.becomeFirstResponder()
-    }
-    
-    @IBAction func newPasswordNext(_ sender: Any) {
-        repeatNewPassword.becomeFirstResponder()
-    }
-    
-    @IBAction func repeatPasswordNext(_ sender: Any) {
-        savePassword()
-    }
-    
-   func savePassword() {
-        // TODO: check that given password matches account?
-        
+        HUD.show(.progress)
         self.view.endEditing(true)
+        errorBlock.isHidden = true
+        repeatPwdErrorLabel.text = ""
         
-        if checkInputs() && checkRepeatPassword() {
-            
-            let alertController = UIAlertController(title: "Change Password", message: "Are you sure you want to change your password?", preferredStyle: .alert)
-            
-            let cancelAction = UIAlertAction(title: "No", style: .cancel) { (action) in }
-            
-            alertController.addAction(cancelAction)
-            
-            let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+        // check that there are valid passwords in each field
+        guard let cur = curPwd.text, isValidPwd(cur),
+            let new = newPwd.text, isValidPwd(new),
+            let rpt = repeatPwd.text, isValidPwd(rpt) else {
                 
-                HUD.show(.progress)
+                HUD.hide()
+                curPwdDelegate?.textFieldDidEndEditing(curPwd)
+                newPwdDelegate?.textFieldDidEndEditing(newPwd)
+                repeatPwdDelegate?.textFieldDidEndEditing(repeatPwd)
+                return
+        }
+        
+        // check that the new and repeat passwords are equal
+        guard new == rpt else {
+            HUD.hide()
+            repeatPwdErrorLabel.text = "Oops! The passwords don't match!"
+            repeatPwdErrorLabel.isHidden = false
+            repeatPwd.changeBorderColor(UIColor.red)
+            repeatPwd.shake()
+            return
+        }
+        
+        // check that we have an email
+        guard let email = Settings.sharedInstance.userEmail else {
+            HUD.hide()
+            errorBlockLabel.text = "Oh no! Your account information out-of-date. Try logging back in."
+            errorBlock.isHidden = false
+            errorBlock.shake()
+            return
+        }
+        
+        Asahi.sharedInstance.loginOnly(email, password: cur).then { _ -> Void in
+            
+            // current password is correct, move on to changing the password
+            Asahi.sharedInstance.changePassword(email, newPassword: new).then { _ -> Void in
                 
-                if let email = self.email {
-                    if let newPwd = self.newPassword.text {
-                        
-                        Asahi.sharedInstance.changePassword(email, newPassword: newPwd)
-                            
-                            .then{ response -> Void in
-                                log.debug("Password changed")
-                                HUD.flash(.success, delay:0.7)
-                            }
-                            
-                            .catch{ err -> Void in
-                                HUD.hide()
-                                self.showAlert("Unable to change password", message: "")
-                        }
-                    } else {
-                        HUD.hide()
-                        self.showAlert("Unable to change password", message: "")
-                    }
-                } else {
+                // password successfully changed
+                HUD.flash(.success, delay: 0.7)
+                self.dismiss(animated: true, completion: nil)
+                
+                // there was an error changing the password
+                }.catch { error -> Void in
                     HUD.hide()
-                    self.showAlert("Unable to change password", message: "")
+                    self.errorBlockLabel.text = "Something went wrong changing your password."
+                    self.errorBlock.isHidden = false
+                    self.errorBlock.shake()
                 }
-            }
             
-            alertController.addAction(okAction)
-            
-            self.present(alertController, animated: true, completion: nil)
+        // the current password is incorrect
+        }.catch { error -> Void in
+            HUD.hide()
+            self.curPwdErrorLabel.isHidden = false
+            self.curPwd.changeBorderColor(UIColor.red)
+            self.curPwd.shake()
         }
-            
-        else if !checkRepeatPassword() {
-            let alertController = UIAlertController(title: "New Password", message: "Your passwords do not match.", preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            }
-            
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
-            
-        else {
-            let alertController = UIAlertController(title: "Oops!", message: "The information you provided is not valid.", preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            }
-            
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Change password"
+        errorBlock.isHidden = true
+        repeatPwdErrorLabel.text = ""
         
-        self.currentPassword.useCustomBottomBorder()
-        self.newPassword.useCustomBottomBorder()
-        self.repeatNewPassword.useCustomBottomBorder()
-
-        self.passwordCheck.alpha = 0
-        self.newPasswordCheck.alpha = 0
-        self.repeatNewPasswordCheck.alpha = 0
-        self.email = Settings.sharedInstance.userEmail
-        _ = checkInputs()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(checkInputs), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
+        curPwdDelegate = CustomTextFieldDelegate(curPwd,
+                                                 isValid: isValidPwd,
+                                                 errorLabel: curPwdErrorLabel,
+                                                 inTableView: true)
+        newPwdDelegate = CustomTextFieldDelegate(newPwd,
+                                                 isValid: isValidPwd,
+                                                 errorLabel: newPwdErrorLabel,
+                                                 inTableView: true)
+        repeatPwdDelegate = CustomTextFieldDelegate(repeatPwd,
+                                                 isValid: isValidPwd,
+                                                 errorLabel: repeatPwdErrorLabel,
+                                                 inTableView: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func checkInputs() -> Bool {
-        
-        // we want to make sure all of these checks are done so that the proper animations occur
-        let currentPasswordValid = checkPassword(self.currentPassword, checkImage: self.passwordCheck)
-        let newPasswordValid = checkPassword(self.newPassword, checkImage: self.newPasswordCheck)
-        let repeatPasswordValid = checkRepeatPassword()
-        
-        return currentPasswordValid && newPasswordValid && repeatPasswordValid
-    }
-    
-    func checkPassword(_ textField: UITextField, checkImage: UIImageView) -> Bool {
-        if let pwd = textField.text {
-            
-            if pwd.isValidPwd() && checkImage.alpha == 0 {
-                fadeIn(checkImage)
-                return true
-            }
-            
-            if !pwd.isValidPwd() {
-                fadeOut(checkImage)
-                return false
-            }
-            
-            else {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
-    func checkRepeatPassword() -> Bool {
-        if let pwd = self.newPassword.text {
-            if let rpwd = self.repeatNewPassword.text {
-                
-                if !pwd.isValidPwd() || pwd != rpwd {
-                    fadeOut(self.repeatNewPasswordCheck)
-                    return false
-                }
-            
-                else {
-                    fadeIn(self.repeatNewPasswordCheck)
-                    return true
-                }
-            }
+    func isValidPwd(_ string: String?) -> Bool {
+        if let str = string {
+            return str.isValidPwd()
         }
         return false
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

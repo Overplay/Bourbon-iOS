@@ -70,6 +70,7 @@ extension PickVenueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel?.font = UIFont(name: Style.mediumFont, size: 11.0)
+            header.textLabel?.textColor = UIColor.white
         }
     }
     
