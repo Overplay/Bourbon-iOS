@@ -27,16 +27,23 @@ enum AsahiError: Error {
 /// The interface to the Ourglass Cloud Server aka Asahi aka Applejack
 open class Asahi: NSObject {
     
-    let q = DispatchQueue.global()
-
     static let sharedInstance = Asahi()
     
+    // time to wait on the initial dispatch group to complete
+    let INIT_WAIT_TIME = 2.0
+    
     var _postNotification = false
+    
+    let initGroup = DispatchGroup()
     
     override init() {
         super.init()
         // throwaway call to set the Sails cookie
-        _ = self.checkJWT()
+        // put in DispatchGroup so we don't make any other calls until this completes
+        self.initGroup.enter()
+        self.checkJWT().always {
+            self.initGroup.leave()
+        }
     }
     
     /// Creates an API endpoint with the default base URL and default 
@@ -72,6 +79,9 @@ open class Asahi: NSObject {
                             data: Dictionary<String, Any>,
                             method: HTTPMethod,
                             encoding: ParameterEncoding) -> Promise<JSON> {
+        
+        // wait for initial DispatchGroup to complete
+        initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
         
         return Promise { fulfill, reject in
             Alamofire.request(endpoint,
@@ -259,6 +269,10 @@ open class Asahi: NSObject {
     ///
     /// - Returns: a promise resolving in the response JSON
     func checkJWT() -> Promise<JSON> {
+        
+        // wait for initial DispatchGroup to complete
+        initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
+        
         // cannot use same getJson() as everyone else or we might end up in a loop on 403 error handling
         return Promise { fulfill, reject in
             Alamofire.request(createApiEndpoint("/user/checkjwt"),
