@@ -24,7 +24,9 @@ struct SettingsOption {
     }
 }
 
-class AccountViewController : AccountBaseViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class SettingsViewController : AccountBaseViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
+    @IBAction func unwindToSettings(segue: UIStoryboardSegue) { }
     
     var tableView: UITableView!
     

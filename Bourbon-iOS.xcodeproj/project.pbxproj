@@ -29,7 +29,7 @@
 		1ED96EB11E2A0D4700891EA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EAF1E2A0D4700891EA8 /* MapViewController.swift */; };
 		1ED96EBA1E2A0D6000891EA8 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */; };
 		1ED96EBB1E2A0D6000891EA8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */; };
-		1ED96EBC1E2A0D6000891EA8 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */; };
+		1ED96EBC1E2A0D6000891EA8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB51E2A0D6000891EA8 /* SettingsViewController.swift */; };
 		1ED96EBD1E2A0D6000891EA8 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */; };
 		1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */; };
 		1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */; };
@@ -102,7 +102,7 @@
 		1ED96EAF1E2A0D4700891EA8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
 		1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		1ED96EB51E2A0D6000891EA8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountBaseViewController.swift; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 				4F7885991EBBBC7100F91ED5 /* Setup Device */,
 				1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */,
 				1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */,
-				1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */,
+				1ED96EB51E2A0D6000891EA8 /* SettingsViewController.swift */,
 				1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */,
 				1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */,
 				1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */,
@@ -536,7 +536,7 @@
 				1ED96EA71E2A0D2000891EA8 /* EnterEmailViewController.swift in Sources */,
 				1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */,
 				4F6A669F1E739069001547E8 /* OGVenue.swift in Sources */,
-				1ED96EBC1E2A0D6000891EA8 /* AccountViewController.swift in Sources */,
+				1ED96EBC1E2A0D6000891EA8 /* SettingsViewController.swift in Sources */,
 				4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */,
 				4F6A66AB1E7781AE001547E8 /* DeviceViewController.swift in Sources */,
 				1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */,

@@ -97,6 +97,9 @@ class SetupDeviceViewController: AccountBaseViewController {
             self.createDeviceButton.isEnabled = true
             self.createDeviceButton.alpha = 1.0
             HUD.flash(.success, delay: 1.0)
+            
+            // unwind to main settings page
+            self.performSegue(withIdentifier: "unwindToSettings", sender: nil)
         
         }.catch { error -> Void in
             

@@ -37,7 +37,7 @@
         <!--Account-->
         <scene sceneID="IuN-HZ-Bl3">
             <objects>
-                <viewController title="Account" id="Owa-eN-qLl" customClass="AccountViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Account" id="Owa-eN-qLl" customClass="SettingsViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="QnN-7p-229">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -52,7 +52,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSK-Fu-kDi">
-                                            <rect key="frame" x="18" y="10" width="39.5" height="25"/>
+                                            <rect key="frame" x="18" y="10.5" width="39.5" height="25"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -336,7 +336,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Chp-eT-dcO">
-                                <rect key="frame" x="16" y="228" width="121" height="21"/>
+                                <rect key="frame" x="16" y="228" width="120.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Zz2-pS-g4K"/>
                                 </constraints>
@@ -354,7 +354,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPEAT NEW PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHC-lv-uZJ">
-                                <rect key="frame" x="16" y="342" width="177" height="21"/>
+                                <rect key="frame" x="16" y="342" width="176.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="A9R-tN-H6r"/>
                                 </constraints>
@@ -481,7 +481,7 @@
         <image name="ic_settings_white" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Xav-D5-LI7"/>
+        <segue reference="FXz-Ja-KBj"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

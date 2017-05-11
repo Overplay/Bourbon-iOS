@@ -203,9 +203,11 @@
                         <outlet property="venueAddress" destination="xFs-hL-hRB" id="GOQ-Gk-NJu"/>
                         <outlet property="venueName" destination="FcW-qf-tDz" id="0ot-Md-iLm"/>
                         <segue destination="zUp-3i-xyH" kind="showDetail" identifier="fromSetupDeviceToRegistration" id="Smb-wk-eDj"/>
+                        <segue destination="W2f-Mq-e7w" kind="unwind" identifier="unwindToSettings" unwindAction="unwindToSettingsWithSegue:" id="uBJ-AK-8m1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Phv-7z-k9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="W2f-Mq-e7w" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2377" y="296"/>
         </scene>
