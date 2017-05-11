@@ -93,11 +93,11 @@ open class Asahi: NSObject {
                             if statusCode == 403 {
                                 Asahi.sharedInstance.checkJWT()
                                     .then { response -> Void in
-                                        log.debug("resource not allowed for this user")
+                                        log.debug("\(statusCode): resource not allowed for this user")
                                         reject(AsahiError.authFailure)
                                     }
                                     .catch { error -> Void in
-                                        log.debug("token invalid")
+                                        log.debug("\(statusCode): token invalid")
                                         reject(AsahiError.tokenInvalid)
                                 }
                             } else {
