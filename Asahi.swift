@@ -271,7 +271,7 @@ open class Asahi: NSObject {
     func checkJWT() -> Promise<JSON> {
         
         // wait for initial DispatchGroup to complete
-        initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
+        _ = initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
         
         // cannot use same getJson() as everyone else or we might end up in a loop on 403 error handling
         return Promise { fulfill, reject in
