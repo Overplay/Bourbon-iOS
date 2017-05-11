@@ -10,16 +10,28 @@ import Foundation
 import PromiseKit
 import SwiftyJSON
 
+/// Provides the current state of the application.
 class StateController {
     
     static let sharedInstance = StateController()
     
+    /// All venues.
     private(set) var allVenues = [OGVenue]()
     
-    private(set) var myVenues = [OGVenue]()
+    /// Venues associated with the current user (owned and managed).
+    private(set) var myVenues = [VenueCollection]()
+    
+    /// Venues owned by the current user.
+    private(set) var ownedVenues = [OGVenue]()
+    
+    /// Venues managed by the current user.
+    private(set) var managedVenues = [OGVenue]()
     
     private init() {}
     
+    /// Finds all venues and updates the current state.
+    ///
+    /// - Returns: a promise resolving in `true` on success
     func findAllVenues() -> Promise<Bool> {
         return Promise { fulfill, reject in
             
@@ -35,6 +47,9 @@ class StateController {
         }
     }
     
+    /// Finds the venues associated with the current user.
+    ///
+    /// - Returns: a promise resolving in `true` on success
     func findMyVenues() -> Promise<Bool> {
         return Promise { fulfill, reject in
             
@@ -43,7 +58,10 @@ class StateController {
                 .then { response -> Void in
                     
                     if let owned = response["owned"].array, let managed = response["managed"].array {
-                        self.myVenues = self.processVenues(JSON(owned + managed))
+                        self.ownedVenues = self.processVenues(JSON(owned))
+                        self.managedVenues = self.processVenues(JSON(managed))
+                        self.myVenues = [VenueCollection("Owned", self.ownedVenues),
+                                         VenueCollection("Managed", self.managedVenues)]
                         fulfill(true)
                     } else {
                         reject(AsahiError.malformedJson)
@@ -55,7 +73,11 @@ class StateController {
         }
     }
     
-    func processVenues( _ inboundVenueJson: JSON ) -> [OGVenue] {
+    /// Processes the venues JSON as `OGVenue` objects and sorts the venues alphabetically.
+    ///
+    /// - Parameter inboundVenueJson: venue JSON
+    /// - Returns: an array of the resulting `OGVenue` objects
+    private func processVenues( _ inboundVenueJson: JSON ) -> [OGVenue] {
         
         var venues = [OGVenue]()
         
@@ -74,19 +96,31 @@ class StateController {
                 continue
             }
             guard let uuid = venue["uuid"].string else {
-                log.debug("found a venue with no uuid, skipping")
+                log.debug("found venue named \(name) with no uuid, skipping")
                 continue
             }
             guard let street = address["street"].string, let city = address["city"].string,
                 let state = address["state"].string, let zip = address["zip"].string else {
-                    log.debug("found a venue with incomplete address, skipping")
+                    log.debug("found venue named \(name) with incomplete address, skipping")
                     continue
             }
             guard let latitude = geolocation["latitude"].double, let longitude = geolocation["longitude"].double else {
-                log.debug("found a venue with no geolocation, skipping")
+                log.debug("found venue named \(name) with no geolocation, skipping")
                 continue
             }
-            venues.append(OGVenue(name: name, street: street, city: city, state: state, zip: zip, latitude: latitude, longitude: longitude, uuid: uuid))
+            let ogVenue = OGVenue(name: name, street: street, city: city, state: state,
+                                  zip: zip, latitude: latitude, longitude: longitude,
+                                  uuid: uuid)
+            
+            // check for optional values
+            if let street2 = address["street2"].string {
+                ogVenue.street2 = street2
+            }
+            if let yelpId = venue["yelpId"].string {
+                ogVenue.yelpId = yelpId
+            }
+            
+            venues.append(ogVenue)
         }
         
         venues.sort{ $0.name < $1.name }
@@ -94,4 +128,15 @@ class StateController {
     }
     
     // TODO: save state with NSCoder things, example: https://www.smashingmagazine.com/2016/05/better-architecture-for-ios-apps-model-view-controller-pattern/
+}
+
+/// Helper class to represent venues that are of a certain type.
+class VenueCollection {
+    var label: String
+    var venues: [OGVenue]
+    
+    init(_ label: String, _ venues: [OGVenue]) {
+        self.label = label
+        self.venues = venues
+    }
 }

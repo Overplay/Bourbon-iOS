@@ -24,7 +24,9 @@ struct SettingsOption {
     }
 }
 
-class AccountViewController : AccountBaseViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class SettingsViewController : AccountBaseViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
+    @IBAction func unwindToSettings(segue: UIStoryboardSegue) { }
     
     var tableView: UITableView!
     
@@ -32,7 +34,6 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
         //SettingsOption(label: "Invite Friends", image: "ic_card_giftcard_white_18pt"),
         SettingsOption(label: "Setup OG Device", image: ""),
         SettingsOption(label: "Edit Account", image: "ic_perm_identity_white_18pt"),
-        // SettingsOption(label: "Add/Manage Venues", image: "ic_add_location_white_18pt"),
         SettingsOption(label: "Log Out", image: "ic_first_page_white_18pt")]
     
     override func viewDidLoad() {
@@ -58,11 +59,11 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
         
         switch op.label {
         case "Setup OG Device":
-            self.performSegue(withIdentifier: "fromAccountToSetup", sender: op)
+            self.performSegue(withIdentifier: "fromSettingsToSetup", sender: op)
         case "Invite Friends":
-            self.performSegue(withIdentifier: "fromAccountToInvite", sender: op)
+            self.performSegue(withIdentifier: "fromSettingsToInvite", sender: op)
         case "Edit Account":
-            self.performSegue(withIdentifier: "fromAccountToEdit", sender: op)
+            self.performSegue(withIdentifier: "fromSettingsToEdit", sender: op)
         case "Log Out":
             logout()
         default:
@@ -105,7 +106,7 @@ class AccountViewController : AccountBaseViewController, UITableViewDelegate, UI
         let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
             Asahi.sharedInstance.logout()
             HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 0.5, completion: { (_) in
-                self.performSegue(withIdentifier: "fromAccountToRegistration", sender: nil)
+                self.performSegue(withIdentifier: "fromSettingsToRegistration", sender: nil)
             })
         }
         

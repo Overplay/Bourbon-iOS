@@ -15,7 +15,10 @@ class LoginViewController: LoginBaseViewController {
     
     @IBOutlet var emailTextField: UITextField!    
     @IBOutlet var emailLabel: UILabel!
+    @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet var emailGoodCheck: UIImageView!
+    
+    var emailTextFieldDelegate: CustomTextFieldDelegate?
     
     @IBAction func goPressed(_ sender: UIButton){
         loginWithSegue(emailTextField.text!, pwd: pwdTextField.text!, segueId: segueId)
@@ -24,7 +27,9 @@ class LoginViewController: LoginBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailTextField.useCustomBottomBorder()
+        emailTextFieldDelegate = CustomTextFieldDelegate(emailTextField,
+                                                         isValid: isValidEmail,
+                                                         errorLabel: emailErrorLabel)
         
         UIView.animate(withDuration: 0.35, delay: 0.65, options: .curveEaseInOut, animations: { 
             self.emailLabel.alpha = CGFloat(1.0)
@@ -32,11 +37,6 @@ class LoginViewController: LoginBaseViewController {
         
         emailGoodCheck.alpha = 0
 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func checkFields(_ notification: Notification) {
@@ -63,15 +63,4 @@ class LoginViewController: LoginBaseViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

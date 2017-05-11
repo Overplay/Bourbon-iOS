@@ -13,6 +13,7 @@ var borderLayers = NSMutableArray()
 
 extension UITextField {
     
+    /// Uses a custom, bottom-only, white border on the text field.
     func useCustomBottomBorder() {
         self.borderStyle = .none
         let border = CALayer()
@@ -27,6 +28,7 @@ extension UITextField {
         self.layer.masksToBounds = true
     }
     
+    /// Removes the custom bottom border (if it has been added to the text field).
     func removeBottomBorder() {
         if let sublayers = self.layer.sublayers {
             for layer in sublayers {
@@ -38,6 +40,9 @@ extension UITextField {
         }
     }
     
+    /// Changes the border color.
+    ///
+    /// - Parameter color: new border color
     func changeBorderColor(_ color: UIColor) {
         if let sublayers = self.layer.sublayers {
             for layer in sublayers {

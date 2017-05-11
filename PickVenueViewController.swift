@@ -8,25 +8,18 @@
 
 import UIKit
 
-protocol PickVenueViewControllerDelegate {
-    func selectVenue(_ venue: OGVenue)
-}
-
 class PickVenueViewController: UIViewController {
     
     let emptyTableText = "It looks like you don't have any venues!"
     
-    var delegate: PickVenueViewControllerDelegate?
     var tableViewDataSource: OGVenueTableViewDataSource?
 
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func cancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Pick a venue"
         
         self.view.backgroundColor = UIColor(white: 51/255, alpha: 1.0)
     
@@ -47,23 +40,37 @@ class PickVenueViewController: UIViewController {
         if let vc = segue.destination as? CreateVenueViewController {
             vc.delegate = self
         }
+        
+        if let vc = segue.destination as? SetupDeviceViewController,
+            let venue = sender as? OGVenue {
+            vc.selectedVenue = venue
+        }
     }
 }
 
 extension PickVenueViewController: CreateVenueViewControllerDelegate {
     func createdVenue(_ venue: OGVenue) {
-        if let del = self.delegate {
-            del.selectVenue(venue)
-            dismiss(animated: true, completion: nil)
+        // refresh venues list
+        StateController.sharedInstance.findMyVenues()
+            .then { _ -> Void in
+                self.tableView.reloadData()
+            }
+            .catch { err -> Void in
+                log.debug(err)
         }
     }
 }
 
 extension PickVenueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let del = self.delegate {
-            del.selectVenue(StateController.sharedInstance.myVenues[indexPath.row])
-            dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "fromPickVenueToSetup",
+                     sender: StateController.sharedInstance.myVenues[indexPath.section].venues[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.font = UIFont(name: Style.mediumFont, size: 11.0)
+            header.textLabel?.textColor = UIColor.white
         }
     }
     

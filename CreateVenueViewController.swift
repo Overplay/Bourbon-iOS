@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import PKHUD
+import SwiftyJSON
 
 protocol CreateVenueViewControllerDelegate {
     func createdVenue(_ venue: OGVenue)
@@ -40,6 +41,9 @@ class CreateVenueViewController: UITableViewController {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zip: UITextField!
     
+    @IBOutlet weak var errorBlock: UIView!
+    @IBOutlet weak var errorBlockLabel: UILabel!
+    
     // keep a reference to the text field delegates or they will get deallocated
     var textFieldDelegates = [CustomTextFieldDelegate]()
     
@@ -47,41 +51,111 @@ class CreateVenueViewController: UITableViewController {
     
     @IBAction func createVenue(_ sender: Any) {
         self.view.endEditing(true)
+        errorBlock.isHidden = true
         createVenueButton.isEnabled = false
         createVenueButton.alpha = 0.5
         createVenueActivityIndicator.startAnimating()
         
-        let uuid = "fake_uuid"
-        
-        // TODO: make API call and include yelpId if we have it
-        
-        guard let name = venueName.text, let addr1 = address1.text,
-            let addr2 = address2.text, let city = city.text,
-            let state = state.text, let zip = zip.text else {
+        guard let name = venueName.text, isValidEntry(name),
+            let addr1 = address1.text, isValidEntry(addr1),
+            let addr2 = address2.text,
+            let city = city.text, isValidEntry(city),
+            let state = state.text, isValidEntry(state),
+            let zip = zip.text, isValidEntry(zip) else {
+                
+                // highlight red any fields that were not valid
+                for del in textFieldDelegates {
+                    del.textFieldDidEndEditing(UITextField())
+                }
+                
                 createVenueButton.isEnabled = true
                 createVenueButton.alpha = 1.0
                 createVenueActivityIndicator.stopAnimating()
                 return
         }
         
-        let venue = OGVenue(name: name, street: addr1 + " " + addr2, city: city, state: state, zip: zip, latitude: 0.0, longitude: 0.0, uuid: uuid)
+        let venue = OGVenue(name: name,
+                            street: addr1, street2: addr2,
+                            city: city, state: state, zip: zip,
+                            latitude: 0.0, longitude: 0.0, uuid: "")
+        
+        if let yv = selectedYelpVenue {
+            venue.yelpId = yv.yelpId
+        }
+        
         let geocoder = CLGeocoder()
             
         geocoder.geocodeAddressString(venue.address) { (placemarks, error) -> Void in
             guard let placemark = placemarks?.first,
                 let coords = placemark.location?.coordinate else {
+                    
+                    // unable to geocode this address, so we will show an error
+                    self.address1.changeBorderColor(UIColor.red)
+                    if addr2 != "" {
+                        self.address2.changeBorderColor(UIColor.red)
+                    }
+                    self.city.changeBorderColor(UIColor.red)
+                    self.state.changeBorderColor(UIColor.red)
+                    self.zip.changeBorderColor(UIColor.red)
+                    
+                    self.errorBlockLabel.text = "Uh oh! It looks like the address you provided isn't valid."
+                    self.errorBlock.isHidden = false
+                    self.errorBlock.shake()
+                    
                     self.createVenueButton.isEnabled = true
                     self.createVenueButton.alpha = 1.0
                     self.createVenueActivityIndicator.stopAnimating()
                     return
             }
+            
+            // we were able to geocode the address
             venue.latitude = coords.latitude
             venue.longitude = coords.longitude
             
-            if let del = self.delegate {
-                del.createdVenue(venue)
-                HUD.flash(.success, delay: 1.0)
-                self.dismiss(animated: true, completion: nil)
+            Asahi.sharedInstance.addVenue(venue: venue)
+                
+                .then { uuid -> Void in
+                    venue.uuid = uuid
+                    
+                    // notify the delegate so it can reload
+                    if let del = self.delegate {
+                        del.createdVenue(venue)
+                    }
+                    HUD.flash(.success, delay: 1.0)
+                    _ = self.navigationController?.popViewController(animated: true)
+                    
+                }.catch { error -> Void in
+                    
+                    switch error {
+                        
+                    case AsahiError.authFailure:
+                        self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to create a venue!"
+                        self.errorBlock.isHidden = false
+                        self.errorBlock.shake()
+                        
+                    case AsahiError.tokenInvalid: // this person needs to log back in
+                        let alertController = UIAlertController(
+                            title: "Uh oh!",
+                            message: "It looks like your session has expired. Please log back in.",
+                            preferredStyle: .alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                            Asahi.sharedInstance.logout()
+                            self.performSegue(withIdentifier: "fromAddVenueToRegistration", sender: nil)
+                        }
+                        
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    default: // otherwise unable to add the venue
+                        self.errorBlockLabel.text = "Oh no...it looks like something went wrong adding your venue."
+                        self.errorBlock.isHidden = false
+                        self.errorBlock.shake()
+                    }
+                    
+                    self.createVenueButton.isEnabled = true
+                    self.createVenueButton.alpha = 1.0
+                    self.createVenueActivityIndicator.stopAnimating()
             }
         }
     }

@@ -29,7 +29,7 @@
 		1ED96EB11E2A0D4700891EA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EAF1E2A0D4700891EA8 /* MapViewController.swift */; };
 		1ED96EBA1E2A0D6000891EA8 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */; };
 		1ED96EBB1E2A0D6000891EA8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */; };
-		1ED96EBC1E2A0D6000891EA8 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */; };
+		1ED96EBC1E2A0D6000891EA8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB51E2A0D6000891EA8 /* SettingsViewController.swift */; };
 		1ED96EBD1E2A0D6000891EA8 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */; };
 		1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */; };
 		1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */; };
@@ -63,8 +63,8 @@
 		4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */; };
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
 		4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308711E57B904005B5EAB /* NetworkReachability.swift */; };
+		4FAD9F7C1EC41C02003C2E48 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */; };
 		4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */; };
-		4FB9249E1EAEBE7E0074FBF7 /* VenueBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB9249D1EAEBE7E0074FBF7 /* VenueBaseViewController.swift */; };
 		4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */; };
 		4FB924A21EB43E8B0074FBF7 /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */; };
 		4FC2FE181E66157F00753035 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2FE141E66153600753035 /* Poppins-Bold.ttf */; };
@@ -102,7 +102,7 @@
 		1ED96EAF1E2A0D4700891EA8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
 		1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		1ED96EB51E2A0D6000891EA8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountBaseViewController.swift; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 		4F9308651E577CDC005B5EAB /* IntroSlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroSlidesViewController.swift; sourceTree = "<group>"; };
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
 		4F9308711E57B904005B5EAB /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
+		4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsahiBaseViewController.swift; sourceTree = "<group>"; };
-		4FB9249D1EAEBE7E0074FBF7 /* VenueBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VenueBaseViewController.swift; path = Pods/VenueBaseViewController.swift; sourceTree = "<group>"; };
 		4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupDeviceViewController.swift; sourceTree = "<group>"; };
 		4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		4FC2FE131E66152900753035 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -260,7 +260,6 @@
 				4F6A66AA1E7781AE001547E8 /* DeviceViewController.swift */,
 				1EF5B4FB1E935A0D001FD19E /* AppControlViewController.swift */,
 				1EF5B4FD1E935A7B001FD19E /* WebViewBaseViewController.swift */,
-				4FB9249D1EAEBE7E0074FBF7 /* VenueBaseViewController.swift */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -305,7 +304,7 @@
 				4F7885991EBBBC7100F91ED5 /* Setup Device */,
 				1ED96EB31E2A0D6000891EA8 /* EditAccountViewController.swift */,
 				1ED96EB41E2A0D6000891EA8 /* Settings.storyboard */,
-				1ED96EB51E2A0D6000891EA8 /* AccountViewController.swift */,
+				1ED96EB51E2A0D6000891EA8 /* SettingsViewController.swift */,
 				1ED96EB61E2A0D6000891EA8 /* SettingsCell.swift */,
 				1ED96EB71E2A0D6000891EA8 /* ChangePasswordViewController.swift */,
 				1ED96EB81E2A0D6000891EA8 /* AccountBaseViewController.swift */,
@@ -330,6 +329,7 @@
 				4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */,
 				4F7885A01EBD645600F91ED5 /* YelpVenue.swift */,
 				4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */,
+				4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -536,7 +536,7 @@
 				1ED96EA71E2A0D2000891EA8 /* EnterEmailViewController.swift in Sources */,
 				1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */,
 				4F6A669F1E739069001547E8 /* OGVenue.swift in Sources */,
-				1ED96EBC1E2A0D6000891EA8 /* AccountViewController.swift in Sources */,
+				1ED96EBC1E2A0D6000891EA8 /* SettingsViewController.swift in Sources */,
 				4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */,
 				4F6A66AB1E7781AE001547E8 /* DeviceViewController.swift in Sources */,
 				1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */,
@@ -551,6 +551,7 @@
 				4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */,
 				1ED96EA51E2A0D2000891EA8 /* LoginOrRegViewController.swift in Sources */,
 				1ED96ECC1E2A0D8600891EA8 /* Settings.swift in Sources */,
+				4FAD9F7C1EC41C02003C2E48 /* UIViewExtensions.swift in Sources */,
 				4F7885A31EBD73C200F91ED5 /* UIImageViewExtensions.swift in Sources */,
 				4F78859F1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift in Sources */,
 				4FEE45D71EB82CBF0031C261 /* PickVenueViewController.swift in Sources */,
@@ -569,7 +570,6 @@
 				4FEE45DB1EB837D90031C261 /* OGVenueTableViewDataSource.swift in Sources */,
 				1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */,
 				1ED96E991E2A0CEB00891EA8 /* MainTabsController.swift in Sources */,
-				4FB9249E1EAEBE7E0074FBF7 /* VenueBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,11 +25,12 @@ class LoginBaseViewController: RegSceneBaseViewController {
         }
     }
 
+    var pwdDelegate: CustomTextFieldDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pwdTextField.useCustomBottomBorder()
+        pwdDelegate = CustomTextFieldDelegate(pwdTextField, isValid: isValidPassword)
 
         pwdLabel.alpha = 0
         nextButton.alpha = 0
@@ -43,7 +44,6 @@ class LoginBaseViewController: RegSceneBaseViewController {
 
     }
     
-
     func checkFields(_ notification: Notification) {
         if let pwd = pwdTextField.text {
             fade(pwdGoodCheck, onCondition: pwd.isValidPwd())
@@ -63,7 +63,6 @@ class LoginBaseViewController: RegSceneBaseViewController {
     }
     
     func loginWithSegue(_ email: String, pwd: String, segueId: String){
-        
         Asahi.sharedInstance.login(email, password: pwd)
             .then{ response -> Void in
                 HUD.flash(.labeledSuccess(title: "Logged In!", subtitle: nil ))
@@ -72,26 +71,11 @@ class LoginBaseViewController: RegSceneBaseViewController {
             }
             .catch{ err in
                 self.recoverFromLoginFailure()
-                
         }
-        
     }
-    
     
     // This is normally handled in the child class
     func recoverFromLoginFailure(){
         log.debug("Login failed")
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

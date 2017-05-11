@@ -12,7 +12,8 @@ import PromiseKit
 import SwiftyJSON
 import CoreLocation
 
-class ChooseVenueViewController : VenueBaseViewController, UICollectionViewDelegate, UICollectionViewDataSource,
+class ChooseVenueViewController : UIViewController,
+    UICollectionViewDelegate, UICollectionViewDataSource,
     UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate  {
     
     @IBOutlet weak var venueCollection: UICollectionView!
@@ -25,6 +26,8 @@ class ChooseVenueViewController : VenueBaseViewController, UICollectionViewDeleg
     let locationManager = CLLocationManager()
     
     var location: CLLocationCoordinate2D?
+    
+    var venues = [OGVenue]()
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
@@ -74,8 +77,9 @@ class ChooseVenueViewController : VenueBaseViewController, UICollectionViewDeleg
         self.refreshing = true
         self.refreshControl.beginRefreshing()
         
-        self.findAndProcessVenues()
+        StateController.sharedInstance.findAllVenues()
             .then { _ -> Void in
+                self.venues = StateController.sharedInstance.allVenues
                 self.sortByLocationAndReload()
                 self.stopRefresh()
             }

@@ -50,13 +50,10 @@ class EnterPasswordViewController: LoginBaseViewController {
         
         let alertController = UIAlertController(title: "Uh Oh", message: "There was a problem registering. Do you already have an account with that email?", preferredStyle: .alert)
         
-        
         let cancelAction = UIAlertAction(title: "Try Again", style: .cancel) { (action) in
             
         }
-        
         alertController.addAction(cancelAction)
-        
         self.present(alertController, animated: true, completion: nil)
         
     }

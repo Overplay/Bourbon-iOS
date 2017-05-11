@@ -40,4 +40,17 @@ class RegSceneBaseViewController: UIViewController {
         }
     }
 
+    func isValidEmail(_ string: String?) -> Bool {
+        if let str = string {
+            return str.isValidEmail()
+        }
+        return false
+    }
+    
+    func isValidPassword(_ string: String?) -> Bool {
+        if let str = string {
+            return str.isValidPwd()
+        }
+        return false
+    }
 }

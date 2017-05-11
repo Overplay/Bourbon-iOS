@@ -9,8 +9,7 @@
 import Foundation
 
 
-// NSUserDefaults settings are wrapped here for cleanliness
-
+/// `NSUserDefaults` settings are wrapped here for cleanliness.
 class Settings {
     
     let userDefaults = UserDefaults.standard
