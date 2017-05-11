@@ -23,7 +23,7 @@ class PickVenueViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(white: 51/255, alpha: 1.0)
     
-        self.tableViewDataSource = OGVenueTableViewDataSource(tableView: tableView, type: VenueType.MINE, noDataText: emptyTableText)
+        self.tableViewDataSource = OGVenueTableViewDataSource(tableView: tableView, type: VenueType.OWNED, noDataText: emptyTableText)
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
         
@@ -64,7 +64,7 @@ extension PickVenueViewController: CreateVenueViewControllerDelegate {
 extension PickVenueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "fromPickVenueToSetup",
-                     sender: StateController.sharedInstance.myVenues[indexPath.section].venues[indexPath.row])
+                     sender: StateController.sharedInstance.ownedVenues[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

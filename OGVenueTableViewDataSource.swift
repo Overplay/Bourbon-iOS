@@ -11,9 +11,11 @@ import UIKit
 /// Identifies the type of venues to associate with the table.
 ///
 /// - ALL: all venues
-/// - MINE: only venues associated with the current user
+/// - MINE: only venues associated with the current user (owned and managed)
+/// - OWNED: only the venues the current user owns
+/// - MANAGED: only the venues the current user manages
 enum VenueType {
-    case ALL, MINE
+    case ALL, MINE, OWNED, MANAGED
 }
 
 /// `UITableView` data source that is used to provide the table with `OGVenue` data.
@@ -41,15 +43,19 @@ extension OGVenueTableViewDataSource: UITableViewDataSource {
             return 1
         case VenueType.MINE:
             return StateController.sharedInstance.myVenues.count
+        case VenueType.OWNED:
+            return 1
+        case VenueType.MANAGED:
+            return 1
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch type {
-        case VenueType.ALL:
-            return nil
         case VenueType.MINE:
             return StateController.sharedInstance.myVenues[section].label
+        default:
+            return nil
         }
     }
     
@@ -61,9 +67,13 @@ extension OGVenueTableViewDataSource: UITableViewDataSource {
             rows = StateController.sharedInstance.allVenues.count
         case VenueType.MINE:
             rows = StateController.sharedInstance.myVenues[section].venues.count
+        case VenueType.OWNED:
+            rows = StateController.sharedInstance.ownedVenues.count
+        case VenueType.MANAGED:
+            rows = StateController.sharedInstance.managedVenues.count
         }
         
-        if rows == 0 && type == VenueType.ALL { // display a message indicating there is no data
+        if rows == 0 && type != VenueType.MINE { // display a message indicating there is no data
             
             let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             noDataLabel.text = self.noDataText
@@ -91,6 +101,10 @@ extension OGVenueTableViewDataSource: UITableViewDataSource {
             venue = StateController.sharedInstance.allVenues[indexPath.row]
         case VenueType.MINE:
             venue = StateController.sharedInstance.myVenues[indexPath.section].venues[indexPath.row]
+        case VenueType.OWNED:
+            venue = StateController.sharedInstance.ownedVenues[indexPath.row]
+        case VenueType.MANAGED:
+            venue = StateController.sharedInstance.managedVenues[indexPath.row]
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: OGVenueTableCell.identifier, for: indexPath) as! OGVenueTableCell
