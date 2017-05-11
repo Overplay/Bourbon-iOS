@@ -13,6 +13,8 @@ class PickVenueViewController: UIViewController {
     let emptyTableText = "It looks like you don't have any venues!"
     
     var tableViewDataSource: OGVenueTableViewDataSource?
+    
+    var tableViewDelegate: OGVenueTableViewDelegate?
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,8 +25,12 @@ class PickVenueViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(white: 51/255, alpha: 1.0)
     
-        self.tableViewDataSource = OGVenueTableViewDataSource(tableView: tableView, type: VenueType.OWNED, noDataText: emptyTableText)
-        tableView.delegate = self
+        tableViewDataSource = OGVenueTableViewDataSource(tableView,
+                                                         type: OGVenueType.OWNED,
+                                                         noDataText: emptyTableText)
+        tableViewDelegate = OGVenueTableViewDelegate(tableView,
+                                                     type: OGVenueType.OWNED,
+                                                     didSelect: didSelectVenue)
         tableView.tableFooterView = UIView(frame: .zero)
         
         StateController.sharedInstance.findMyVenues()
@@ -46,11 +52,16 @@ class PickVenueViewController: UIViewController {
             vc.selectedVenue = venue
         }
     }
+    
+    func didSelectVenue(venue: OGVenue) {
+        performSegue(withIdentifier: "fromPickVenueToSetup", sender: venue)
+    }
 }
 
 extension PickVenueViewController: CreateVenueViewControllerDelegate {
+    
     func createdVenue(_ venue: OGVenue) {
-        // refresh venues list
+        // refresh venues list to get the new venue
         StateController.sharedInstance.findMyVenues()
             .then { _ -> Void in
                 self.tableView.reloadData()
@@ -58,23 +69,5 @@ extension PickVenueViewController: CreateVenueViewControllerDelegate {
             .catch { err -> Void in
                 log.debug(err)
         }
-    }
-}
-
-extension PickVenueViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "fromPickVenueToSetup",
-                     sender: StateController.sharedInstance.ownedVenues[indexPath.row])
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let header = view as? UITableViewHeaderFooterView {
-            header.textLabel?.font = UIFont(name: Style.mediumFont, size: 11.0)
-            header.textLabel?.textColor = UIColor.white
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
     }
 }

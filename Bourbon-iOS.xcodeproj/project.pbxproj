@@ -64,6 +64,8 @@
 		4F9308701E57AAE9005B5EAB /* CheckAppOpenedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */; };
 		4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9308711E57B904005B5EAB /* NetworkReachability.swift */; };
 		4FAD9F7C1EC41C02003C2E48 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */; };
+		4FAD9F7E1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD9F7D1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift */; };
+		4FAD9F821EC4E7AF003C2E48 /* OGVenueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD9F811EC4E7AF003C2E48 /* OGVenueType.swift */; };
 		4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */; };
 		4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */; };
 		4FB924A21EB43E8B0074FBF7 /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */; };
@@ -142,6 +144,8 @@
 		4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckAppOpenedViewController.swift; sourceTree = "<group>"; };
 		4F9308711E57B904005B5EAB /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		4FAD9F7D1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGVenueTableViewDelegate.swift; sourceTree = "<group>"; };
+		4FAD9F811EC4E7AF003C2E48 /* OGVenueType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGVenueType.swift; sourceTree = "<group>"; };
 		4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsahiBaseViewController.swift; sourceTree = "<group>"; };
 		4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupDeviceViewController.swift; sourceTree = "<group>"; };
 		4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
@@ -316,20 +320,15 @@
 		1ED96EC11E2A0D7500891EA8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4FAD9F801EC4E72C003C2E48 /* Extensions */,
+				4FAD9F7F1EC4E703003C2E48 /* OGVenue */,
 				1ED96EC21E2A0D8600891EA8 /* ASNotification.swift */,
 				1ED96EC51E2A0D8600891EA8 /* Style.swift */,
 				1ED96EC61E2A0D8600891EA8 /* Settings.swift */,
-				1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */,
-				4F6A669E1E739069001547E8 /* OGVenue.swift */,
 				4F6A66A61E776E2D001547E8 /* OGDevice.swift */,
-				4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */,
 				4FEE45D81EB836D30031C261 /* StateController.swift */,
-				4FEE45DA1EB837D90031C261 /* OGVenueTableViewDataSource.swift */,
-				4FEE45DC1EB838F40031C261 /* OGVenueTableCell.swift */,
 				4F78859E1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift */,
 				4F7885A01EBD645600F91ED5 /* YelpVenue.swift */,
-				4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */,
-				4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -379,6 +378,29 @@
 				4F93086F1E57AAE9005B5EAB /* CheckAppOpenedViewController.swift */,
 			);
 			name = Introduction;
+			sourceTree = "<group>";
+		};
+		4FAD9F7F1EC4E703003C2E48 /* OGVenue */ = {
+			isa = PBXGroup;
+			children = (
+				4F6A669E1E739069001547E8 /* OGVenue.swift */,
+				4FEE45DC1EB838F40031C261 /* OGVenueTableCell.swift */,
+				4FEE45DA1EB837D90031C261 /* OGVenueTableViewDataSource.swift */,
+				4FAD9F7D1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift */,
+				4FAD9F811EC4E7AF003C2E48 /* OGVenueType.swift */,
+			);
+			name = OGVenue;
+			sourceTree = "<group>";
+		};
+		4FAD9F801EC4E72C003C2E48 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */,
+				4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */,
+				4F7885A21EBD73C200F91ED5 /* UIImageViewExtensions.swift */,
+				4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,6 +547,7 @@
 				1ED96EBA1E2A0D6000891EA8 /* EditAccountViewController.swift in Sources */,
 				1ED96EB11E2A0D4700891EA8 /* MapViewController.swift in Sources */,
 				4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */,
+				4FAD9F7E1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift in Sources */,
 				1EF5B4FC1E935A0D001FD19E /* AppControlViewController.swift in Sources */,
 				1ED96E881E2A0C6300891EA8 /* Asahi.swift in Sources */,
 				4F61B4CB1E6A236B005FB11F /* AppDelegate.swift in Sources */,
@@ -546,6 +569,7 @@
 				1ED96ECB1E2A0D8600891EA8 /* Style.swift in Sources */,
 				4FB924A21EB43E8B0074FBF7 /* UITextFieldExtensions.swift in Sources */,
 				4F6A66A91E7771FB001547E8 /* DeviceCell.swift in Sources */,
+				4FAD9F821EC4E7AF003C2E48 /* OGVenueType.swift in Sources */,
 				4F7885961EBAC20F00F91ED5 /* CreateVenueViewController.swift in Sources */,
 				4F6A66A71E776E2D001547E8 /* OGDevice.swift in Sources */,
 				4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */,
