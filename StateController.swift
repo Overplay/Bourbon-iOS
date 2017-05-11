@@ -19,7 +19,13 @@ class StateController {
     private(set) var allVenues = [OGVenue]()
     
     /// Venues associated with the current user.
-    private(set) var myVenues = [OGVenue]()
+    private(set) var myVenues = [VenueCollection]()
+    
+    /// Venues owned by the current user.
+    private(set) var ownedVenues = [OGVenue]()
+    
+    /// Venues managed by the current user.
+    private(set) var managedVenues = [OGVenue]()
     
     private init() {}
     
@@ -52,7 +58,10 @@ class StateController {
                 .then { response -> Void in
                     
                     if let owned = response["owned"].array, let managed = response["managed"].array {
-                        self.myVenues = self.processVenues(JSON(owned + managed))
+                        self.ownedVenues = self.processVenues(JSON(owned))
+                        self.managedVenues = self.processVenues(JSON(managed))
+                        self.myVenues = [VenueCollection("Owned", self.ownedVenues),
+                                         VenueCollection("Managed", self.managedVenues)]
                         fulfill(true)
                     } else {
                         reject(AsahiError.malformedJson)
@@ -119,4 +128,15 @@ class StateController {
     }
     
     // TODO: save state with NSCoder things, example: https://www.smashingmagazine.com/2016/05/better-architecture-for-ios-apps-model-view-controller-pattern/
+}
+
+/// Helper class to allow a representation of venues that are of a certain type
+class VenueCollection {
+    var label: String
+    var venues: [OGVenue]
+    
+    init(_ label: String, _ venues: [OGVenue]) {
+        self.label = label
+        self.venues = venues
+    }
 }

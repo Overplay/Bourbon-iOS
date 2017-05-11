@@ -64,7 +64,13 @@ extension PickVenueViewController: CreateVenueViewControllerDelegate {
 extension PickVenueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "fromPickVenueToSetup",
-                     sender: StateController.sharedInstance.myVenues[indexPath.row])
+                     sender: StateController.sharedInstance.myVenues[indexPath.section].venues[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.font = UIFont(name: Style.mediumFont, size: 11.0)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

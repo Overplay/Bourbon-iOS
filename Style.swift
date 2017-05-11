@@ -20,4 +20,6 @@ struct Style {
     static var regularFont = "Poppins-Regular"
     static var boldFont = "Poppins-Bold"
     static var lightFont = "Poppins-Light"
+    static var mediumFont = "Poppins-Medium"
+    static var semiBoldFont = "Poppins-SemiBold"
 }
