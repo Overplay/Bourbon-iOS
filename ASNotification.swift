@@ -12,14 +12,17 @@ import Foundation
 
 enum ASNotification: String {
     
-    case newOg
-    case droppedOg
-    case ogSocketError
+    case allVenuesUpdated
+    case myVenuesUpdated
+    
+    case asahiAddedVenue
+    case asahiUpdatedDevice
     case asahiLoggedIn
+    
     case networkChanged
     
     func issue(userInfo: Dictionary<String, Any>? = nil){
-        
+        log.debug(self)
         NotificationCenter.default.post(name: Notification.Name(rawValue: self.rawValue),
                                         object: nil, userInfo: userInfo)
     }

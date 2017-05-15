@@ -10,8 +10,6 @@
 		1681C1E08C7344599C0DA092 /* Pods_Bourbon_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */; };
 		1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */; };
 		1ED96E881E2A0C6300891EA8 /* Asahi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E841E2A0C6300891EA8 /* Asahi.swift */; };
-		1ED96E891E2A0C6300891EA8 /* ABNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E851E2A0C6300891EA8 /* ABNetworking.swift */; };
-		1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E861E2A0C6300891EA8 /* RequestRouter.swift */; };
 		1ED96E911E2A0CB500891EA8 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */; };
 		1ED96E921E2A0CB500891EA8 /* OurglasserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */; };
 		1ED96E981E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E961E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard */; };
@@ -66,7 +64,6 @@
 		4FAD9F7C1EC41C02003C2E48 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */; };
 		4FAD9F7E1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD9F7D1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift */; };
 		4FAD9F821EC4E7AF003C2E48 /* OGVenueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD9F811EC4E7AF003C2E48 /* OGVenueType.swift */; };
-		4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */; };
 		4FB924A01EAEE3E60074FBF7 /* SetupDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */; };
 		4FB924A21EB43E8B0074FBF7 /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */; };
 		4FC2FE181E66157F00753035 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2FE141E66153600753035 /* Poppins-Bold.ttf */; };
@@ -88,8 +85,6 @@
 		1ED96E6B1E2A0A7A00891EA8 /* Bourbon-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bourbon-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtilsXX.swift; sourceTree = "<group>"; };
 		1ED96E841E2A0C6300891EA8 /* Asahi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asahi.swift; sourceTree = "<group>"; };
-		1ED96E851E2A0C6300891EA8 /* ABNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABNetworking.swift; sourceTree = "<group>"; };
-		1ED96E861E2A0C6300891EA8 /* RequestRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestRouter.swift; sourceTree = "<group>"; };
 		1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Control.storyboard; sourceTree = "<group>"; };
 		1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurglasserCell.swift; sourceTree = "<group>"; };
 		1ED96E961E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTabsStoryboard.storyboard; sourceTree = "<group>"; };
@@ -149,7 +144,6 @@
 		4FAD9F7B1EC41C02003C2E48 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		4FAD9F7D1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGVenueTableViewDelegate.swift; sourceTree = "<group>"; };
 		4FAD9F811EC4E7AF003C2E48 /* OGVenueType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGVenueType.swift; sourceTree = "<group>"; };
-		4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsahiBaseViewController.swift; sourceTree = "<group>"; };
 		4FB9249F1EAEE3E60074FBF7 /* SetupDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupDeviceViewController.swift; sourceTree = "<group>"; };
 		4FB924A11EB43E8B0074FBF7 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		4FC2FE131E66152900753035 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -236,11 +230,8 @@
 			children = (
 				1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */,
 				1ED96E841E2A0C6300891EA8 /* Asahi.swift */,
-				1ED96E851E2A0C6300891EA8 /* ABNetworking.swift */,
-				1ED96E861E2A0C6300891EA8 /* RequestRouter.swift */,
 				1EE7B96E1E2DEDD800E00370 /* Network.swift */,
 				4F9308711E57B904005B5EAB /* NetworkReachability.swift */,
-				4FB924991EA696590074FBF7 /* AsahiBaseViewController.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -584,14 +575,12 @@
 				4F78859D1EBD38BF00F91ED5 /* YelpTableViewCell.swift in Sources */,
 				1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */,
 				1ED96EA71E2A0D2000891EA8 /* EnterEmailViewController.swift in Sources */,
-				1ED96E8A1E2A0C6300891EA8 /* RequestRouter.swift in Sources */,
 				4F6A669F1E739069001547E8 /* OGVenue.swift in Sources */,
 				1ED96EBC1E2A0D6000891EA8 /* SettingsViewController.swift in Sources */,
 				4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */,
 				4F6A66AB1E7781AE001547E8 /* DeviceViewController.swift in Sources */,
 				1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */,
 				1EF5B4FE1E935A7B001FD19E /* WebViewBaseViewController.swift in Sources */,
-				1ED96E891E2A0C6300891EA8 /* ABNetworking.swift in Sources */,
 				1ED96EAB1E2A0D2000891EA8 /* RegSceneBaseViewController.swift in Sources */,
 				1ED96ECB1E2A0D8600891EA8 /* Style.swift in Sources */,
 				4FB924A21EB43E8B0074FBF7 /* UITextFieldExtensions.swift in Sources */,
@@ -617,7 +606,6 @@
 				1ED96EC01E2A0D6000891EA8 /* InviteFriendsViewController.swift in Sources */,
 				1ED96EA61E2A0D2000891EA8 /* EnterNameViewController.swift in Sources */,
 				4FEE45DD1EB838F40031C261 /* OGVenueTableCell.swift in Sources */,
-				4FB9249A1EA696590074FBF7 /* AsahiBaseViewController.swift in Sources */,
 				4F7885A11EBD645600F91ED5 /* YelpVenue.swift in Sources */,
 				4FEE45DB1EB837D90031C261 /* OGVenueTableViewDataSource.swift in Sources */,
 				1ED96EBF1E2A0D6000891EA8 /* AccountBaseViewController.swift in Sources */,

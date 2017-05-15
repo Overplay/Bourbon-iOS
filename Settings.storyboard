@@ -91,7 +91,7 @@
                 <viewControllerPlaceholder storyboardName="RegistrationStoryboard" id="Y8W-br-ngb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQ9-V7-L1R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="68" y="849"/>
+            <point key="canvasLocation" x="22" y="730"/>
         </scene>
         <!--Invite Friends View Controller-->
         <scene sceneID="Foz-zn-QEU">
@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRIEND'S EMAIL ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hj8-8v-fuS">
-                                <rect key="frame" x="26" y="114" width="323" height="21"/>
+                                <rect key="frame" x="26" y="92" width="323" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="JRQ-36-8UV"/>
                                 </constraints>
@@ -115,20 +115,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PIe-5i-MtX">
-                                <rect key="frame" x="26" y="143" width="273" height="33"/>
+                                <rect key="frame" x="26" y="121" width="333" height="28"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_done_64_w" translatesAutoresizingMaskIntoConstraints="NO" id="WVn-gH-SLt">
-                                <rect key="frame" x="307" y="138.5" width="42" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="gbC-mT-KlW"/>
-                                    <constraint firstAttribute="height" constant="42" id="vRA-Yh-oum"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9x-sz-n7B">
-                                <rect key="frame" x="319" y="188" width="40" height="37"/>
+                                <rect key="frame" x="319" y="161" width="40" height="37"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                 <state key="normal" title="Invite">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -140,17 +133,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="WVn-gH-SLt" secondAttribute="trailing" constant="10" id="1Wa-T8-adV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hj8-8v-fuS" secondAttribute="trailing" constant="10" id="EJE-4d-J6Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="J9x-sz-n7B" secondAttribute="trailing" id="MQg-Lc-VLm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PIe-5i-MtX" secondAttribute="trailing" id="O6z-hU-V50"/>
                             <constraint firstItem="PIe-5i-MtX" firstAttribute="leading" secondItem="9HX-qf-0Hr" secondAttribute="leadingMargin" constant="10" id="OIA-FI-0Yf"/>
-                            <constraint firstItem="WVn-gH-SLt" firstAttribute="centerY" secondItem="PIe-5i-MtX" secondAttribute="centerY" id="X0n-4O-6L6"/>
-                            <constraint firstItem="WVn-gH-SLt" firstAttribute="leading" secondItem="PIe-5i-MtX" secondAttribute="trailing" constant="8" id="alo-4N-nw1"/>
                             <constraint firstItem="PIe-5i-MtX" firstAttribute="top" secondItem="hj8-8v-fuS" secondAttribute="bottom" constant="8" id="l25-Un-d6B"/>
                             <constraint firstItem="hj8-8v-fuS" firstAttribute="leading" secondItem="9HX-qf-0Hr" secondAttribute="leadingMargin" constant="10" id="mVE-4o-LLl"/>
                             <constraint firstItem="J9x-sz-n7B" firstAttribute="top" secondItem="PIe-5i-MtX" secondAttribute="bottom" constant="12" id="npL-3r-4rw"/>
                             <constraint firstItem="hj8-8v-fuS" firstAttribute="centerX" secondItem="9HX-qf-0Hr" secondAttribute="centerX" id="sfX-oG-dLQ"/>
-                            <constraint firstItem="hj8-8v-fuS" firstAttribute="top" secondItem="6Tf-6w-xgn" secondAttribute="bottom" constant="50" id="wHm-b0-cez"/>
+                            <constraint firstItem="hj8-8v-fuS" firstAttribute="top" secondItem="6Tf-6w-xgn" secondAttribute="bottom" constant="28" id="wHm-b0-cez"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -160,7 +151,6 @@
                     </view>
                     <connections>
                         <outlet property="email" destination="PIe-5i-MtX" id="gzW-9m-buq"/>
-                        <outlet property="emailGoodCheck" destination="WVn-gH-SLt" id="rSI-ul-pr4"/>
                         <outlet property="inviteButton" destination="J9x-sz-n7B" id="AWJ-lh-Ena"/>
                     </connections>
                 </viewController>
@@ -194,7 +184,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_done_64_w" width="64" height="64"/>
         <image name="ic_settings_white" width="24" height="24"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

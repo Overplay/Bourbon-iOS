@@ -31,9 +31,9 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
     var tableView: UITableView!
     
     let options = [
-        //SettingsOption(label: "Invite Friends", image: "ic_card_giftcard_white_18pt"),
         SettingsOption(label: "My Venues"),
         SettingsOption(label: "Setup OG Device"),
+        //SettingsOption(label: "Invite Friends"),
         SettingsOption(label: "Edit Account"),
         SettingsOption(label: "Log Out")]
     

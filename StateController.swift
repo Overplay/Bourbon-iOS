@@ -27,7 +27,22 @@ class StateController {
     /// Venues managed by the current user.
     private(set) var managedVenues = [OGVenue]()
     
-    private init() {}
+    private init() {
+        let nc = NotificationCenter.default
+        nc.addObserver(
+            forName: NSNotification.Name(rawValue:ASNotification.asahiAddedVenue.rawValue),
+            object: nil, queue: nil) { _ in
+                _ = self.findAllVenues()
+                _ = self.findMyVenues()
+        }
+        
+        nc.addObserver(
+            forName: NSNotification.Name(rawValue:ASNotification.networkChanged.rawValue),
+            object: nil, queue: nil) { _ in
+                _ = self.findAllVenues()
+                _ = self.findMyVenues()
+        }
+    }
     
     /// Finds all venues and updates the current state.
     ///
@@ -39,6 +54,7 @@ class StateController {
                 
                 .then { response -> Void in
                     self.allVenues = self.processVenues(response)
+                    ASNotification.allVenuesUpdated.issue()
                     fulfill(true)
                 }
                 .catch { err -> Void  in
@@ -62,6 +78,7 @@ class StateController {
                         self.managedVenues = self.processVenues(JSON(managed))
                         self.myVenues = [VenueCollection("Owned", self.ownedVenues),
                                          VenueCollection("Managed", self.managedVenues)]
+                        ASNotification.myVenuesUpdated.issue()
                         fulfill(true)
                     } else {
                         reject(AsahiError.malformedJson)

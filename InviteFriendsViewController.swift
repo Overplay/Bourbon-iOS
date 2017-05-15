@@ -13,67 +13,38 @@ import PKHUD
 class InviteFriendsViewController: AccountBaseViewController {
 
     @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var emailGoodCheck: UIImageView!
     @IBOutlet weak var inviteButton: UIButton!
+    
+    var emailDelegate: CustomTextFieldDelegate?
     
     @IBAction func invite(_ sender: AnyObject) {
         
-        guard let e = self.email.text
-            else {
-                showAlert("Oops!", message: "The email you put in is not valid.")
-                return
+        guard let e = email.text, isValidEmail(e) else {
+            emailDelegate?.textFieldDidEndEditing(email)
+            return
         }
-        
-        if e.isValidEmail() {
             
-            Asahi.sharedInstance.inviteNewUser(e)
+        Asahi.sharedInstance.inviteNewUser(e)
             
-                .then{ response -> Void in
-                    log.debug("invitation sent")
-                    HUD.flash(.success, delay: 1.0)
-                }
+            .then{ response -> Void in
+                log.debug("invitation sent")
+                HUD.flash(.success, delay: 1.0)
+            }
             
-                .catch{ error -> Void in
-                    log.debug(error)
-                }
-        }
-        
-        else {
-            showAlert("Oops!", message: "The email you put in is not valid.")
-        }
+            .catch{ error -> Void in
+                log.debug(error)
+            }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.email.useCustomBottomBorder()
-        
-        self.emailGoodCheck.alpha = 0
-        self.inviteButton.alpha = 0
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(checkEmail), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
+        emailDelegate = CustomTextFieldDelegate(email, isValid: isValidEmail)
     }
     
-    func checkEmail() {
-        
-        if let email = self.email.text {
-            
-            if email.isValidEmail() {
-                fadeIn(self.emailGoodCheck)
-                fadeIn(self.inviteButton)
-            }
-            
-            if !email.isValidEmail() {
-                fadeOut(self.emailGoodCheck)
-                fadeOut(self.inviteButton)
-            }
+    func isValidEmail(_ string: String?) -> Bool {
+        if let str = string {
+            return str.isValidEmail()
         }
+        return false
     }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }

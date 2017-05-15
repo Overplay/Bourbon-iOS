@@ -72,7 +72,7 @@ open class Asahi: NSObject {
     /// - Parameters:
     ///   - endpoint: the URL
     ///   - data: parameters to send
-    ///   - method: the HTTP method to use
+    ///   - method: the HTTP method
     ///   - encoding: the parameter encoding
     /// - Returns: a promise resolving in the JSON contents of the response
     func doJsonTransaction( _ endpoint: String,
@@ -121,6 +121,60 @@ open class Asahi: NSObject {
         }
     }
     
+    /// Makes an HTTP request with Alamofire.
+    ///
+    /// - Parameters:
+    ///   - endpoint: the URL
+    ///   - data: parameters to send
+    ///   - method: the HTTP method
+    ///   - encoding: the parameter encoding
+    /// - Returns: a promise resolving in `true` on success
+    func doTransaction( _ endpoint: String,
+                        data: Dictionary<String, Any>,
+                        method: HTTPMethod,
+                        encoding: ParameterEncoding) -> Promise<Bool> {
+        
+        // wait for initial DispatchGroup to complete
+        _ = initGroup.wait(timeout: DispatchTime.now() + INIT_WAIT_TIME)
+        
+        return Promise { fulfill, reject in
+            Alamofire.request(endpoint,
+                              method: method,
+                              parameters: data,
+                              encoding: encoding,
+                              headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
+                .validate()
+                .responseData() { response in
+                    
+                    switch response.result {
+                        
+                    case .success( _):
+                        fulfill(true)
+                        
+                    case .failure(let error):
+                        if let statusCode = response.response?.statusCode {
+                            
+                            if statusCode == 403 {
+                                Asahi.sharedInstance.checkJWT()
+                                    .then { response -> Void in
+                                        log.debug("\(statusCode): resource not allowed for this user")
+                                        reject(AsahiError.authFailure)
+                                    }
+                                    .catch { error -> Void in
+                                        log.debug("\(statusCode): token invalid")
+                                        reject(AsahiError.tokenInvalid)
+                                }
+                            } else {
+                                reject(error)
+                            }
+                        } else {
+                            reject(error)
+                        }
+                    }
+            }
+        }
+    }
+    
     /// Promisified JSON Poster.
     func postJson( _ endpoint: String, data: Dictionary<String, Any> ) -> Promise<JSON> {
         return doJsonTransaction(endpoint, data: data, method: .post,
@@ -139,7 +193,7 @@ open class Asahi: NSObject {
                                  encoding: URLEncoding.default)
     }
 
-    /// Registers a new user, sets `Settings` user variables, and gets a JWT.
+    /// Registers a new user, gets a token, and sets `Settings` user variables.
     ///
     /// - Parameters:
     ///   - email: user's email
@@ -168,7 +222,7 @@ open class Asahi: NSObject {
             }
     }
     
-    /// Logs in to OurGlass, sets `Settings` user variables, and gets a JWT.
+    /// Logs in to OurGlass, gets a token, and sets `Settings` user variables.
     ///
     /// - Parameters:
     ///   - email: user email
@@ -226,45 +280,6 @@ open class Asahi: NSObject {
         }
     }
     
-    /// Checks the current user's session and stores user info if it finds it.
-    ///
-    /// - Returns: a promise resolving in the response JSON
-    func checkSession() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/user/checksession"))
-            .then { response -> JSON in
-                
-                guard let id = response["id"].string,
-                    let first = response["firstName"].string,
-                    let last = response["lastName"].string,
-                    let email = response["email"].string else {
-                        log.error("unable to get user info from /user/checksession")
-                        return response
-                }
-                Settings.sharedInstance.userId = id
-                Settings.sharedInstance.userFirstName = first
-                Settings.sharedInstance.userLastName = last
-                Settings.sharedInstance.userEmail = email
-                
-                return response
-        }
-    }
-    
-    /// Gets all venues.
-    ///
-    /// - Returns: a promise resolving in the response JSON which contains the venues
-    func getVenues() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/venue/all"))
-    }
-    
-    /// Gets the devices associated with a venue.
-    ///
-    /// - Parameter venueUUID: venue's UUID
-    /// - Returns: a promise resolving in the response JSON
-    func getDevices(_ venueUUID: String) -> Promise<JSON> {
-        return getJson(createApiEndpoint("/venue/devices?atVenueUUID=" + venueUUID,
-                                         withPort: "2001"))
-    }
-    
     /// Checks the user's current JWT to see if it is still valid.
     ///
     /// - Returns: a promise resolving in the response JSON
@@ -307,6 +322,52 @@ open class Asahi: NSObject {
         }
     }
     
+    /// Checks the current user's session and stores user info if it finds it.
+    ///
+    /// - Returns: a promise resolving in the response JSON
+    func checkSession() -> Promise<JSON> {
+        return getJson(createApiEndpoint("/user/checksession"))
+            .then { response -> JSON in
+                
+                guard let id = response["id"].string,
+                    let first = response["firstName"].string,
+                    let last = response["lastName"].string,
+                    let email = response["email"].string else {
+                        log.error("unable to get user info from /user/checksession")
+                        return response
+                }
+                Settings.sharedInstance.userId = id
+                Settings.sharedInstance.userFirstName = first
+                Settings.sharedInstance.userLastName = last
+                Settings.sharedInstance.userEmail = email
+                
+                return response
+        }
+    }
+    
+    /// Gets all venues.
+    ///
+    /// - Returns: a promise resolving in the response JSON which contains the venues
+    func getVenues() -> Promise<JSON> {
+        return getJson(createApiEndpoint("/venue/all"))
+    }
+    
+    /// Gets the venues associated with the current user.
+    ///
+    /// - Returns: a promise resolving in the venues JSON
+    func getUserVenues() -> Promise<JSON> {
+        return getJson(createApiEndpoint("/venue/myvenues"))
+    }
+    
+    /// Gets the devices associated with a venue.
+    ///
+    /// - Parameter venueUUID: venue's UUID
+    /// - Returns: a promise resolving in the response JSON
+    func getDevices(_ venueUUID: String) -> Promise<JSON> {
+        return getJson(createApiEndpoint("/venue/devices?atVenueUUID=" + venueUUID,
+                                         withPort: "2001"))
+    }
+    
     /// Changes account information of a user.
     ///
     /// - Parameters:
@@ -345,16 +406,11 @@ open class Asahi: NSObject {
     ///
     /// - Parameter email: invitee's email
     /// - Returns: a promise resolving in the response JSON
-    func inviteNewUser(_ email: String) -> Promise<JSON> {
+    func inviteNewUser(_ email: String) -> Promise<Bool> {
         let params = ["email": email]
-        return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
-    }
-    
-    /// Gets the venues associated with the current user.
-    ///
-    /// - Returns: a promise resolving in the venues JSON
-    func getUserVenues() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/venue/myvenues"))
+        //return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
+        return doTransaction(createApiEndpoint("/user/inviteNewUser"),
+                             data: params, method: .post, encoding: JSONEncoding.default)
     }
     
     /// Finds a device by its registration code.
@@ -378,6 +434,7 @@ open class Asahi: NSObject {
         return postJson(createApiEndpoint("/ogdevice/changeName", withPort: "2001"),
                         data: params)
             .then { _ -> String in
+                ASNotification.asahiUpdatedDevice.issue()
                 return udid
         }
     }
@@ -392,9 +449,13 @@ open class Asahi: NSObject {
         let params = ["deviceUDID": deviceUdid, "venueUUID": withVenueUuid]
         return postJson(createApiEndpoint("/ogdevice/associateWithVenue", withPort: "2001"),
                         data: params)
+            .then { response -> JSON in
+                ASNotification.asahiUpdatedDevice.issue()
+                return response
+        }
     }
     
-    /// Performs a Yelp search provided a location term.
+    /// Performs a Yelp search.
     ///
     /// - Parameters:
     ///   - location: location of the search
@@ -405,7 +466,7 @@ open class Asahi: NSObject {
         return getJson(createApiEndpoint("/venue/yelpSearch"), parameters: params)
     }
     
-    /// Performs a Yelp search provided a latitude and longitude.
+    /// Performs a Yelp search.
     ///
     /// - Parameters:
     ///   - latitude: latitude of search location
@@ -417,7 +478,7 @@ open class Asahi: NSObject {
         return getJson(createApiEndpoint("/venue/yelpSearch"), parameters: params)
     }
     
-    /// POSTs the venue data to create a new venue.
+    /// Creates a new venue.
     ///
     /// - Parameter venue: the venue to create
     /// - Returns: a promise resolving in the new venue's uuid
@@ -444,6 +505,7 @@ open class Asahi: NSObject {
                 guard let uuid = response["uuid"].string else {
                     throw AsahiError.malformedJson
                 }
+                ASNotification.asahiAddedVenue.issue()
                 return uuid
         }
     }

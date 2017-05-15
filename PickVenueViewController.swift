@@ -12,6 +12,8 @@ class PickVenueViewController: UIViewController {
     
     let emptyTableText = "It looks like you don't have any venues!"
     
+    let nc = NotificationCenter.default
+    
     var tableViewDataSource: OGVenueTableViewDataSource?
     
     var tableViewDelegate: OGVenueTableViewDelegate?
@@ -33,6 +35,12 @@ class PickVenueViewController: UIViewController {
                                                      didSelect: didSelectVenue)
         tableView.tableFooterView = UIView(frame: .zero)
         
+        nc.addObserver(
+            forName: NSNotification.Name(rawValue: ASNotification.myVenuesUpdated.rawValue),
+            object: nil, queue: nil) { _ in
+                self.tableView.reloadData()
+        }
+        
         StateController.sharedInstance.findMyVenues()
             .then { _ -> Void in
                 self.tableView.reloadData()
@@ -43,9 +51,6 @@ class PickVenueViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? CreateVenueViewController {
-            vc.delegate = self
-        }
         
         if let vc = segue.destination as? SetupDeviceViewController,
             let venue = sender as? OGVenue {
@@ -58,16 +63,3 @@ class PickVenueViewController: UIViewController {
     }
 }
 
-extension PickVenueViewController: CreateVenueViewControllerDelegate {
-    
-    func createdVenue(_ venue: OGVenue) {
-        // refresh venues list to get the new venue
-        StateController.sharedInstance.findMyVenues()
-            .then { _ -> Void in
-                self.tableView.reloadData()
-            }
-            .catch { err -> Void in
-                log.debug(err)
-        }
-    }
-}
