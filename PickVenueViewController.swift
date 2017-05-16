@@ -29,7 +29,8 @@ class PickVenueViewController: UIViewController {
     
         tableViewDataSource = OGVenueTableViewDataSource(tableView,
                                                          type: OGVenueType.OWNED,
-                                                         noDataText: emptyTableText)
+                                                         noDataText: emptyTableText,
+                                                         accessory: UITableViewCellAccessoryType.disclosureIndicator)
         tableViewDelegate = OGVenueTableViewDelegate(tableView,
                                                      type: OGVenueType.OWNED,
                                                      didSelect: didSelectVenue)
