@@ -11,13 +11,7 @@ import CoreLocation
 import PKHUD
 import SwiftyJSON
 
-protocol CreateVenueViewControllerDelegate {
-    func createdVenue(_ venue: OGVenue)
-}
-
 class CreateVenueViewController: UITableViewController {
-    
-    var delegate: CreateVenueViewControllerDelegate?
     
     let curLocStr = "Current location"
     let locationManager = CLLocationManager()
@@ -116,11 +110,6 @@ class CreateVenueViewController: UITableViewController {
                 
                 .then { uuid -> Void in
                     venue.uuid = uuid
-                    
-                    // notify the delegate so it can reload
-                    if let del = self.delegate {
-                        del.createdVenue(venue)
-                    }
                     HUD.flash(.success, delay: 1.0)
                     _ = self.navigationController?.popViewController(animated: true)
                     

@@ -34,20 +34,13 @@ class MapViewController : UIViewController {
         
         self.mapView.delegate = self
         
-        nc.addObserver(self, selector: #selector(getAndPlaceVenues), name: NSNotification.Name(rawValue: ASNotification.networkChanged.rawValue), object: nil)
-        
-        self.getAndPlaceVenues()
-    }
-    
-    /// Makes a call to find all current venues and places them on the map.
-    func getAndPlaceVenues() {
-        StateController.sharedInstance.findAllVenues()
-            .then { _ in
+        nc.addObserver(
+            forName: NSNotification.Name(rawValue: ASNotification.allVenuesUpdated.rawValue),
+            object: nil, queue: nil) { _ in
                 self.placeVenues(StateController.sharedInstance.allVenues)
-            }
-            .catch { _ in
-                log.error("Error getting venues")
-            }
+        }
+        
+        _ = StateController.sharedInstance.findAllVenues()
     }
     
     /// Creates an `MKPointAnnotation` for each venue and places them on the map.

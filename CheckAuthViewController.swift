@@ -24,6 +24,7 @@ class CheckAuthViewController: UIViewController {
             }
         
             .catch{ err -> Void in
+                Asahi.sharedInstance.logout()
                 self.performSegue(withIdentifier: "fromCheckAuthToLR", sender: nil)
             }
     }

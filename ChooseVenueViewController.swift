@@ -25,6 +25,8 @@ class ChooseVenueViewController : UIViewController,
     
     let locationManager = CLLocationManager()
     
+    let nc = NotificationCenter.default
+    
     var location: CLLocationCoordinate2D?
     
     var venues = [OGVenue]()
@@ -58,14 +60,16 @@ class ChooseVenueViewController : UIViewController,
             locationManager.startUpdatingLocation()
         }
         
+        nc.addObserver(
+            forName: NSNotification.Name(rawValue:ASNotification.allVenuesUpdated.rawValue),
+            object: nil, queue: nil) { _ in
+                self.venues = StateController.sharedInstance.allVenues
+                self.sortByLocationAndReload()
+        }
+        
+        findVenues()
+        
         setNeedsStatusBarAppearanceUpdate()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.findVenues()
     }
     
     override func didReceiveMemoryWarning() {

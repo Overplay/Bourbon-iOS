@@ -17,9 +17,13 @@ class OGVenueTableViewDataSource: NSObject {
     /// Text to display when there is no data in the table.
     var noDataText: String
     
-    init(_ tableView: UITableView, type: OGVenueType, noDataText: String) {
+    /// Accessory to display on the cell.
+    var accessory: UITableViewCellAccessoryType
+    
+    init(_ tableView: UITableView, type: OGVenueType, noDataText: String, accessory: UITableViewCellAccessoryType = .none) {
         self.type = type
         self.noDataText = noDataText
+        self.accessory = accessory
         super.init()
         tableView.dataSource = self
     }
@@ -103,6 +107,8 @@ extension OGVenueTableViewDataSource: UITableViewDataSource {
         cell.address.text = venue.address
         
         cell.selectionStyle = .none
+        
+        cell.accessoryType = accessory
         
         return cell
     }

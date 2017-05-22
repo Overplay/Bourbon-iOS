@@ -31,10 +31,11 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
     var tableView: UITableView!
     
     let options = [
-        //SettingsOption(label: "Invite Friends", image: "ic_card_giftcard_white_18pt"),
-        SettingsOption(label: "Setup OG Device", image: ""),
-        SettingsOption(label: "Edit Account", image: "ic_perm_identity_white_18pt"),
-        SettingsOption(label: "Log Out", image: "ic_first_page_white_18pt")]
+        SettingsOption(label: "My Venues"),
+        SettingsOption(label: "Setup OG Device"),
+        //SettingsOption(label: "Invite Friends"),
+        SettingsOption(label: "Edit Account"),
+        SettingsOption(label: "Log Out")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,8 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
         let op = options[indexPath.row]
         
         switch op.label {
+        case "My Venues":
+            self.performSegue(withIdentifier: "fromSettingsToVenues", sender: op)
         case "Setup OG Device":
             self.performSegue(withIdentifier: "fromSettingsToSetup", sender: op)
         case "Invite Friends":
