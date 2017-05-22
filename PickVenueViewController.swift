@@ -10,7 +10,7 @@ import UIKit
 
 class PickVenueViewController: UIViewController {
     
-    let emptyTableText = "It looks like you don't have any venues!"
+    let emptyTableText = "It looks like you don't have any venues! Click on the plus sign above to add one."
     
     var tableViewDataSource: OGVenueTableViewDataSource?
     
