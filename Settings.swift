@@ -69,6 +69,13 @@ class Settings {
         }
     }
     
+    var belliniCoreBase: String {
+        get {
+            return ourglassCloudBaseUrl + ":" + ourglassBasePort + "/"
+        }
+        
+    }
+    
     // MARK: OG Discovery Protocol
     
     var udpDiscoveryPort: UInt16 {
@@ -177,7 +184,7 @@ class Settings {
         userDefaults.register(defaults: [
             
             "devMode" :  true,
-            "alwaysShowIntro": false,
+            "alwaysShowIntro": true,
             "allowAccountCreation": true,
             "ourglassScheme" : "http://",
             "ourglassBase" : "138.68.230.239",

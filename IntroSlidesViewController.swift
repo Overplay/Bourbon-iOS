@@ -17,9 +17,17 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
         UIImage(named: "TestSlide4")!
     ]
     
+    
+    let slideImageURLs: [String] = [
+        Settings.sharedInstance.belliniCoreBase + "bourbon/intro/slide1.jpg",
+        Settings.sharedInstance.belliniCoreBase + "bourbon/intro/slide2.jpg",
+        Settings.sharedInstance.belliniCoreBase + "bourbon/intro/slide3.jpg",
+    ]
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    // MAK not sure why these are forced to main thread, but it works
     @IBAction func cancel(_ sender: Any) {
         DispatchQueue.main.async(execute: {
             self.performSegue(withIdentifier: "fromIntroToReg", sender: nil)
@@ -36,7 +44,11 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         // set number of slides
-        self.pageControl.numberOfPages = self.slideImages.count
+        //self.pageControl.numberOfPages = self.slideImages.count
+        
+        // MK switching to URLs for post-launch mods
+        self.pageControl.numberOfPages = self.slideImageURLs.count
+
         
         // set frame of scroll view to fill screen
         self.scrollView.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:self.view.frame.height)
@@ -44,12 +56,34 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
         let scrollViewHeight: CGFloat = self.scrollView.frame.height
         
         // add slide images
-        for (idx, slideImage) in self.slideImages.enumerated() {
+//        for (idx, slideImage) in self.slideImages.enumerated() {
+//            let x: CGFloat = scrollViewWidth * CGFloat(idx)
+//            let imageView = UIImageView(frame: CGRect(x:x, y:0, width:scrollViewWidth, height:scrollViewHeight))
+//            imageView.image = slideImage
+//            self.scrollView.addSubview(imageView)
+//        }
+
+        for (idx, slideImageURL) in self.slideImageURLs.enumerated() {
             let x: CGFloat = scrollViewWidth * CGFloat(idx)
             let imageView = UIImageView(frame: CGRect(x:x, y:0, width:scrollViewWidth, height:scrollViewHeight))
-            imageView.image = slideImage
+            
+            let url = URL(string: slideImageURL)
+            
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                DispatchQueue.main.async {
+                    guard let data = data else {
+                        return self.cancel(self)
+                    }
+                    imageView.image = UIImage(data: data)
+
+                }
+            }
+            
             self.scrollView.addSubview(imageView)
         }
+
+        
         
         // change content size of scroll view to fit slides
         self.scrollView.contentSize = CGSize(width:scrollViewWidth * CGFloat(self.slideImages.count), height:scrollViewHeight)
