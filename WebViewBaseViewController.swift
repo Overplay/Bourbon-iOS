@@ -50,9 +50,15 @@ class WebViewBaseViewController: UIViewController, UIWebViewDelegate {
             return
         }
     
-        let urlReq = URLRequest(url: url,
+        var urlReq = URLRequest(url: url,
                                 cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                 timeoutInterval: 10)
+        
+        //headers: [ "Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
+        
+        urlReq.setValue("Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")", forHTTPHeaderField: "Authorization")
+        urlReq.setValue("OGHomey", forHTTPHeaderField: "X-OG-Mobile")
+
     
         log.debug("url: \(url)")
     

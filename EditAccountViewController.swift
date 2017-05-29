@@ -51,7 +51,7 @@ class EditAccountViewController: UITableViewController {
             HUD.show(.progress)
             
             if let uid = Settings.sharedInstance.userId {
-                Asahi.sharedInstance.changeAccountInfo(first, lastName: last, email: email, userId: uid)
+                OGCloud.sharedInstance.changeAccountInfo(first, lastName: last, email: email, userId: uid)
             
                     .then{ response -> Void in
                         Settings.sharedInstance.userEmail = email
@@ -64,19 +64,21 @@ class EditAccountViewController: UITableViewController {
                     .catch{ error -> Void in
                         switch error {
                             
-                        case AsahiError.authFailure:
+                        case OGCloudError.authFailure:
                             self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to change this account's information!"
                             self.errorBlock.isHidden = false
                             
-                        case AsahiError.tokenInvalid:
+                        case OGCloudError.tokenInvalid:
                             let alertController = UIAlertController(
                                 title: "Uh oh!",
                                 message: "It looks like your session has expired. Please log back in.",
                                 preferredStyle: .alert)
                             
                             let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                                Asahi.sharedInstance.logout()
-                                self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+                                OGCloud.sharedInstance.logout()
+                                    .always{
+                                        self.performSegue(withIdentifier: "fromEditAccountToRegistration", sender: nil)
+                                    }
                             }
                             
                             alertController.addAction(okAction)
@@ -111,7 +113,7 @@ class EditAccountViewController: UITableViewController {
                                                 errorLabel: emailErrorLabel,
                                                 inTableView: true)
         
-        Asahi.sharedInstance.checkSession()
+        OGCloud.sharedInstance.checkSession()
             .then { _ -> Void in
                 self.firstName.text = Settings.sharedInstance.userFirstName
                 self.lastName.text = Settings.sharedInstance.userLastName

@@ -9,19 +9,33 @@
 import UIKit
 import PKHUD
 
+
+// TODO: This is a bit messy with all the initters
 struct SettingsOption {
     let label: String
-    let image: String?
+    var image: String? = nil
+    var segue: String? = nil
+    var action: Selector? = nil
     
     init(label: String) {
         self.label = label
-        self.image = nil
     }
     
     init(label: String, image: String) {
         self.label = label
         self.image = image
     }
+    
+    init(label: String, segue: String) {
+        self.label = label
+        self.segue = segue
+    }
+    
+    init(label: String, action: Selector ) {
+        self.label = label
+        self.action = action
+    }
+
 }
 
 class SettingsViewController : AccountBaseViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -31,11 +45,15 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
     var tableView: UITableView!
     
     let options = [
-        SettingsOption(label: "My Venues"),
-        SettingsOption(label: "Setup OG Device"),
-        //SettingsOption(label: "Invite Friends"),
-        SettingsOption(label: "Edit Account"),
-        SettingsOption(label: "Log Out")]
+        SettingsOption(label: "My Venues", segue: "fromSettingsToVenues"),
+        SettingsOption(label: "Setup OG Device", segue: "fromSettingsToSetup"),
+        //SettingsOption(label: "Invite Friends", segue: "fromSettingsToInvite"),
+        SettingsOption(label: "Edit Account", segue: "fromSettingsToEdit"),
+        SettingsOption(label: "Log Out", action: #selector(logout)),
+        SettingsOption(label: "", action: #selector(secret)),
+
+    ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,20 +76,14 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
         
         let op = options[indexPath.row]
         
-        switch op.label {
-        case "My Venues":
-            self.performSegue(withIdentifier: "fromSettingsToVenues", sender: op)
-        case "Setup OG Device":
-            self.performSegue(withIdentifier: "fromSettingsToSetup", sender: op)
-        case "Invite Friends":
-            self.performSegue(withIdentifier: "fromSettingsToInvite", sender: op)
-        case "Edit Account":
-            self.performSegue(withIdentifier: "fromSettingsToEdit", sender: op)
-        case "Log Out":
-            logout()
-        default:
-            break
+        if let segue = op.segue {
+            self.performSegue(withIdentifier: segue , sender: self)
         }
+        
+        if op.action != nil {
+            self.perform(op.action)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,9 +92,11 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
         
         cell.isUserInteractionEnabled = true
         
-        cell.label.text = options[indexPath.row].label
+        let op = options[indexPath.row]
         
-        if options[indexPath.row].label == "Log Out" {
+        cell.label.text = op.label
+        
+        if op.segue == nil {
             cell.accessoryType = .none
         } else {
             cell.accessoryType = .disclosureIndicator
@@ -99,7 +113,7 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
         return 40.0
     }
     
-    func logout() {
+    func logout() -> Void {
         let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "No", style: .cancel) { (action) in }
@@ -107,16 +121,25 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
         alertController.addAction(cancelAction)
         
         let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            Asahi.sharedInstance.logout()
-            HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 0.5, completion: { (_) in
-                self.performSegue(withIdentifier: "fromSettingsToRegistration", sender: nil)
-            })
+            OGCloud.sharedInstance.logout()
+                .always{
+                    HUD.flash(.labeledSuccess(title: "Logged out!", subtitle: ""), delay: 0.5, completion: { (_) in
+                        self.performSegue(withIdentifier: "fromSettingsToRegistration", sender: nil)
+                    })
+                    
+            }
+            
         }
         
         alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion: nil)
 
+    }
+    
+    func secret(){
+        log.debug("secret!");
+        //ASNotification.error403.issue()
     }
     
     override func viewWillAppear(_ animated: Bool) {

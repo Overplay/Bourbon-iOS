@@ -12,6 +12,7 @@ class DeviceCell: UICollectionViewCell {
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet var statusLabel: UILabel!
     
     func swiped(_ sender: UISwipeGestureRecognizer){
         log.debug("device swiped")

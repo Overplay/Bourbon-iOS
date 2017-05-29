@@ -18,7 +18,7 @@ class EnterPasswordViewController: LoginBaseViewController {
         
         HUD.show(.labeledProgress(title: "Creating Account", subtitle: "Please Wait"))
         
-        Asahi.sharedInstance.register(Settings.sharedInstance.userEmail!,
+        OGCloud.sharedInstance.register(Settings.sharedInstance.userEmail!,
                                       password: pwdTextField.text!,
                                       user: [ "firstName": Settings.sharedInstance.userFirstName!,
                                             "lastName": Settings.sharedInstance.userLastName! ])

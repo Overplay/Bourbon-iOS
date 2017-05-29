@@ -18,8 +18,10 @@ enum ASNotification: String {
     case asahiAddedVenue
     case asahiUpdatedDevice
     case asahiLoggedIn
+    case error403
     
-    case networkChanged
+    case networkReachable
+    case networkNotReachable
     
     func issue(userInfo: Dictionary<String, Any>? = nil){
         log.debug(self)

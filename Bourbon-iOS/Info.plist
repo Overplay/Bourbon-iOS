@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>OG World</string>
+	<string>OurglassTV</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -32,7 +32,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow us to find the stores nearest to you.</string>
+	<string>Allow us to find the Ourglass venues nearest to you.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Exo2-Black.ttf</string>

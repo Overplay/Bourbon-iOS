@@ -52,7 +52,7 @@ class LoginBaseViewController: RegSceneBaseViewController {
     }
     
     func login(_ email: String, pwd: String){
-        Asahi.sharedInstance.login(email, password: pwd)
+        OGCloud.sharedInstance.login(email, password: pwd)
             .then{ response -> Void in
                 HUD.flash(.labeledSuccess(title: "Logged In!", subtitle: nil ))
             }
@@ -63,7 +63,7 @@ class LoginBaseViewController: RegSceneBaseViewController {
     }
     
     func loginWithSegue(_ email: String, pwd: String, segueId: String){
-        Asahi.sharedInstance.login(email, password: pwd)
+        OGCloud.sharedInstance.loginAndGetToken(email, password: pwd)
             .then{ response -> Void in
                 HUD.flash(.labeledSuccess(title: "Logged In!", subtitle: nil ))
                 log.debug("OK, let's do this!")

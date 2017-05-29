@@ -70,7 +70,7 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
         self.refreshing = true
         self.refreshControl.beginRefreshing()
         
-        Asahi.sharedInstance.getDevices(self.venue.uuid)
+        OGCloud.sharedInstance.getDevices(self.venue.uuid)
         
             .then{ json -> Void in
                 self.processDevices(json)
@@ -96,11 +96,11 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
         
         for device in devicesArray {
             
-            let name = device["name"].stringValue
-            let udid = device["deviceUDID"].stringValue
-            let venueUUID = device["atVenueUUID"].stringValue
+//            let name = device["name"].stringValue
+//            let udid = device["deviceUDID"].stringValue
+//            let venueUUID = device["atVenueUUID"].stringValue
             
-            self.devices.append(OGDevice(name: name, atVenueUUID: venueUUID, udid: udid))
+            self.devices.append(OGDevice(inboundJson: device))
         }
     }
     
@@ -135,8 +135,21 @@ class ChooseDeviceViewController : UIViewController, UICollectionViewDelegate, U
         
         let cell : DeviceCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultDeviceCell", for: indexPath) as! DeviceCell
         
-        cell.name.text = self.devices[indexPath.row].name
+        let thisDevice = self.devices[indexPath.row]
+        cell.name.text = thisDevice.name
+        cell.name.textColor = thisDevice.isActive ? .white : Style.ogRedColor
+        
+        if thisDevice.isActive {
+            cell.statusLabel.text = thisDevice.stationName
+            //cell.statusLabel.isHidden = thisDevice.stationName.isEmpty
+        } else {
+            cell.statusLabel.text = "OFFLINE"
+            //cell.statusLabel.isHidden = false
+
+        }
+        
         cell.numberLabel.text = String(format: "%02d", indexPath.row + 1)
+        
         
         return cell
     }

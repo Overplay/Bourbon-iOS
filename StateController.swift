@@ -28,7 +28,9 @@ class StateController {
     private(set) var managedVenues = [OGVenue]()
     
     private init() {
+        
         let nc = NotificationCenter.default
+        
         nc.addObserver(
             forName: NSNotification.Name(rawValue:ASNotification.asahiAddedVenue.rawValue),
             object: nil, queue: nil) { _ in
@@ -36,13 +38,16 @@ class StateController {
                 _ = self.findMyVenues()
         }
         
+        // TODO I'm not loving how this is done.
         nc.addObserver(
-            forName: NSNotification.Name(rawValue:ASNotification.networkChanged.rawValue),
+            forName: NSNotification.Name(rawValue:ASNotification.networkReachable.rawValue),
             object: nil, queue: nil) { _ in
                 _ = self.findAllVenues()
                 _ = self.findMyVenues()
         }
     }
+    
+    // TODO these promises below need simplifcation
     
     /// Finds all venues and updates the current state.
     ///
@@ -50,7 +55,7 @@ class StateController {
     func findAllVenues() -> Promise<Bool> {
         return Promise { fulfill, reject in
             
-            Asahi.sharedInstance.getVenues()
+            OGCloud.sharedInstance.getVenues()
                 
                 .then { response -> Void in
                     self.allVenues = self.processVenues(response)
@@ -58,6 +63,8 @@ class StateController {
                     fulfill(true)
                 }
                 .catch { err -> Void  in
+                    // TODO this is not the right way to handle this. 403 should be causght in the OGCloud code. Fix later.
+                    ASNotification.error403.issue()
                     reject(err)
             }
         }
@@ -69,24 +76,25 @@ class StateController {
     func findMyVenues() -> Promise<Bool> {
         return Promise { fulfill, reject in
             
-            Asahi.sharedInstance.getUserVenues()
+            OGCloud.sharedInstance.getUserVenues()
                 
                 .then { response -> Void in
                     
-                    if let owned = response["owned"].array, let managed = response["managed"].array {
-                        self.ownedVenues = self.processVenues(JSON(owned))
-                        self.managedVenues = self.processVenues(JSON(managed))
+                    //if let owned = response["owned"], let managed = response["managed"] {
+                        self.ownedVenues = self.processVenues(response["owned"])
+                        self.managedVenues = self.processVenues(response["managed"])
                         self.myVenues = [VenueCollection("Owned", self.ownedVenues),
                                          VenueCollection("Managed", self.managedVenues)]
                         ASNotification.myVenuesUpdated.issue()
                         fulfill(true)
-                    } else {
-                        reject(AsahiError.malformedJson)
-                    }
+                    //} else {
+                    //    reject(OGCloudError.malformedJson)
+                    //}
                 }
                 .catch { err -> Void  in
-                    reject(err)
-            }
+                    // TODO this is not the right way to handle this. 403 should be causght in the OGCloud code. Fix later.
+                    ASNotification.error403.issue()
+                    reject(err)            }
         }
     }
     
@@ -121,10 +129,10 @@ class StateController {
                     log.debug("found venue named \(name) with incomplete address, skipping")
                     continue
             }
-            guard let latitude = geolocation["latitude"].double, let longitude = geolocation["longitude"].double else {
-                log.debug("found venue named \(name) with no geolocation, skipping")
-                continue
-            }
+            
+            let latitude = geolocation["latitude"].doubleValue
+            let longitude = geolocation["longitude"].doubleValue
+            
             let ogVenue = OGVenue(name: name, street: street, city: city, state: state,
                                   zip: zip, latitude: latitude, longitude: longitude,
                                   uuid: uuid)

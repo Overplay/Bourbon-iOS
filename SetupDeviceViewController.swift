@@ -83,14 +83,14 @@ class SetupDeviceViewController: AccountBaseViewController {
                 return
         }
         
-        Asahi.sharedInstance.findByRegCode(code).then { deviceData -> Promise<String> in
+        OGCloud.sharedInstance.findByRegCode(code).then { deviceData -> Promise<String> in
             guard let deviceUdid = deviceData["deviceUDID"].string else {
-                throw AsahiError.malformedJson
+                throw OGCloudError.malformedJson
             }
-            return Asahi.sharedInstance.changeDeviceName(deviceUdid, name: name)
+            return OGCloud.sharedInstance.changeDeviceName(deviceUdid, name: name)
             
         }.then { deviceUdid in
-            return Asahi.sharedInstance.associate(deviceUdid: deviceUdid,
+            return OGCloud.sharedInstance.associate(deviceUdid: deviceUdid,
                                            withVenueUuid: venue.uuid)
         }.then { _ -> Void in
             self.createDeviceActivityIndicator.stopAnimating()
@@ -105,20 +105,22 @@ class SetupDeviceViewController: AccountBaseViewController {
             
             switch error {
                     
-            case AsahiError.authFailure:
+            case OGCloudError.authFailure:
                 self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to create a device!"
                 self.errorBlock.isHidden = false
                 self.errorBlock.shake()
                     
-            case AsahiError.tokenInvalid:
+            case OGCloudError.tokenInvalid:
                 let alertController = UIAlertController(
                     title: "Uh oh!",
                     message: "It looks like your session has expired. Please log back in.",
                     preferredStyle: .alert)
                     
                 let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                    Asahi.sharedInstance.logout()
-                    self.performSegue(withIdentifier: "fromSetupDeviceToRegistration", sender: nil)
+                    OGCloud.sharedInstance.logout()
+                        .always {
+                            self.performSegue(withIdentifier: "fromSetupDeviceToRegistration", sender: nil)
+                        }
                 }
                     
                 alertController.addAction(okAction)

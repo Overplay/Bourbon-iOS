@@ -1,5 +1,5 @@
 //
-//  Asahi.swift
+//  Asahi.swift (AKA Bellini)
 //  Absinthe-iOS
 //
 //  Created by Noah on 7/19/16.
@@ -51,9 +51,13 @@ open class Asahi: NSObject {
     ///
     /// - Parameter endpoint: the endpoint to append to the base
     /// - Returns: the complete API endpoint
-    func createApiEndpoint(_ endpoint: String) -> String {
-        return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + Settings.sharedInstance.ourglassBasePort + endpoint
-    }
+    
+    // MAK: These don't work well with DNA named endpoints in front of NGINX
+    
+//    func createApiEndpoint(_ endpoint: String) -> String {
+//        //return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + Settings.sharedInstance.ourglassBasePort + endpoint
+//        return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + Settings.sharedInstance.ourglassBasePort + endpoint
+//    }
     
     /// Creates an API endpoing with the default base URL stored in 
     /// Settings and the provided port.
@@ -62,9 +66,9 @@ open class Asahi: NSObject {
     ///   - endpoint: endpoint to append to the base
     ///   - port: port
     /// - Returns: the complete API endpoint
-    func createApiEndpoint(_ endpoint: String, withPort port: String) -> String {
-        return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + port + endpoint
-    }
+//    func createApiEndpoint(_ endpoint: String, withPort port: String) -> String {
+//        return Settings.sharedInstance.ourglassCloudBaseUrl + ":" + port + endpoint
+//    }
     
     /// Makes an HTTP request with Alamofire to get the JSON contents
     /// of the response.
@@ -209,7 +213,7 @@ open class Asahi: NSObject {
                 "user": user,
                 "type":"local"]
 
-            return postJson(createApiEndpoint("/auth/addUser"),
+            return postJson(Settings.sharedInstance.belliniCoreBaseUrl + "/auth/addUser",
                             data: params as Dictionary<String, AnyObject>)
                 
                 .then{ _ -> Promise<String> in
@@ -254,7 +258,7 @@ open class Asahi: NSObject {
             "password":password,
             "type":"local"]
         
-        return postJson(createApiEndpoint("/auth/login"), data: params)
+        return postJson( Settings.sharedInstance.belliniCoreBaseUrl + "/auth/login", data: params)
             .then{ response -> Bool in
                 Settings.sharedInstance.userEmail = email
                 ASNotification.asahiLoggedIn.issue()
@@ -267,7 +271,7 @@ open class Asahi: NSObject {
     ///
     /// - Returns: a promise resolving in the JWT
     func getToken() -> Promise<String> {
-        return getJson(createApiEndpoint("/user/jwt"))
+        return getJson( Settings.sharedInstance.belliniCoreBaseUrl + "/user/jwt")
             .then{ response -> String in
                 
                 guard let token = response["token"].string,
@@ -290,7 +294,7 @@ open class Asahi: NSObject {
         
         // cannot use same getJson() as everyone else or we might end up in a loop on 403 error handling
         return Promise { fulfill, reject in
-            Alamofire.request(createApiEndpoint("/user/checkjwt"),
+            Alamofire.request( Settings.sharedInstance.belliniCoreBaseUrl + "/user/checkjwt",
                               method: .get,
                               headers: ["Authorization" : "Bearer \(Settings.sharedInstance.userBelliniJWT ?? "")" ])
                 .validate()
@@ -326,7 +330,7 @@ open class Asahi: NSObject {
     ///
     /// - Returns: a promise resolving in the response JSON
     func checkSession() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/user/checksession"))
+        return getJson( Settings.sharedInstance.belliniCoreBaseUrl + "/user/checksession")
             .then { response -> JSON in
                 
                 guard let id = response["id"].string,
@@ -349,14 +353,14 @@ open class Asahi: NSObject {
     ///
     /// - Returns: a promise resolving in the response JSON which contains the venues
     func getVenues() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/venue/all"))
+        return getJson( Settings.sharedInstance.belliniCoreBaseUrl + "/venue/all" )
     }
     
     /// Gets the venues associated with the current user.
     ///
     /// - Returns: a promise resolving in the venues JSON
     func getUserVenues() -> Promise<JSON> {
-        return getJson(createApiEndpoint("/venue/myvenues"))
+        return getJson(  Settings.sharedInstance.belliniCoreBaseUrl + "/venue/myvenues" )
     }
     
     /// Gets the devices associated with a venue.
@@ -364,8 +368,7 @@ open class Asahi: NSObject {
     /// - Parameter venueUUID: venue's UUID
     /// - Returns: a promise resolving in the response JSON
     func getDevices(_ venueUUID: String) -> Promise<JSON> {
-        return getJson(createApiEndpoint("/venue/devices?atVenueUUID=" + venueUUID,
-                                         withPort: "2001"))
+        return getJson( Settings.sharedInstance.belliniDMBaseUrl + "/venue/devices?atVenueUUID=" + venueUUID )
     }
     
     /// Changes account information of a user.
@@ -378,7 +381,7 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in the response JSON
     func changeAccountInfo(_ firstName: String, lastName: String, email: String, userId: String) -> Promise<JSON> {
         let params: Dictionary<String, Any> = ["email": email, "firstName": firstName, "lastName": lastName]
-        return putJson(createApiEndpoint("/user/\(userId)"), data: params)
+        return putJson(  Settings.sharedInstance.belliniCoreBaseUrl + "/user/\(userId)", data: params)
     }
     
     /// Changes the password of the user.
@@ -389,7 +392,7 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in `true` on success
     func changePassword(_ email: String, newPassword: String) -> Promise<Bool> {
         let params = ["email": email, "newpass": newPassword]
-        return postJson(createApiEndpoint("/auth/changePwd"), data: params)
+        return postJson( Settings.sharedInstance.belliniCoreBaseUrl + "/auth/changePwd", data: params)
             .then{ json -> Bool in
                 return true
         }
@@ -409,7 +412,7 @@ open class Asahi: NSObject {
     func inviteNewUser(_ email: String) -> Promise<Bool> {
         let params = ["email": email]
         //return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
-        return doTransaction(createApiEndpoint("/user/inviteNewUser"),
+        return doTransaction( Settings.sharedInstance.belliniCoreBaseUrl + "/user/inviteNewUser",
                              data: params, method: .post, encoding: JSONEncoding.default)
     }
     
@@ -419,7 +422,7 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in the device JSON
     func findByRegCode(_ regCode: String) -> Promise<JSON> {
         let params = ["regcode": regCode]
-        return getJson(createApiEndpoint("/ogdevice/findByRegCode", withPort: "2001"),
+        return getJson( Settings.sharedInstance.belliniDMBaseUrl + "/ogdevice/findByRegCode",
                        parameters: params)
     }
     
@@ -431,7 +434,7 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in the device's `udid`
     func changeDeviceName(_ udid: String, name: String) -> Promise<String> {
         let params = ["deviceUDID": udid, "name": name]
-        return postJson(createApiEndpoint("/ogdevice/changeName", withPort: "2001"),
+        return postJson( Settings.sharedInstance.belliniDMBaseUrl + "/ogdevice/changeName",
                         data: params)
             .then { _ -> String in
                 ASNotification.asahiUpdatedDevice.issue()
@@ -447,7 +450,7 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in the JSON response from the call
     func associate(deviceUdid: String, withVenueUuid: String) -> Promise<JSON> {
         let params = ["deviceUDID": deviceUdid, "venueUUID": withVenueUuid]
-        return postJson(createApiEndpoint("/ogdevice/associateWithVenue", withPort: "2001"),
+        return postJson(  Settings.sharedInstance.belliniDMBaseUrl + "/ogdevice/associateWithVenue",
                         data: params)
             .then { response -> JSON in
                 ASNotification.asahiUpdatedDevice.issue()
@@ -463,7 +466,7 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in a JSON array of the results
     func yelpSearch(location: String, term: String) -> Promise<JSON> {
         let params = ["location": location, "term": term]
-        return getJson(createApiEndpoint("/venue/yelpSearch"), parameters: params)
+        return getJson(  Settings.sharedInstance.belliniCoreBaseUrl + "/venue/yelpSearch", parameters: params)
     }
     
     /// Performs a Yelp search.
@@ -475,7 +478,7 @@ open class Asahi: NSObject {
     /// - Returns: a promise resolving in a JSON array of the results
     func yelpSearch(latitude: Double, longitude: Double, term: String) -> Promise<JSON> {
         let params = ["latitude": latitude, "longitude": longitude, "term": term] as [String : Any]
-        return getJson(createApiEndpoint("/venue/yelpSearch"), parameters: params)
+        return getJson( Settings.sharedInstance.belliniCoreBaseUrl + "/venue/yelpSearch", parameters: params)
     }
     
     /// Creates a new venue.
@@ -500,7 +503,7 @@ open class Asahi: NSObject {
             "yelpId": venue.yelpId
         ]
         
-        return postJson(createApiEndpoint("/venue"), data: params)
+        return postJson( Settings.sharedInstance.belliniCoreBaseUrl + "/venue", data: params)
             .then { response -> String in
                 guard let uuid = response["uuid"].string else {
                     throw AsahiError.malformedJson

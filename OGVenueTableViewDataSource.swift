@@ -69,11 +69,13 @@ extension OGVenueTableViewDataSource: UITableViewDataSource {
         
         if rows == 0 && type != OGVenueType.MINE { // display a message indicating there is no data
             
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            // TODO this needs to be replaced with something in the storyboard
+            let noDataLabel = UILabel(frame: CGRect(x: 40, y: 0, width: tableView.bounds.size.width-80, height: tableView.bounds.size.height))
             noDataLabel.text = self.noDataText
             noDataLabel.textColor = UIColor.white
             noDataLabel.textAlignment = .center
-            noDataLabel.font = UIFont(name: Style.regularFont, size: 12.0)
+            noDataLabel.font = UIFont(name: Style.regularFont, size: 14.0)
+            noDataLabel.numberOfLines = 5
             
             tableView.backgroundView = noDataLabel
             tableView.separatorStyle = .none

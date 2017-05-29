@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var reachability: NetworkReachability?
     
+    func handle403(){
+        Settings.sharedInstance.userBelliniJWT = nil;
+        var mainView: UIStoryboard!
+        mainView = UIStoryboard(name: "RegistrationStoryboard", bundle: nil)
+        let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "LoginOrRegisterVC") as UIViewController
+        self.window!.rootViewController = viewcontroller
+    }
+    
    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -34,11 +42,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Settings.sharedInstance.registerDefaults()
         
-        // Log into Asahi if possible
-        _ = Asahi.sharedInstance
+        // Log into Bellini/OGCloud if possible
+        _ = OGCloud.sharedInstance
+        
+//        OGCloud.sharedInstance.login("mitcha@ourglass.tv", password: "D@rkB0ck")
+//            .then{ jsonData in
+//                log.debug("logged in")
+//            }
+//            .catch{ err in
+//                log.debug("Shit da bed")
+//            }
 
         // Setup some universal style things
         UITextField.appearance().keyboardAppearance = .dark
+
+        // Register to shove the user to login when a 403 occurs.
+        NotificationCenter.default
+            .addObserver(forName:Notification.Name(rawValue:"error403"),
+                       object:nil, queue:nil) { notification in
+                            self.handle403()
+                        }
         
         return true
     }

@@ -17,6 +17,9 @@ struct Style {
     static var darkGreyColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
     static var lightGreyColor = UIColor(red:0.78, green:0.77, blue:0.77, alpha:1.0)
     
+    // vodka cran red 0.937, 0.282, 0.224
+    static var ogRedColor = UIColor(red: 0.937, green: 0.282, blue: 0.224, alpha:1.0)
+    
     static var regularFont = "Poppins-Regular"
     static var boldFont = "Poppins-Bold"
     static var lightFont = "Poppins-Light"

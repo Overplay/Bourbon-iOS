@@ -38,43 +38,75 @@ class Settings {
     
     // MARK Asahi Cloud Services
     
-    var ourglassCloudBase: String {
+    var belliniCoreBaseUrl: String {
         get {
-            return userDefaults.string(forKey: "ourglassBase") ?? "whoopsie"
+            return userDefaults.string(forKey: "belliniCoreBaseUrl") ?? "whoopsie"
         }
         set {
-            userDefaults.set(newValue, forKey: "ourglassBase")
+            userDefaults.set(newValue, forKey: "belliniCoreBaseUrl")
         }
     }
     
-    var ourglassCloudScheme: String {
+    var belliniDMBaseUrl: String {
         get {
-            return userDefaults.string(forKey: "ourglassScheme") ?? "http://"
+            return userDefaults.string(forKey: "belliniDMBaseUrl") ?? "whoopsie"
         }
         set {
-            userDefaults.set(newValue, forKey: "ourglassScheme")
+            userDefaults.set(newValue, forKey: "belliniDMBaseUrl")
         }
     }
     
-    var ourglassCloudBaseUrl: String {
-        return ourglassCloudScheme + ourglassCloudBase
-    }
-    
-    var ourglassBasePort: String {
+    var hasValidJwt: Bool {
         get {
-            return userDefaults.string(forKey: "ourglassBasePort") ?? "2000"
-        }
-        set {
-            userDefaults.set(newValue, forKey: "ourglassBasePort")
-        }
-    }
-    
-    var belliniCoreBase: String {
-        get {
-            return ourglassCloudBaseUrl + ":" + ourglassBasePort + "/"
+            if self.userBelliniJWTExpiry != nil && self.userBelliniJWT != nil {
+                if Date() < Date(timeIntervalSince1970: Settings.sharedInstance.userBelliniJWTExpiry! - 86400.0) { // JWT has expired or will expire in the next day
+                    return true
+                }
+            }
+            return false
         }
         
     }
+
+
+    
+//    var ourglassCloudBase: String {
+//        get {
+//            return userDefaults.string(forKey: "ourglassBase") ?? "whoopsie"
+//        }
+//        set {
+//            userDefaults.set(newValue, forKey: "ourglassBase")
+//        }
+//    }
+//    
+//    var ourglassCloudScheme: String {
+//        get {
+//            return userDefaults.string(forKey: "ourglassScheme") ?? "http://"
+//        }
+//        set {
+//            userDefaults.set(newValue, forKey: "ourglassScheme")
+//        }
+//    }
+//    
+//    var ourglassCloudBaseUrl: String {
+//        return ourglassCloudScheme + ourglassCloudBase
+//    }
+//    
+//    var ourglassBasePort: String {
+//        get {
+//            return userDefaults.string(forKey: "ourglassBasePort") ?? "2000"
+//        }
+//        set {
+//            userDefaults.set(newValue, forKey: "ourglassBasePort")
+//        }
+//    }
+//    
+//    var belliniCoreBase: String {
+//        get {
+//            return ourglassCloudBaseUrl + ":" + ourglassBasePort + "/"
+//        }
+//        
+//    }
     
     // MARK: OG Discovery Protocol
     
@@ -131,6 +163,10 @@ class Settings {
         }
     }
     
+    func getJwt() -> String {
+        return userBelliniJWT ?? ""
+    }
+    
     var userBelliniJWTExpiry: Double? {
         get {
             return userDefaults.double(forKey: "userBelliniJWTExpiry")
@@ -184,13 +220,16 @@ class Settings {
         userDefaults.register(defaults: [
             
             "devMode" :  true,
-            "alwaysShowIntro": true,
+            "alwaysShowIntro": false,
             "allowAccountCreation": true,
-            "ourglassScheme" : "http://",
-            "ourglassBase" : "138.68.230.239",
-            "ourglassBasePort": "2000",
+//            "ourglassScheme" : "https://",
+//            "ourglassBase" : "138.68.230.239", // needs to be swapped out for launch
+//            "ourglassBasePort": "2000",
             "appleReviewMode" : false,
-            "isRegistered" : false
+            "isRegistered" : false,
+            "belliniCoreBaseUrl": "https://cloud.ourglass.com",
+            "belliniDMBaseUrl": "https://cloud-dm.ourglass.com",
+
             
         ])
     }

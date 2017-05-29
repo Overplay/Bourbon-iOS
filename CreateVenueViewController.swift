@@ -106,7 +106,7 @@ class CreateVenueViewController: UITableViewController {
             venue.latitude = coords.latitude
             venue.longitude = coords.longitude
             
-            Asahi.sharedInstance.addVenue(venue: venue)
+            OGCloud.sharedInstance.addVenue(venue: venue)
                 
                 .then { uuid -> Void in
                     venue.uuid = uuid
@@ -117,20 +117,22 @@ class CreateVenueViewController: UITableViewController {
                     
                     switch error {
                         
-                    case AsahiError.authFailure:
+                    case OGCloudError.authFailure:
                         self.errorBlockLabel.text = "Sorry, it looks like you aren't authorized to create a venue!"
                         self.errorBlock.isHidden = false
                         self.errorBlock.shake()
                         
-                    case AsahiError.tokenInvalid: // this person needs to log back in
+                    case OGCloudError.tokenInvalid: // this person needs to log back in
                         let alertController = UIAlertController(
                             title: "Uh oh!",
                             message: "It looks like your session has expired. Please log back in.",
                             preferredStyle: .alert)
                         
                         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                            Asahi.sharedInstance.logout()
-                            self.performSegue(withIdentifier: "fromAddVenueToRegistration", sender: nil)
+                            OGCloud.sharedInstance.logout()
+                                .always {
+                                    self.performSegue(withIdentifier: "fromAddVenueToRegistration", sender: nil)
+                            }
                         }
                         
                         alertController.addAction(okAction)

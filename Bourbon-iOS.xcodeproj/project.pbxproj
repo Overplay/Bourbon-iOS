@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1681C1E08C7344599C0DA092 /* Pods_Bourbon_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */; };
+		1E20E5F11EDA35BF00F4C3F0 /* Asahi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E20E5F01EDA35BF00F4C3F0 /* Asahi.swift */; };
 		1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */; };
-		1ED96E881E2A0C6300891EA8 /* Asahi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E841E2A0C6300891EA8 /* Asahi.swift */; };
 		1ED96E911E2A0CB500891EA8 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */; };
 		1ED96E921E2A0CB500891EA8 /* OurglasserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */; };
 		1ED96E981E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E961E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard */; };
@@ -39,6 +39,7 @@
 		1ED96EE81E2A0E0C00891EA8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */; };
 		1ED96EEA1E2A0E1500891EA8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */; };
 		1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE7B96E1E2DEDD800E00370 /* Network.swift */; };
+		1EF1DDC41ED91020004A8D3E /* OGCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1DDC31ED91020004A8D3E /* OGCloud.swift */; };
 		1EF5B4FC1E935A0D001FD19E /* AppControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5B4FB1E935A0D001FD19E /* AppControlViewController.swift */; };
 		1EF5B4FE1E935A7B001FD19E /* WebViewBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5B4FD1E935A7B001FD19E /* WebViewBaseViewController.swift */; };
 		4F61B4A91E661D22005FB11F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F61B4A81E661D22005FB11F /* LaunchScreen.storyboard */; };
@@ -82,9 +83,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E20E5F01EDA35BF00F4C3F0 /* Asahi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asahi.swift; sourceTree = "<group>"; };
 		1ED96E6B1E2A0A7A00891EA8 /* Bourbon-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bourbon-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtilsXX.swift; sourceTree = "<group>"; };
-		1ED96E841E2A0C6300891EA8 /* Asahi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asahi.swift; sourceTree = "<group>"; };
 		1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Control.storyboard; sourceTree = "<group>"; };
 		1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurglasserCell.swift; sourceTree = "<group>"; };
 		1ED96E961E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTabsStoryboard.storyboard; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 		1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1EE7B96B1E2DB82400E00370 /* Bourbon-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bourbon-iOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1EE7B96E1E2DEDD800E00370 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		1EF1DDC31ED91020004A8D3E /* OGCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGCloud.swift; sourceTree = "<group>"; };
 		1EF5B4FB1E935A0D001FD19E /* AppControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppControlViewController.swift; sourceTree = "<group>"; };
 		1EF5B4FD1E935A7B001FD19E /* WebViewBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewBaseViewController.swift; sourceTree = "<group>"; };
 		3B39F5F32EB6DDC59F1112A4 /* Pods-Bourbon-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bourbon-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bourbon-iOS/Pods-Bourbon-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -190,13 +192,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		1E6C05691EDA444A009BB11B /* Hidden Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Hidden Settings";
+			sourceTree = "<group>";
+		};
 		1ED96E621E2A0A7A00891EA8 = {
 			isa = PBXGroup;
 			children = (
 				1ED96ECE1E2A0D9300891EA8 /* Assets+MainSB */,
+				1ED96E801E2A0C2D00891EA8 /* Networking */,
 				1ED96EC11E2A0D7500891EA8 /* Model */,
 				1ED96E8B1E2A0C7200891EA8 /* Scenes */,
-				1ED96E801E2A0C2D00891EA8 /* Networking */,
 				1ED96E6D1E2A0A7A00891EA8 /* Bourbon-iOS */,
 				1ED96E6C1E2A0A7A00891EA8 /* Products */,
 				0D9E2D76DCDC81D09564E0B9 /* Pods */,
@@ -228,10 +237,11 @@
 		1ED96E801E2A0C2D00891EA8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				1E20E5F01EDA35BF00F4C3F0 /* Asahi.swift */,
 				1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */,
-				1ED96E841E2A0C6300891EA8 /* Asahi.swift */,
 				1EE7B96E1E2DEDD800E00370 /* Network.swift */,
 				4F9308711E57B904005B5EAB /* NetworkReachability.swift */,
+				1EF1DDC31ED91020004A8D3E /* OGCloud.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -302,6 +312,7 @@
 		1ED96EB21E2A0D4F00891EA8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				1E6C05691EDA444A009BB11B /* Hidden Settings */,
 				4FF88F011EC6810600F804AC /* Edit Account */,
 				4FF88EFE1EC6806400F804AC /* My Venues */,
 				4F7885991EBBBC7100F91ED5 /* Setup Device */,
@@ -567,12 +578,13 @@
 				4F9308661E577CDC005B5EAB /* IntroSlidesViewController.swift in Sources */,
 				4FAD9F7E1EC4E6F1003C2E48 /* OGVenueTableViewDelegate.swift in Sources */,
 				1EF5B4FC1E935A0D001FD19E /* AppControlViewController.swift in Sources */,
-				1ED96E881E2A0C6300891EA8 /* Asahi.swift in Sources */,
 				4F61B4CB1E6A236B005FB11F /* AppDelegate.swift in Sources */,
 				4FEE45D91EB836D30031C261 /* StateController.swift in Sources */,
+				1EF1DDC41ED91020004A8D3E /* OGCloud.swift in Sources */,
 				1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */,
 				1ED96EA81E2A0D2000891EA8 /* EnterPasswordViewController.swift in Sources */,
 				4F78859D1EBD38BF00F91ED5 /* YelpTableViewCell.swift in Sources */,
+				1E20E5F11EDA35BF00F4C3F0 /* Asahi.swift in Sources */,
 				1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */,
 				1ED96EA71E2A0D2000891EA8 /* EnterEmailViewController.swift in Sources */,
 				4F6A669F1E739069001547E8 /* OGVenue.swift in Sources */,

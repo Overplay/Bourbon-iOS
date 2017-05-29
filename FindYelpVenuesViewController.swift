@@ -50,7 +50,7 @@ class FindYelpVenuesViewController: UIViewController {
             if let loc = searchLocation {
                 activityIndicator.startAnimating()
             
-                Asahi.sharedInstance.yelpSearch(location: loc, term: term)
+                OGCloud.sharedInstance.yelpSearch(location: loc, term: term)
                     .then { response -> Void in
                         self.yelpVenues = self.processYelpVenues(response)
 
@@ -66,7 +66,7 @@ class FindYelpVenuesViewController: UIViewController {
             } else if let lat = searchLat, let lng = searchLong {
                 activityIndicator.startAnimating()
                 
-                Asahi.sharedInstance.yelpSearch(latitude: lat, longitude: lng, term: term)
+                OGCloud.sharedInstance.yelpSearch(latitude: lat, longitude: lng, term: term)
                     .then { response -> Void in
                         self.yelpVenues = self.processYelpVenues(response)
                         

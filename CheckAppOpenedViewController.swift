@@ -10,13 +10,17 @@ import UIKit
 
 class CheckAppOpenedViewController: UIViewController {
     
+    let alwaysForceSlides = false; // set true for testing
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = Style.darkGreyColor
         
         // check if this is the first time opening the app
-        if (Settings.sharedInstance.appOpened == false || Settings.sharedInstance.alwaysShowIntro == true) {
+        if (alwaysForceSlides ||
+            Settings.sharedInstance.appOpened == false ||
+            Settings.sharedInstance.alwaysShowIntro == true) {
             
             Settings.sharedInstance.appOpened = true
             DispatchQueue.main.async(execute: {
@@ -30,7 +34,4 @@ class CheckAppOpenedViewController: UIViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }

@@ -13,7 +13,7 @@
         <scene sceneID="oEO-Vi-FBQ">
             <objects>
                 <viewControllerPlaceholder storyboardName="Control" id="TPM-Ue-mhX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Locations" image="TabTVIconSolid" id="je0-xZ-UBX"/>
+                    <tabBarItem key="tabBarItem" title="Venues" image="TabTVIconSolid" id="je0-xZ-UBX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCZ-7X-oGx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -68,10 +68,10 @@ class ChangePasswordViewController: UITableViewController {
             return
         }
         
-        Asahi.sharedInstance.loginOnly(email, password: cur).then { _ -> Void in
+        OGCloud.sharedInstance.login(email, password: cur).then { _ -> Void in
             
             // current password is correct, move on to changing the password
-            Asahi.sharedInstance.changePassword(email, newPassword: new).then { _ -> Void in
+            OGCloud.sharedInstance.changePassword(email, newPassword: new).then { _ -> Void in
                 
                 // password successfully changed
                 HUD.flash(.success, delay: 0.7)

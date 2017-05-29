@@ -24,7 +24,7 @@ class InviteFriendsViewController: AccountBaseViewController {
             return
         }
             
-        Asahi.sharedInstance.inviteNewUser(e)
+        OGCloud.sharedInstance.inviteNewUser(e)
             
             .then{ response -> Void in
                 log.debug("invitation sent")

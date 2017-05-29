@@ -27,13 +27,17 @@ class PickVenueViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(white: 51/255, alpha: 1.0)
     
+        // Alyssa split this out because the code is identical in both views that use the delegate and data source
+        
         tableViewDataSource = OGVenueTableViewDataSource(tableView,
                                                          type: OGVenueType.OWNED,
                                                          noDataText: emptyTableText,
                                                          accessory: UITableViewCellAccessoryType.disclosureIndicator)
+        
         tableViewDelegate = OGVenueTableViewDelegate(tableView,
                                                      type: OGVenueType.OWNED,
                                                      didSelect: didSelectVenue)
+        
         tableView.tableFooterView = UIView(frame: .zero)
         
         nc.addObserver(

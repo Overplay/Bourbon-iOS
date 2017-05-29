@@ -16,12 +16,14 @@ class NetworkReachability {
     func startListening() {
         manager.listener = { status in
             log.info("Network status changed: \(status)")
-            ASNotification.networkChanged.issue()
+            self.manager.isReachable ? ASNotification.networkReachable.issue() : ASNotification.networkNotReachable.issue()
         }
+        
         manager.startListening()
     }
     
     func stopListening() {
         manager.stopListening()
     }
+    
 }
