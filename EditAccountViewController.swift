@@ -108,6 +108,8 @@ class EditAccountViewController: UITableViewController {
         
         errorBlock.isHidden = true
         
+        emailLabel.textColor = Style.lightGreyColor
+        
         firstNameDelegate = CustomTextFieldDelegate(firstName, isValid: isValidName, inTableView: true)
         lastNameDelegate = CustomTextFieldDelegate(lastName, isValid: isValidName, inTableView: true)
 //        emailDelegate = CustomTextFieldDelegate(email, isValid: isValidEmail,

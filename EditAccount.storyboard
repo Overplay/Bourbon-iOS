@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2e5-1q-0Cm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2e5-1q-0Cm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -101,12 +101,6 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="It looks like that email address is not valid!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rs-lc-MAJ">
-                                                    <rect key="frame" x="16" y="69" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZ9-eF-dxj">
                                                     <rect key="frame" x="16" y="40" width="343" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -116,8 +110,6 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7Rs-lc-MAJ" secondAttribute="trailing" constant="8" id="O6h-CW-QLg"/>
-                                                <constraint firstItem="7Rs-lc-MAJ" firstAttribute="leading" secondItem="Jyd-PB-6qr" secondAttribute="leadingMargin" constant="8" id="ap6-es-WJU"/>
                                                 <constraint firstItem="KZF-vp-A7T" firstAttribute="top" secondItem="Jyd-PB-6qr" secondAttribute="topMargin" constant="8" id="i1m-fv-fB5"/>
                                                 <constraint firstItem="KZF-vp-A7T" firstAttribute="leading" secondItem="Jyd-PB-6qr" secondAttribute="leadingMargin" constant="8" id="q8d-c8-0Q3"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="KZF-vp-A7T" secondAttribute="trailing" constant="8" id="x46-w2-Nkh"/>
@@ -215,7 +207,6 @@
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
-                        <outlet property="emailErrorLabel" destination="7Rs-lc-MAJ" id="E2l-TC-ahS"/>
                         <outlet property="emailLabel" destination="aZ9-eF-dxj" id="OQ5-Np-ZFw"/>
                         <outlet property="errorBlock" destination="qfE-IZ-arN" id="aaZ-Dp-MqQ"/>
                         <outlet property="errorBlockLabel" destination="MkM-nU-iKO" id="1jg-wg-S4Z"/>
