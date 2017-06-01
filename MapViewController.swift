@@ -81,6 +81,17 @@ class MapViewController : UIViewController {
         // 0.3 is some number. The smaller it is, the smaller the frame (huh, makes sense right?)
         self.mapView.setRegion(MKCoordinateRegionMake(self.currentLocation.coordinate, MKCoordinateSpanMake(0.3, 0.3)), animated: true)
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//        if segue.identifier == "toFindDevice" && sender != nil {
+//            let indexPath: IndexPath = sender as! IndexPath
+//            let venue = self.venues[indexPath.row]
+//            let ovc : ChooseDeviceViewController = segue.destination as! ChooseDeviceViewController
+//            ovc.venue = venue
+//        }
+//    }
+
 }
 
 extension MapViewController : UITableViewDelegate, UITableViewDataSource {
@@ -182,6 +193,7 @@ extension MapViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let annotation = view.annotation!
         let index = self.annotations.index(where: {
+            //TODO this has crashed a few times!
             $0.title! == annotation.title!
         })!
         self.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .middle)

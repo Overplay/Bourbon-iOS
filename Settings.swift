@@ -16,45 +16,8 @@ class Settings {
 
     static let sharedInstance = Settings()
 
-    // MARK App Modes
-    
-    var isDevelopmentMode: Bool {
-        get {
-            return userDefaults.bool(forKey: "devMode")
-        }
-        set {
-            userDefaults.set(newValue, forKey: "devMode")
-        }
-    }
-    
-    var appleReviewMode: Bool {
-        get {
-            return userDefaults.bool(forKey: "appleReviewMode")
-        }
-        set {
-            userDefaults.set(newValue, forKey: "appleReviewMode")
-        }
-    }
     
     // MARK Asahi Cloud Services
-    
-    var belliniCoreBaseUrl: String {
-        get {
-            return userDefaults.string(forKey: "belliniCoreBaseUrl") ?? "whoopsie"
-        }
-        set {
-            userDefaults.set(newValue, forKey: "belliniCoreBaseUrl")
-        }
-    }
-    
-    var belliniDMBaseUrl: String {
-        get {
-            return userDefaults.string(forKey: "belliniDMBaseUrl") ?? "whoopsie"
-        }
-        set {
-            userDefaults.set(newValue, forKey: "belliniDMBaseUrl")
-        }
-    }
     
     var hasValidJwt: Bool {
         get {
@@ -67,53 +30,29 @@ class Settings {
         }
         
     }
-
-
     
-//    var ourglassCloudBase: String {
-//        get {
-//            return userDefaults.string(forKey: "ourglassBase") ?? "whoopsie"
-//        }
-//        set {
-//            userDefaults.set(newValue, forKey: "ourglassBase")
-//        }
-//    }
-//    
-//    var ourglassCloudScheme: String {
-//        get {
-//            return userDefaults.string(forKey: "ourglassScheme") ?? "http://"
-//        }
-//        set {
-//            userDefaults.set(newValue, forKey: "ourglassScheme")
-//        }
-//    }
-//    
-//    var ourglassCloudBaseUrl: String {
-//        return ourglassCloudScheme + ourglassCloudBase
-//    }
-//    
-//    var ourglassBasePort: String {
-//        get {
-//            return userDefaults.string(forKey: "ourglassBasePort") ?? "2000"
-//        }
-//        set {
-//            userDefaults.set(newValue, forKey: "ourglassBasePort")
-//        }
-//    }
-//    
-//    var belliniCoreBase: String {
-//        get {
-//            return ourglassCloudBaseUrl + ":" + ourglassBasePort + "/"
-//        }
-//        
-//    }
-    
-    // MARK: OG Discovery Protocol
-    
-    var udpDiscoveryPort: UInt16 {
-        return 9091
+    var userBelliniJWT: String? {
+        get {
+            return userDefaults.string(forKey: "userBelliniJWT")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "userBelliniJWT")
+        }
     }
     
+    func getJwt() -> String {
+        return userBelliniJWT ?? ""
+    }
+    
+    var userBelliniJWTExpiry: Double? {
+        get {
+            return userDefaults.double(forKey: "userBelliniJWTExpiry")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "userBelliniJWTExpiry")
+        }
+    }
+
     
     // MARK: User info
     
@@ -144,7 +83,6 @@ class Settings {
         }
     }
 
-    
     var userEmail: String? {
         get {
             return userDefaults.string(forKey: "userEmail")
@@ -154,37 +92,6 @@ class Settings {
         }
     }
 
-    var userBelliniJWT: String? {
-        get {
-            return userDefaults.string(forKey: "userBelliniJWT")
-        }
-        set {
-            userDefaults.set(newValue, forKey: "userBelliniJWT")
-        }
-    }
-    
-    func getJwt() -> String {
-        return userBelliniJWT ?? ""
-    }
-    
-    var userBelliniJWTExpiry: Double? {
-        get {
-            return userDefaults.double(forKey: "userBelliniJWTExpiry")
-        }
-        set {
-            userDefaults.set(newValue, forKey: "userBelliniJWTExpiry")
-        }
-    }
-
-    var isRegistered: Bool {
-        get {
-            return userDefaults.bool(forKey: "isRegistered")
-        }
-        set {
-            userDefaults.set(newValue, forKey: "isRegistered")
-        }
-    }
-    
     var allowAccountCreation: Bool {
         get {
             return userDefaults.bool(forKey: "allowAccountCreation")
@@ -219,17 +126,9 @@ class Settings {
         
         userDefaults.register(defaults: [
             
-            "devMode" :  true,
             "alwaysShowIntro": false,
             "allowAccountCreation": true,
-//            "ourglassScheme" : "https://",
-//            "ourglassBase" : "138.68.230.239", // needs to be swapped out for launch
-//            "ourglassBasePort": "2000",
-            "appleReviewMode" : false,
-            "isRegistered" : false,
-            "belliniCoreBaseUrl": "https://cloud.ourglass.com",
-            "belliniDMBaseUrl": "https://cloud-dm.ourglass.com",
-
+            "appOpened": false
             
         ])
     }

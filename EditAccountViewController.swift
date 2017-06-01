@@ -14,11 +14,12 @@ class EditAccountViewController: UITableViewController {
 
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
-    @IBOutlet weak var email: UITextField!
+    //@IBOutlet weak var email: UITextField!
     @IBOutlet weak var emailErrorLabel: UILabel!
     
     @IBOutlet weak var errorBlock: UIView!
     @IBOutlet weak var errorBlockLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
     
     var firstNameDelegate: CustomTextFieldDelegate?
     var lastNameDelegate: CustomTextFieldDelegate?
@@ -29,12 +30,12 @@ class EditAccountViewController: UITableViewController {
         errorBlock.isHidden = true
         
         guard let first = firstName.text, isValidName(first),
-            let last = lastName.text, isValidName(last),
-            let email = email.text, isValidEmail(email)
+            let last = lastName.text, isValidName(last)
+            //let email = email.text, isValidEmail(email)
             else {
                 firstNameDelegate?.textFieldDidEndEditing(firstName)
                 lastNameDelegate?.textFieldDidEndEditing(lastName)
-                emailDelegate?.textFieldDidEndEditing(self.email)
+                //emailDelegate?.textFieldDidEndEditing(self.email)
                 return
         }
         
@@ -51,10 +52,10 @@ class EditAccountViewController: UITableViewController {
             HUD.show(.progress)
             
             if let uid = Settings.sharedInstance.userId {
-                OGCloud.sharedInstance.changeAccountInfo(first, lastName: last, email: email, userId: uid)
+                OGCloud.sharedInstance.changeAccountInfo(first, lastName: last, email: Settings.sharedInstance.userEmail!, userId: uid)
             
                     .then{ response -> Void in
-                        Settings.sharedInstance.userEmail = email
+                        //Settings.sharedInstance.userEmail = email
                         Settings.sharedInstance.userFirstName = first
                         Settings.sharedInstance.userLastName = last
                         
@@ -109,15 +110,16 @@ class EditAccountViewController: UITableViewController {
         
         firstNameDelegate = CustomTextFieldDelegate(firstName, isValid: isValidName, inTableView: true)
         lastNameDelegate = CustomTextFieldDelegate(lastName, isValid: isValidName, inTableView: true)
-        emailDelegate = CustomTextFieldDelegate(email, isValid: isValidEmail,
-                                                errorLabel: emailErrorLabel,
-                                                inTableView: true)
+//        emailDelegate = CustomTextFieldDelegate(email, isValid: isValidEmail,
+//                                                errorLabel: emailErrorLabel,
+//                                                inTableView: true)
         
         OGCloud.sharedInstance.checkSession()
             .then { _ -> Void in
                 self.firstName.text = Settings.sharedInstance.userFirstName
                 self.lastName.text = Settings.sharedInstance.userLastName
-                self.email.text = Settings.sharedInstance.userEmail
+                //self.email.text = Settings.sharedInstance.userEmail
+                self.emailLabel.text = Settings.sharedInstance.userEmail
                 
             }.catch { error -> Void in
             

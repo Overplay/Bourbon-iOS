@@ -8,16 +8,33 @@
 
 import UIKit
 import PromiseKit
+import PKHUD
 
 
 class CheckAuthViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//        
+//    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
         
-        let segue = Settings.sharedInstance.hasValidJwt ? "fromCheckAuthToMainTabs" : "fromCheckAuthToLR"
-        self.performSegue(withIdentifier: segue, sender: self)
+        //HUD.show(.labeledProgress(title: "Contacting OG Cloud", subtitle: "Please Wait"))
+        OGCloud.sharedInstance.checkJWT()
+            .then{ _ -> Void in
+                //HUD.flash(.success)
+                self.performSegue(withIdentifier: "fromCheckAuthToMainTabs", sender: self)
 
+        }
+            .catch{ err in
+                //HUD.flash(.error)
+                self.performSegue(withIdentifier: "fromCheckAuthToLR", sender: self)
+
+        }
+        
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {

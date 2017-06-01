@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2e5-1q-0Cm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2e5-1q-0Cm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -101,29 +101,26 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3kY-ri-5Gd">
-                                                    <rect key="frame" x="16" y="41" width="343" height="28"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="emailAddress" returnKeyType="done"/>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It looks like that email address is not valid!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rs-lc-MAJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="It looks like that email address is not valid!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rs-lc-MAJ">
                                                     <rect key="frame" x="16" y="69" width="343" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZ9-eF-dxj">
+                                                    <rect key="frame" x="16" y="40" width="343" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="7Rs-lc-MAJ" secondAttribute="trailing" constant="8" id="O6h-CW-QLg"/>
-                                                <constraint firstItem="3kY-ri-5Gd" firstAttribute="leading" secondItem="Jyd-PB-6qr" secondAttribute="leadingMargin" constant="8" id="XmB-RZ-tGr"/>
                                                 <constraint firstItem="7Rs-lc-MAJ" firstAttribute="leading" secondItem="Jyd-PB-6qr" secondAttribute="leadingMargin" constant="8" id="ap6-es-WJU"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3kY-ri-5Gd" secondAttribute="trailing" constant="8" id="dQf-3w-2ej"/>
-                                                <constraint firstItem="3kY-ri-5Gd" firstAttribute="top" secondItem="KZF-vp-A7T" secondAttribute="bottom" id="g5r-Ko-iHy"/>
                                                 <constraint firstItem="KZF-vp-A7T" firstAttribute="top" secondItem="Jyd-PB-6qr" secondAttribute="topMargin" constant="8" id="i1m-fv-fB5"/>
                                                 <constraint firstItem="KZF-vp-A7T" firstAttribute="leading" secondItem="Jyd-PB-6qr" secondAttribute="leadingMargin" constant="8" id="q8d-c8-0Q3"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="KZF-vp-A7T" secondAttribute="trailing" constant="8" id="x46-w2-Nkh"/>
-                                                <constraint firstItem="7Rs-lc-MAJ" firstAttribute="top" secondItem="3kY-ri-5Gd" secondAttribute="bottom" id="xGK-wQ-tYK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,8 +215,8 @@
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
-                        <outlet property="email" destination="3kY-ri-5Gd" id="qOQ-aC-yZS"/>
                         <outlet property="emailErrorLabel" destination="7Rs-lc-MAJ" id="E2l-TC-ahS"/>
+                        <outlet property="emailLabel" destination="aZ9-eF-dxj" id="OQ5-Np-ZFw"/>
                         <outlet property="errorBlock" destination="qfE-IZ-arN" id="aaZ-Dp-MqQ"/>
                         <outlet property="errorBlockLabel" destination="MkM-nU-iKO" id="1jg-wg-S4Z"/>
                         <outlet property="firstName" destination="4dC-6X-VE6" id="bql-nv-YSH"/>
@@ -231,7 +228,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcw-Gx-BEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Sho-Uv-9gp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="822" y="250"/>
+            <point key="canvasLocation" x="821.60000000000002" y="249.62518740629687"/>
         </scene>
         <!--RegistrationStoryboard-->
         <scene sceneID="XSG-Uo-zlr">

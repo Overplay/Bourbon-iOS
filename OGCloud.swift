@@ -128,7 +128,7 @@ open class OGCloud: NSObject {
             "yelpId": venue.yelpId
         ]
         
-        return postJson( OGCloud.belliniCore + "/venue", data: params as Dictionary<String, AnyObject>)
+        return postJson( OGCloud.belliniCore + "venue", data: params as Dictionary<String, AnyObject>)
             .then { response -> String in
                 guard let uuid = response["uuid"].string else {
                     throw OGCloudError.malformedJson

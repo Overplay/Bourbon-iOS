@@ -18,6 +18,8 @@ class MyVenuesViewController: UIViewController {
     
     var tableViewDelegate: OGVenueTableViewDelegate?
     
+    var chosenVenue: OGVenue?
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -49,6 +51,16 @@ class MyVenuesViewController: UIViewController {
     }
     
     func didSelectVenue(venue: OGVenue) {
-        
+        chosenVenue = venue
+        self.performSegue(withIdentifier: "toControlFromMyVenues", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toControlFromMyVenues" && sender != nil {
+            let ovc : ChooseDeviceViewController = segue.destination as! ChooseDeviceViewController
+            ovc.venue = chosenVenue
+        }
+    }
+
 }
