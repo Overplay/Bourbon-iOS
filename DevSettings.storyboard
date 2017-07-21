@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="f1V-uz-rHi">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Dev Settings View Controller-->
+        <scene sceneID="u9Z-vw-vfT">
+            <objects>
+                <viewController id="f1V-uz-rHi" customClass="DevSettingsViewController" customModule="Bourbon_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nBF-ee-GQ8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lzk-d2-V99"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t5Z-u5-epQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zr2-Ge-xin">
+                                <rect key="frame" x="33" y="97" width="51" height="31"/>
+                                <connections>
+                                    <action selector="devServerSwitchChanged:" destination="f1V-uz-rHi" eventType="valueChanged" id="i5u-In-fcS"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use dev cloud server" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mr5-A6-ofV">
+                                <rect key="frame" x="108" y="102" width="161.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zr2-Ge-xin" firstAttribute="leading" secondItem="t5Z-u5-epQ" secondAttribute="leadingMargin" constant="17" id="2Nc-Ak-gw1"/>
+                            <constraint firstItem="mr5-A6-ofV" firstAttribute="centerY" secondItem="Zr2-Ge-xin" secondAttribute="centerY" id="F13-J9-SgR"/>
+                            <constraint firstItem="Zr2-Ge-xin" firstAttribute="top" secondItem="nBF-ee-GQ8" secondAttribute="bottom" constant="33" id="WCK-oJ-wWg"/>
+                            <constraint firstItem="mr5-A6-ofV" firstAttribute="leading" secondItem="Zr2-Ge-xin" secondAttribute="trailing" constant="26" id="aht-xG-cV1"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="devServerSwitch" destination="Zr2-Ge-xin" id="cYH-96-XZz"/>
+                        <segue destination="r3h-j8-DS4" kind="show" identifier="fromDevToRegistration" id="JNr-9i-fpQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOb-Uu-oYL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-580" y="-152.47376311844079"/>
+        </scene>
+        <!--RegistrationStoryboard-->
+        <scene sceneID="pfE-dG-scz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RegistrationStoryboard" id="r3h-j8-DS4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vn7-Wk-Hbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46" y="-102"/>
+        </scene>
+    </scenes>
+</document>

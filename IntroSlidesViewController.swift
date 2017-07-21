@@ -19,9 +19,9 @@ class IntroSlidesViewController: UIViewController, UIScrollViewDelegate {
     
     
     let slideImageURLs: [String] = [
-        OGCloud.belliniCore + "bourbon/intro/slide1.jpg",
-        OGCloud.belliniCore + "bourbon/intro/slide2.jpg",
-        OGCloud.belliniCore + "bourbon/intro/slide3.jpg",
+        OGCloud.sharedInstance.belliniCore + "bourbon/intro/slide1.jpg",
+        OGCloud.sharedInstance.belliniCore + "bourbon/intro/slide2.jpg",
+        OGCloud.sharedInstance.belliniCore + "bourbon/intro/slide3.jpg",
     ]
     
     @IBOutlet weak var scrollView: UIScrollView!

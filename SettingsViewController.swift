@@ -44,16 +44,29 @@ class SettingsViewController : AccountBaseViewController, UITableViewDelegate, U
     
     var tableView: UITableView!
     
-    let options = [
+    //TODO this is gross, but I am in a hurry
+    let options = Settings.sharedInstance.userIsDeveloper ?
+        [
+        SettingsOption(label: "My Venues", segue: "fromSettingsToVenues"),
+        SettingsOption(label: "Setup OG Device", segue: "fromSettingsToSetup"),
+        //SettingsOption(label: "Invite Friends", segue: "fromSettingsToInvite"),
+        SettingsOption(label: "Edit Account", segue: "fromSettingsToEdit"),
+        SettingsOption(label: "Developer", segue: "fromSettingsToDev"),
+        SettingsOption(label: "Log Out", action: #selector(logout)),
+        SettingsOption(label: "", action: #selector(secret)),
+        
+        ] :
+        [
         SettingsOption(label: "My Venues", segue: "fromSettingsToVenues"),
         SettingsOption(label: "Setup OG Device", segue: "fromSettingsToSetup"),
         //SettingsOption(label: "Invite Friends", segue: "fromSettingsToInvite"),
         SettingsOption(label: "Edit Account", segue: "fromSettingsToEdit"),
         SettingsOption(label: "Log Out", action: #selector(logout)),
         SettingsOption(label: "", action: #selector(secret)),
-
-    ]
     
+        ]
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

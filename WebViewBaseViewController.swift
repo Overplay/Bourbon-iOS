@@ -21,6 +21,10 @@ class WebViewBaseViewController: UIViewController, UIWebViewDelegate {
     
         super.viewDidLoad()
         
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared.diskCapacity = 0
+        URLCache.shared.memoryCapacity = 0
+        
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
     
@@ -70,6 +74,13 @@ class WebViewBaseViewController: UIViewController, UIWebViewDelegate {
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         log.debug("Error loading webview: \(error)")
+        
+        let ecode = (error as NSError).code 
+        if ecode == 102 {
+            log.debug("Stupid frame load error 102, ignoring");
+            return;
+        }
+        
         self.webViewDidTimeout()
     }
     
@@ -77,7 +88,7 @@ class WebViewBaseViewController: UIViewController, UIWebViewDelegate {
         
         HUD.hide()
     
-        let alertController = UIAlertController(title: "Uh oh!", message: "We were unable to access the device.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Uh oh!", message: "There was a problem accessing the control view.", preferredStyle: .alert)
     
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {(alert:UIAlertAction!) in
             _ = self.navigationController?.popViewController(animated: true)

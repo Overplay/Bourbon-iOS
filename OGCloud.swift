@@ -30,17 +30,31 @@ open class OGCloud: NSObject {
     let q = DispatchQueue.global()
     let initGroup = DispatchGroup()
 
-    static let belliniCore = "https://cloud.ourglass.tv/"
-    static let belliniDM = "https://cloud-dm.ourglass.tv/"
-    
+    var belliniCore: String!
+    var belliniDM : String!
+
     override init() {
         super.init()
+        updateServers()
+
         // throwaway call to set the Sails cookie
         // put in DispatchGroup so we don't make any other calls until this completes
         self.initGroup.enter()
         self.checkJWT().always {
             self.initGroup.leave()
         }
+    }
+    
+    func updateServers(){
+        
+        if (Settings.sharedInstance.useDevServer){
+            belliniCore = "http://138.68.230.239:2000/"
+            belliniDM = "http://138.68.230.239:2001/"
+        } else {
+            belliniCore = "https://cloud.ourglass.tv/"
+            belliniDM = "https://cloud-dm.ourglass.tv/"
+        }
+        
     }
 
     // Promisified JSON getter
@@ -96,14 +110,14 @@ open class OGCloud: NSObject {
     //
     // - Returns: a promise resolving in the response JSON which contains the venues
     func getVenues() -> Promise<JSON> {
-        return getJson( OGCloud.belliniCore + "venue/all" )
+        return getJson( belliniCore + "venue/all" )
     }
     
     /// Gets the venues associated with the current user.
     ///
     /// - Returns: a promise resolving in the venues JSON
     func getUserVenues() -> Promise<JSON> {
-        return getJson(  OGCloud.belliniCore + "venue/myvenues" )
+        return getJson(  belliniCore + "venue/myvenues" )
     }
     
     /// Creates a new venue.
@@ -128,7 +142,7 @@ open class OGCloud: NSObject {
             "yelpId": venue.yelpId
         ]
         
-        return postJson( OGCloud.belliniCore + "venue", data: params as Dictionary<String, AnyObject>)
+        return postJson( belliniCore + "venue", data: params as Dictionary<String, AnyObject>)
             .then { response -> String in
                 guard let uuid = response["uuid"].string else {
                     throw OGCloudError.malformedJson
@@ -143,7 +157,7 @@ open class OGCloud: NSObject {
 
     func login(_ email: String, password: String) -> Promise<JSON> {
         let loginData = ["email": email, "password": password, "type":"local" ]
-        return postJson( OGCloud.belliniCore + "auth/login", data: loginData as Dictionary<String, AnyObject>)
+        return postJson( belliniCore + "auth/login", data: loginData as Dictionary<String, AnyObject>)
             .then{ response -> JSON in
                 Settings.sharedInstance.userEmail = email
                 ASNotification.asahiLoggedIn.issue()
@@ -168,13 +182,14 @@ open class OGCloud: NSObject {
         Settings.sharedInstance.userFirstName = response["firstName"].string
         Settings.sharedInstance.userLastName = response["lastName"].string
         Settings.sharedInstance.userEmail = response["email"].string
+        Settings.sharedInstance.userIsDeveloper = response["isDev"].boolValue || response["auth"]["ring"].intValue == 1
     }
     
     // Checks the current user's JWT and stores user info if it finds it.
     //
     // - Returns: a promise resolving in the response JSON
     func checkJWT() -> Promise<JSON> {
-        return getJson(OGCloud.belliniCore + "user/checkjwt")
+        return getJson(belliniCore + "user/checkjwt")
             .then { response -> JSON in
                 self.extractUserInfo(response)
                 return response
@@ -185,7 +200,7 @@ open class OGCloud: NSObject {
     ///
     /// - Returns: a promise resolving in the JWT
     func getToken() -> Promise<String> {
-        return getJson( OGCloud.belliniCore + "user/jwt")
+        return getJson( belliniCore + "user/jwt")
             .then{ response -> String in
                 
                 guard let token = response["token"].string,
@@ -203,7 +218,7 @@ open class OGCloud: NSObject {
     //
     // - Returns: a promise resolving in the response JSON
     func checkSession() -> Promise<JSON> {
-        return getJson( OGCloud.belliniCore + "user/checksession")
+        return getJson( belliniCore + "user/checksession")
             .then { response -> JSON in
                 self.extractUserInfo(response)
                 return response
@@ -220,7 +235,7 @@ open class OGCloud: NSObject {
     /// - Returns: a promise resolving in the response JSON
     func changeAccountInfo(_ firstName: String, lastName: String, email: String, userId: String) -> Promise<JSON> {
         let params: Dictionary<String, Any> = ["email": email, "firstName": firstName, "lastName": lastName]
-        return putJson(  OGCloud.belliniCore + "user/\(userId)", data: params as Dictionary<String, AnyObject>)
+        return putJson(  belliniCore + "user/\(userId)", data: params as Dictionary<String, AnyObject>)
     }
     
     /// Changes the password of the user.
@@ -231,7 +246,7 @@ open class OGCloud: NSObject {
     /// - Returns: a promise resolving in `true` on success
     func changePassword(_ email: String, newPassword: String) -> Promise<Bool> {
         let params = ["email": email, "newpass": newPassword]
-        return postJson( OGCloud.belliniCore + "auth/changePwd", data: params as Dictionary<String, AnyObject>)
+        return postJson( belliniCore + "auth/changePwd", data: params as Dictionary<String, AnyObject>)
             .then{ json -> Bool in
                 return true
         }
@@ -239,7 +254,7 @@ open class OGCloud: NSObject {
     
     /// Logs out of OurGlass by removing stored information.
     func logout() -> Promise<JSON>{
-        return postJson(OGCloud.belliniCore + "auth/logout", data: Dictionary<String, AnyObject>())
+        return postJson(belliniCore + "auth/logout", data: Dictionary<String, AnyObject>())
         .then{ json -> JSON in
             Settings.sharedInstance.userBelliniJWT = nil
             Settings.sharedInstance.userBelliniJWTExpiry = nil
@@ -256,7 +271,7 @@ open class OGCloud: NSObject {
     func inviteNewUser(_ email: String) -> Promise<JSON> {
         let params = ["email": email]
         //return postJson(createApiEndpoint("/user/inviteNewUser"), data: params)
-        return postJson( OGCloud.belliniCore + "user/inviteNewUser",
+        return postJson( belliniCore + "user/inviteNewUser",
                               data: params as Dictionary<String, AnyObject>)
     }
 
@@ -277,7 +292,7 @@ open class OGCloud: NSObject {
                 "user": user,
                 "type":"local"]
             
-            return postJson( OGCloud.belliniCore + "auth/addUser",
+            return postJson( belliniCore + "auth/addUser",
                             data: params as Dictionary<String, AnyObject>)
                 
                 .then{ _ -> Promise<String> in
@@ -299,7 +314,7 @@ open class OGCloud: NSObject {
     /// - Returns: a promise resolving in the device JSON
     func findByRegCode(_ regCode: String) -> Promise<JSON> {
         let params = ["regcode": regCode]
-        return getJson( OGCloud.belliniDM + "ogdevice/findByRegCode",
+        return getJson( OGCloud.sharedInstance.belliniDM + "ogdevice/findByRegCode",
                         parameters: params as [String : AnyObject])
     }
     
@@ -311,7 +326,7 @@ open class OGCloud: NSObject {
     /// - Returns: a promise resolving in the device's `udid`
     func changeDeviceName(_ udid: String, name: String) -> Promise<String> {
         let params = ["deviceUDID": udid, "name": name]
-        return postJson( OGCloud.belliniDM + "ogdevice/changeName",
+        return postJson( belliniDM + "ogdevice/changeName",
                          data: params as Dictionary<String, AnyObject>)
             .then { _ -> String in
                 ASNotification.asahiUpdatedDevice.issue()
@@ -327,7 +342,7 @@ open class OGCloud: NSObject {
     /// - Returns: a promise resolving in the JSON response from the call
     func associate(deviceUdid: String, withVenueUuid: String) -> Promise<JSON> {
         let params = ["deviceUDID": deviceUdid, "venueUUID": withVenueUuid]
-        return postJson( OGCloud.belliniDM + "ogdevice/associateWithVenue",
+        return postJson( belliniDM + "ogdevice/associateWithVenue",
                           data: params as Dictionary<String, AnyObject>)
             .then { response -> JSON in
                 ASNotification.asahiUpdatedDevice.issue()
@@ -340,7 +355,7 @@ open class OGCloud: NSObject {
     /// - Parameter venueUUID: venue's UUID
     /// - Returns: a promise resolving in the response JSON
     func getDevices(_ venueUUID: String) -> Promise<JSON> {
-        return getJson( OGCloud.belliniDM + "venue/devices?atVenueUUID=" + venueUUID )
+        return getJson(  belliniDM + "venue/devices?atVenueUUID=" + venueUUID )
     }
 
     // MARK: YELP
@@ -353,7 +368,7 @@ open class OGCloud: NSObject {
     /// - Returns: a promise resolving in a JSON array of the results
     func yelpSearch(location: String, term: String) -> Promise<JSON> {
         let params = ["location": location, "term": term]
-        return getJson(  OGCloud.belliniCore + "venue/yelpSearch",
+        return getJson(  belliniCore + "venue/yelpSearch",
                          parameters: params as Dictionary<String, AnyObject>)
     }
     
@@ -366,7 +381,7 @@ open class OGCloud: NSObject {
     /// - Returns: a promise resolving in a JSON array of the results
     func yelpSearch(latitude: Double, longitude: Double, term: String) -> Promise<JSON> {
         let params = ["latitude": latitude, "longitude": longitude, "term": term] as [String : Any]
-        return getJson( OGCloud.belliniCore + "venue/yelpSearch",
+        return getJson( belliniCore + "venue/yelpSearch",
                         parameters: params as Dictionary<String, AnyObject>)
     }
 

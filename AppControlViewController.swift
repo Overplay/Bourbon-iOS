@@ -21,7 +21,7 @@ class AppControlViewController: WebViewBaseViewController {
             if comps.count == 2 {
                 displayName = comps[1]
             } else {
-                displayName = "???"
+                displayName = "OURGLASS"
             }
             
         }

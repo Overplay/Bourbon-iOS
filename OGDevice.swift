@@ -39,13 +39,13 @@ class OGDevice {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         self.lastContact = formatter.date(from: inboundJson["lastContact"].stringValue)
-        let interval = Int(lastContact?.timeIntervalSinceNow ?? 10000)
-        self.isActive = interval < 300 // five minutes
+        let interval = -Double(lastContact?.timeIntervalSinceNow ?? 10000.0)
+        self.isActive = interval < 300.0 // five minutes ago
         
     }
     
     func getUrl() -> String {
-        return OGCloud.belliniDM +
+        return OGCloud.sharedInstance.belliniDM +
             "/blueline/control?deviceUDID=\(self.udid)&jwt=\(Settings.sharedInstance.getJwt())"
     }
     

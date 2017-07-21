@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eQd-ea-sNz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eQd-ea-sNz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +22,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="ic_settings_white" selectedImage="ic_settings_white" id="pQe-S0-XxC"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="gUv-4W-Xed">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="gUv-4W-Xed">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -45,7 +45,7 @@
                         <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="settingsCell" rowHeight="45" id="dR5-BB-oSG" customClass="SettingsCell" customModule="Bourbon_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="45"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dR5-BB-oSG" id="kpa-xe-UKk">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
@@ -79,6 +79,7 @@
                         <segue destination="uGb-4V-SjM" kind="show" identifier="fromSettingsToSetup" id="LQR-eR-GHM"/>
                         <segue destination="Swo-0u-zwf" kind="show" identifier="fromSettingsToVenues" id="afh-bM-iCM"/>
                         <segue destination="wp1-nT-e4A" kind="show" identifier="fromSettingsToEdit" id="jp9-Zd-3Rr"/>
+                        <segue destination="b8t-Eg-jox" kind="show" identifier="fromSettingsToDev" id="0XW-oY-ucM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fe0-aB-HnK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -115,13 +116,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PIe-5i-MtX">
-                                <rect key="frame" x="26" y="121" width="333" height="28"/>
+                                <rect key="frame" x="26" y="121" width="333" height="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9x-sz-n7B">
-                                <rect key="frame" x="319" y="161" width="40" height="37"/>
+                                <rect key="frame" x="323" y="153" width="36" height="30"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                 <state key="normal" title="Invite">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -181,6 +182,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LV1-Rc-cVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="686" y="249"/>
+        </scene>
+        <!--DevSettings-->
+        <scene sceneID="ENV-ji-5nb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DevSettings" id="b8t-Eg-jox" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zmm-0S-dkM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="677" y="342"/>
         </scene>
     </scenes>
     <resources>

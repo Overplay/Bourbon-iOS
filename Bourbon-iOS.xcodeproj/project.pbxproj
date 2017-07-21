@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1681C1E08C7344599C0DA092 /* Pods_Bourbon_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */; };
+		1E7CB31F1F2294000062A27F /* DevSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7CB31E1F2294000062A27F /* DevSettingsViewController.swift */; };
+		1E7CB3211F2294100062A27F /* DevSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E7CB3201F2294100062A27F /* DevSettings.storyboard */; };
 		1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */; };
 		1ED96E911E2A0CB500891EA8 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */; };
 		1ED96E921E2A0CB500891EA8 /* OurglasserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */; };
@@ -83,6 +85,8 @@
 
 /* Begin PBXFileReference section */
 		1E1096F61EDF791C00CA0E74 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1E7CB31E1F2294000062A27F /* DevSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevSettingsViewController.swift; sourceTree = "<group>"; };
+		1E7CB3201F2294100062A27F /* DevSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DevSettings.storyboard; sourceTree = "<group>"; };
 		1ED96E6B1E2A0A7A00891EA8 /* Bourbon-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bourbon-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtilsXX.swift; sourceTree = "<group>"; };
 		1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Control.storyboard; sourceTree = "<group>"; };
@@ -206,6 +210,15 @@
 			name = "Hidden Settings";
 			sourceTree = "<group>";
 		};
+		1E7CB31D1F2293C80062A27F /* Dev Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1E7CB31E1F2294000062A27F /* DevSettingsViewController.swift */,
+				1E7CB3201F2294100062A27F /* DevSettings.storyboard */,
+			);
+			name = "Dev Settings";
+			sourceTree = "<group>";
+		};
 		1ED96E621E2A0A7A00891EA8 = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +333,7 @@
 		1ED96EB21E2A0D4F00891EA8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				1E7CB31D1F2293C80062A27F /* Dev Settings */,
 				1E6C05691EDA444A009BB11B /* Hidden Settings */,
 				4FF88F011EC6810600F804AC /* Edit Account */,
 				4FF88EFE1EC6806400F804AC /* My Venues */,
@@ -511,6 +525,7 @@
 				4FC2FE1C1E66157F00753035 /* Poppins-SemiBold.ttf in Resources */,
 				1ED96EA41E2A0D2000891EA8 /* RegistrationStoryboard.storyboard in Resources */,
 				4F61B4A91E661D22005FB11F /* LaunchScreen.storyboard in Resources */,
+				1E7CB3211F2294100062A27F /* DevSettings.storyboard in Resources */,
 				4F9308621E550B11005B5EAB /* IntroSlides.storyboard in Resources */,
 				1ED96EB01E2A0D4700891EA8 /* Map.storyboard in Resources */,
 				1ED96E981E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard in Resources */,
@@ -614,6 +629,7 @@
 				4F78859F1EBD4F6C00F91ED5 /* CustomTextFieldDelegate.swift in Sources */,
 				4FEE45D71EB82CBF0031C261 /* PickVenueViewController.swift in Sources */,
 				1ED96E921E2A0CB500891EA8 /* OurglasserCell.swift in Sources */,
+				1E7CB31F1F2294000062A27F /* DevSettingsViewController.swift in Sources */,
 				1ED96EA91E2A0D2000891EA8 /* LoginViewController.swift in Sources */,
 				4FF88EFD1EC67EB400F804AC /* MyVenuesViewController.swift in Sources */,
 				4F6A66A31E775B72001547E8 /* ChooseDeviceViewController.swift in Sources */,

@@ -28,6 +28,9 @@ class DeviceViewController: WebViewBaseViewController {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         if let rUrl = request.url?.absoluteString,  let _ = rUrl.range(of: "app/control/index.html") {
+        
+        // TODO: This "range" with just control is a hack for StreetFight...changing to redirect endpoint
+        //if let rUrl = request.url?.absoluteString,  let _ = rUrl.range(of: "control") {
             
             controlAppUrlString = rUrl
             self.performSegue(withIdentifier: "toAppControl", sender: self)

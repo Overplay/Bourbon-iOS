@@ -118,6 +118,29 @@ class Settings {
             userDefaults.set(newValue, forKey: "alwaysShowIntro")
         }
     }
+    
+    // New stuff to allow to point to dev server(s)
+    
+    var useDevServer: Bool {
+        get {
+            return userDefaults.bool(forKey: "useDevServer")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "useDevServer")
+        }
+        
+    }
+    
+    var userIsDeveloper: Bool {
+        get {
+            return userDefaults.bool(forKey: "userIsDev")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "userIsDev")
+        }
+        
+    }
+
 
 
     // MARK:Defaults
