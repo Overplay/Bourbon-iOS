@@ -30,12 +30,12 @@ class PickVenueViewController: UIViewController {
         // Alyssa split this out because the code is identical in both views that use the delegate and data source
         
         tableViewDataSource = OGVenueTableViewDataSource(tableView,
-                                                         type: OGVenueType.OWNED,
+                                                         type: OGVenueType.MINE,
                                                          noDataText: emptyTableText,
                                                          accessory: UITableViewCellAccessoryType.disclosureIndicator)
         
         tableViewDelegate = OGVenueTableViewDelegate(tableView,
-                                                     type: OGVenueType.OWNED,
+                                                     type: OGVenueType.MINE,
                                                      didSelect: didSelectVenue)
         
         tableView.tableFooterView = UIView(frame: .zero)
