@@ -10,7 +10,6 @@
 		1681C1E08C7344599C0DA092 /* Pods_Bourbon_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6B1565BBBB3A0786F1E0A /* Pods_Bourbon_iOS.framework */; };
 		1E7CB31F1F2294000062A27F /* DevSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7CB31E1F2294000062A27F /* DevSettingsViewController.swift */; };
 		1E7CB3211F2294100062A27F /* DevSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E7CB3201F2294100062A27F /* DevSettings.storyboard */; };
-		1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */; };
 		1ED96E911E2A0CB500891EA8 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */; };
 		1ED96E921E2A0CB500891EA8 /* OurglasserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */; };
 		1ED96E981E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED96E961E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard */; };
@@ -39,7 +38,6 @@
 		1ED96ECD1E2A0D8600891EA8 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED96EC71E2A0D8600891EA8 /* StringExtensions.swift */; };
 		1ED96EE81E2A0E0C00891EA8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */; };
 		1ED96EEA1E2A0E1500891EA8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */; };
-		1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE7B96E1E2DEDD800E00370 /* Network.swift */; };
 		1EF1DDC41ED91020004A8D3E /* OGCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1DDC31ED91020004A8D3E /* OGCloud.swift */; };
 		1EF5B4FC1E935A0D001FD19E /* AppControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5B4FB1E935A0D001FD19E /* AppControlViewController.swift */; };
 		1EF5B4FE1E935A7B001FD19E /* WebViewBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5B4FD1E935A7B001FD19E /* WebViewBaseViewController.swift */; };
@@ -88,7 +86,6 @@
 		1E7CB31E1F2294000062A27F /* DevSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevSettingsViewController.swift; sourceTree = "<group>"; };
 		1E7CB3201F2294100062A27F /* DevSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DevSettings.storyboard; sourceTree = "<group>"; };
 		1ED96E6B1E2A0A7A00891EA8 /* Bourbon-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bourbon-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetUtilsXX.swift; sourceTree = "<group>"; };
 		1ED96E8D1E2A0CB500891EA8 /* Control.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Control.storyboard; sourceTree = "<group>"; };
 		1ED96E8E1E2A0CB500891EA8 /* OurglasserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurglasserCell.swift; sourceTree = "<group>"; };
 		1ED96E961E2A0CEB00891EA8 /* MainTabsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTabsStoryboard.storyboard; sourceTree = "<group>"; };
@@ -120,7 +117,6 @@
 		1ED96EE71E2A0E0C00891EA8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1ED96EE91E2A0E1500891EA8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1EE7B96B1E2DB82400E00370 /* Bourbon-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bourbon-iOS-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		1EE7B96E1E2DEDD800E00370 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		1EF1DDC31ED91020004A8D3E /* OGCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGCloud.swift; sourceTree = "<group>"; };
 		1EF5B4FB1E935A0D001FD19E /* AppControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppControlViewController.swift; sourceTree = "<group>"; };
 		1EF5B4FD1E935A7B001FD19E /* WebViewBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewBaseViewController.swift; sourceTree = "<group>"; };
@@ -258,8 +254,6 @@
 		1ED96E801E2A0C2D00891EA8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				1ED96E831E2A0C6300891EA8 /* NetUtilsXX.swift */,
-				1EE7B96E1E2DEDD800E00370 /* Network.swift */,
 				4F9308711E57B904005B5EAB /* NetworkReachability.swift */,
 				1EF1DDC31ED91020004A8D3E /* OGCloud.swift */,
 			);
@@ -603,7 +597,6 @@
 				4F61B4CB1E6A236B005FB11F /* AppDelegate.swift in Sources */,
 				4FEE45D91EB836D30031C261 /* StateController.swift in Sources */,
 				1EF1DDC41ED91020004A8D3E /* OGCloud.swift in Sources */,
-				1EE7B96F1E2DEDD800E00370 /* Network.swift in Sources */,
 				1ED96EA81E2A0D2000891EA8 /* EnterPasswordViewController.swift in Sources */,
 				4F78859D1EBD38BF00F91ED5 /* YelpTableViewCell.swift in Sources */,
 				1ED96EBE1E2A0D6000891EA8 /* ChangePasswordViewController.swift in Sources */,
@@ -612,7 +605,6 @@
 				1ED96EBC1E2A0D6000891EA8 /* SettingsViewController.swift in Sources */,
 				4F9308721E57B904005B5EAB /* NetworkReachability.swift in Sources */,
 				4F6A66AB1E7781AE001547E8 /* DeviceViewController.swift in Sources */,
-				1ED96E871E2A0C6300891EA8 /* NetUtilsXX.swift in Sources */,
 				1EF5B4FE1E935A7B001FD19E /* WebViewBaseViewController.swift in Sources */,
 				1ED96EAB1E2A0D2000891EA8 /* RegSceneBaseViewController.swift in Sources */,
 				1ED96ECB1E2A0D8600891EA8 /* Style.swift in Sources */,
@@ -760,12 +752,16 @@
 			baseConfigurationReference = EA1C50DF458C92C2599BEFE5 /* Pods-Bourbon-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6DABK4Y6G2;
 				INFOPLIST_FILE = "Bourbon-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tv.ourglass.Bourbon-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bourbon-iOS-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Bourbon-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -777,12 +773,15 @@
 			baseConfigurationReference = B4748688D992AF49C9841725 /* Pods-Bourbon-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6DABK4Y6G2;
 				INFOPLIST_FILE = "Bourbon-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tv.ourglass.Bourbon-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bourbon-iOS-Bridging-Header.h";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Bourbon-iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

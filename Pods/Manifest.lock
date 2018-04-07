@@ -1,24 +1,23 @@
 PODS:
-  - Alamofire (4.4.0)
-  - CocoaAsyncSocket (7.6.0)
-  - NetUtils (3.0.2)
+  - Alamofire (4.5.1)
+  - CocoaAsyncSocket (7.6.1)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - PKHUD (4.2.1)
-  - PromiseKit (4.2.0):
-    - PromiseKit/Foundation (= 4.2.0)
-    - PromiseKit/QuartzCore (= 4.2.0)
-    - PromiseKit/UIKit (= 4.2.0)
-  - PromiseKit/Alamofire (4.2.0):
+  - PKHUD (4.2.3)
+  - PromiseKit (4.4.0):
+    - PromiseKit/Foundation (= 4.4.0)
+    - PromiseKit/QuartzCore (= 4.4.0)
+    - PromiseKit/UIKit (= 4.4.0)
+  - PromiseKit/Alamofire (4.4.0):
     - Alamofire (~> 4.0)
     - PromiseKit/CorePromise
-  - PromiseKit/CorePromise (4.2.0)
-  - PromiseKit/Foundation (4.2.0):
+  - PromiseKit/CorePromise (4.4.0)
+  - PromiseKit/Foundation (4.4.0):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.2.0):
+  - PromiseKit/QuartzCore (4.4.0):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.2.0):
+  - PromiseKit/UIKit (4.4.0):
     - PromiseKit/CorePromise
   - SwiftyJSON (3.1.4)
   - XCGLogger (5.0.1):
@@ -30,7 +29,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - CocoaAsyncSocket
-  - NetUtils
   - PKHUD
   - PromiseKit
   - PromiseKit/Alamofire (~> 4.0)
@@ -39,16 +37,15 @@ DEPENDENCIES:
   - YelpAPI
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
-  NetUtils: 6ea106332c6e40e28a5ace45602fb517945a335d
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
-  PromiseKit: 08dfb783c161ddcd95b7912421f14c5113fd8318
+  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
+  PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
   YelpAPI: a0475cf4a7b6f9fe81f1bb7b8a8492770f21e3c7
 
-PODFILE CHECKSUM: 62ce19e19f88287f4dbd163bc3b628c945b1f91a
+PODFILE CHECKSUM: 54f8a1d4149b3dd03cc209cd72c76d383c9cb265
 
 COCOAPODS: 1.2.0.rc.1

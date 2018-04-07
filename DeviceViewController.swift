@@ -24,6 +24,18 @@ class DeviceViewController: WebViewBaseViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.webView.alpha = 0
+        self.webView.reload();
+    }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated);
+//        self.webView.reload();
+//    }
+   
+    
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         

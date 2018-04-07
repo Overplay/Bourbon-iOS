@@ -29,6 +29,11 @@ class LoginOrRegViewController: RegSceneBaseViewController {
         self.performSegue(withIdentifier: "fromLRToEnterName", sender: nil)
     }
     
+    @IBAction func resetPwd(_ sender: Any) {
+        // "https://cloud.ourglass.tv/login"
+        UIApplication.shared.openURL(URL(string: "https://cloud.ourglass.tv/login")!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
